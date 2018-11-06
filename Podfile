@@ -10,11 +10,13 @@ pre_install do |installer|
     Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
 end
 
-target 'AmericaTVGoAuthClient' do
+target 'AmericaTVGoAuthProvider-iOS' do
     
-    pod 'ApplicasterSDK', :path => 'Submodules/ApplicasterSDK/ApplicasterSDK-Dev.podspec'
+    pod 'ApplicasterSDK'
+    #pod 'ApplicasterSDK' , :path => 'Submodules/ApplicasterSDK/ApplicasterSDK-Dev.podspec'
+    #pod AmericaTVGoAuthProvider-iOS , :path => '/Users/roikedarya/Desktop/AmericaTVGoAuthProvider-iOS/AmericaTVGoAuthProvider.podspec'
     
-    target 'AmericaTVGoAuthClientTests' do
+    target 'AmericaTVGoAuthProvider-iOSTests' do
     end
 end
 
