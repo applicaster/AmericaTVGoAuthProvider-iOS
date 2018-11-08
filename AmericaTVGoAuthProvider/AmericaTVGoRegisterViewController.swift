@@ -18,9 +18,8 @@ class AmericaTVGoRegisterViewController: UIViewController {
     
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, delegate:APAuthorizationClientDelegate?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        if let delegate = delegate {
-            self.delegate = delegate
-        }
+        
+        self.delegate = delegate
     }
     
     required init?(coder aDecoder: NSCoder) {

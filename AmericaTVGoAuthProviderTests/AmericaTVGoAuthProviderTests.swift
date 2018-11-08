@@ -1,15 +1,15 @@
 //
-//  AmericaTVGoAuthProvider_iOSTests.swift
-//  AmericaTVGoAuthProvider-iOSTests
+//  AmericaTVGoAuthProviderTests.swift
+//  AmericaTVGoAuthProviderTests
 //
-//  Created by Roi Kedarya on 06/11/2018.
+//  Created by Jesus De Meyer on 11/8/18.
 //  Copyright © 2018 applicaster. All rights reserved.
 //
 
 import XCTest
-@testable import AmericaTVGoAuthProvider_iOS
+@testable import AmericaTVGoAuthProvider
 
-class AmericaTVGoAuthProvider_iOSTests: XCTestCase {
+class AmericaTVGoAuthProviderTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

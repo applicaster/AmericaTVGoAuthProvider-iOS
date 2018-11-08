@@ -14,7 +14,6 @@ AmericaTVGo Authorization Client
   s.source_files = 'AmericaTVGoAuthProvider/Classes/**/*'
   s.public_header_files  = 'AmericaTVGoAuthProvider/Classes/**/*.h'
   s.requires_arc = true
-  s.dependency 'ApplicasterSDK'
   s.resources = [
     "AmericaTVGoAuthProvider/Resources/*.*"
   ]
@@ -23,7 +22,5 @@ AmericaTVGo Authorization Client
                       'SWIFT_VERSION' => '4.2',
                       'ENABLE_BITCODE' => 'YES'
                   }
-
   s.dependency 'ApplicasterSDK'
-
 end
