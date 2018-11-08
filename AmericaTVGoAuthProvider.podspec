@@ -11,8 +11,8 @@ AmericaTVGo Authorization Client
   s.author           = { 'roi kedarya' => 'r.kedarya@applicaster.com' }
   s.source           = { :git => 'git@github.com:applicaster/AmericaTVGoAuthProvider-iOS.git', :tag => s.version.to_s }
   s.ios.deployment_target = '9.0'
-  s.source_files = 'AmericaTVGoAuthProvider/Classes/**/*'
-  s.public_header_files  = 'AmericaTVGoAuthProvider/Classes/**/*.h'
+  s.source_files = 'AmericaTVGoAuthProvider/*.{swift,h,m}'
+  s.public_header_files  = 'AmericaTVGoAuthProvider/*.h'
   s.requires_arc = true
   s.resources = [
     "AmericaTVGoAuthProvider/Resources/*.*"
