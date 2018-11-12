@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AmericaTVGoAuthProvider
 
 class ViewController: UIViewController {
 
@@ -15,6 +16,21 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-
+    @IBAction func handleRegister(_ sender: Any) {
+        let controller = AmericaTVGoRegisterViewController()
+        
+    }
+    
+    @IBAction func handleLogin(_ sender: Any) {
+        
+    }
+    
+    @IBAction func handleRecoverPassword(_ sender: Any) {
+        
+    }
+    
+    @IBAction func handleIAP(_ sender: Any) {
+        
+    }
 }
 

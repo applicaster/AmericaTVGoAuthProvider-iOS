@@ -69,59 +69,69 @@ class AmericaTVGoLoginViewController: UIViewController {
     @IBAction func submitButtonClicked(_ sender: Any) {
         if let email = self.emailTextField.text,
             let password = self.passwordTextField.text,
-            email.count > 0,
-            password.count > 0 {
+            !email.isEmpty,
+            !password.isEmpty {
             self.activityIndicator.startAnimating()
             
-            AmericaTVGoLoginAPIManager.sharedInstance.loginUser(email: email,
-                                                             password: password,
-                                                             completion: { (success,token) in
-                                                                self.activityIndicator.stopAnimating()
-                                                                if success {
-                                                                    if let token = token as String? {
-                                                                        self.dismiss(animated: true) {
-                                                                            self.delegate?.didFinishAuthorization!(withToken:token)
-                                                                        }
-                                                                    } else {
-                                                                        //no token - user didn't pay - go to payment screen
-                                                                        if let userId = UserDefaults.standard.object(forKey: AmericaTVGoLoginAPIManager.userIDKey) {
-                                                                            if let purchaseVC = AmericaTVGoInAppPurchaseViewController.init(nibName: "AmericaTVGoInAppPurchaseViewController",
-                                                                                                                                            bundle: Bundle(for: self.classForCoder)) as? UIViewController {
-                                                                                let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal()
-                                                                                topMostViewController?.present(purchaseVC, animated: true, completion: {
-                                                                                    
-                                                                                })
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }else {
-                                                                    // Incorrect username or password
-                                                                    let alertController = UIAlertController.init(title: self.appName,
-                                                                                                                 message: "Correo o contraseña equivocada",
-                                                                                                                 preferredStyle: .alert)
-                                                                    alertController.addAction(UIAlertAction.init(title: "OK",
-                                                                                                                 style: .default,
-                                                                                                                 handler: { (action) in
-                                                                                                                    alertController.dismiss(animated: true, completion: nil)
-                                                                    }))
-                                                                    self.present(alertController,
-                                                                                 animated: true,
-                                                                                 completion: nil)
-                                                                }
-            })
+            let manager = AmericaTVGoAPIManager.shared
+            
+            manager.loginUser(email: email, password: password) { (success: Bool, token: String?, message: String?) in
+                self.activityIndicator.stopAnimating()
+                if success {
+                    if let aToken = token {
+                        let alertController = UIAlertController(title: self.appName, message: message ?? "¡Login Exitoso!", preferredStyle: .alert)
+                        
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
+                            self.dismiss(animated: true) {
+                                self.delegate?.didFinishAuthorization!(withToken:aToken)
+                            }
+                        })
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                    } else {
+                        let alertController = UIAlertController(title: self.appName, message: message ?? "¡No tiene suscripción activa!", preferredStyle: .alert)
+                        
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
+                            self.dismiss(animated: true) {
+                                //no token - user didn't pay - go to payment screen
+                                //if let userId = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) {
+                                    let purchaseVC = AmericaTVGoInAppPurchaseViewController(nibName: "AmericaTVGoInAppPurchaseViewController", bundle: Bundle(for: self.classForCoder))
+                                
+                                    if let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal() {
+                                        topMostViewController.present(purchaseVC, animated: true, completion: {
+                                            
+                                        })
+                                    } else {
+                                        self.present(purchaseVC, animated: true, completion: nil)
+                                    }
+                                //}
+                            }
+                        })
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                } else {
+                    // Incorrect username or password
+                    let alertController = UIAlertController.init(title: self.appName,
+                                                                 message: message ?? "Correo o contraseña equivocada",
+                                                                 preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction.init(title: "OK", style: .default) { (_) in
+                        
+                    })
+
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
         } else {
             // Please make sure to fill email and password
             let alertController = UIAlertController.init(title: self.appName,
                                                          message: "Por favor asegúrate de escribir tu email y contraseña",
                                                          preferredStyle: .alert)
-            alertController.addAction(UIAlertAction.init(title: "OK",
-                                                         style: .default,
-                                                         handler: { (action) in
-                                                            alertController.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alertController,
-                         animated: true,
-                         completion: nil)
+            alertController.addAction(UIAlertAction.init(title: "OK", style: .default) { (_) in
+                
+            })
+            
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     

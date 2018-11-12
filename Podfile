@@ -11,7 +11,7 @@ pre_install do |installer|
 end
 
 target 'AmericaTVGoAuthProviderDemoApp' do
-    pod 'AmericaTVGoAuthProvider-iOS' , :path => 'AmericaTVGoAuthProvider.podspec'
+    pod 'AmericaTVGoAuthProvider' , :path => 'AmericaTVGoAuthProvider.podspec'
 end
 
 post_install do |installer|

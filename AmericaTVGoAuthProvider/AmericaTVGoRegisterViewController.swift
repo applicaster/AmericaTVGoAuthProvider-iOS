@@ -5,6 +5,7 @@
 //  Created by Roi Kedarya on 17/07/2018.
 //
 
+import UIKit
 import ApplicasterSDK
 
 class AmericaTVGoRegisterViewController: UIViewController {
@@ -46,32 +47,66 @@ class AmericaTVGoRegisterViewController: UIViewController {
     @IBAction func registerButtonClicked(_ sender: UIButton) {
         if let email = self.emailTextField.text,
             let password = self.passwordTextField.text,
-            email.count > 0,
-            password.count > 0 {
+            !email.isEmpty,
+            !password.isEmpty {
             self.activityIndicator.startAnimating()
             
-            AmericaTVGoLoginAPIManager.sharedInstance.registerUser(email: email,
-                                                                password: password,
-                                                                completion: {
-                                                                    (success, token) in
-                                                                    self.activityIndicator.stopAnimating()
-                                                                    if success {
-                                                                        if let token = token as String? {
-                                                                            self.dismiss(animated: true) {
-                                                                                if let loginScreen = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal() as? AmericaTVGoLoginViewController {
-                                                                                    loginScreen.dismiss(animated: true, completion: {
-                                                                                        self.delegate?.didFinishAuthorization!(withToken: token)
-                                                                                    })
-                                                                                }
-                                                                            }
-                                                                        } else {
-                                                                            //no token - user didn't pay - go to payment screen with the itunes account and create a subscribtion item
-                                                                            if let userId = UserDefaults.standard.object(forKey: AmericaTVGoLoginAPIManager.userIDKey) {
-                                                                                
-                                                                            }
-                                                                        }
-                                                                    }
+            let manager = AmericaTVGoAPIManager.shared
+            
+            manager.registerUser(email: email, password: password, isPremium: true) { (success: Bool, token: String?, message: String?) in
+                self.activityIndicator.stopAnimating()
+
+                if success {
+                    let alertViewController = UIAlertController(title: nil, message: message ?? "¡Registro Exitoso!", preferredStyle: .alert)
+                    
+                    alertViewController.addAction(UIAlertAction(title: "OK", style: .default) { (_) -> Void in
+                        self.dismiss(animated: true) {
+                            if let aToken = token {
+                                if let loginScreen = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal() as? AmericaTVGoLoginViewController {
+                                    loginScreen.dismiss(animated: true) {
+                                        self.delegate?.didFinishAuthorization!(withToken: aToken)
+                                    }
+                                }
+                            }
+                        }
+                    })
+                    
+                    self.present(alertViewController, animated: true, completion: nil)
+                    
+                    
+                    /*if let token = token as String? {
+                        self.dismiss(animated: true) {
+                            if let loginScreen = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal() as? AmericaTVGoLoginViewController {
+                                loginScreen.dismiss(animated: true, completion: {
+                                    self.delegate?.didFinishAuthorization!(withToken: token)
+                                })
+                            }
+                        }
+                    } else {
+                        //no token - user didn't pay - go to payment screen with the itunes account and create a subscribtion item
+                        if let userId = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) {
+                            
+                        }
+                    }*/
+                } else {
+                    let alertController = UIAlertController(title: nil, message: message ?? "Ocurrio un error.", preferredStyle: .alert)
+                    
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
+                        
+                    })
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        } else {
+            let alertController = UIAlertController.init(title: nil,
+                                                         message: "Por favor asegúrate de escribir un email y contraseña",
+                                                         preferredStyle: .alert)
+            alertController.addAction(UIAlertAction.init(title: "OK", style: .default) { (_) in
+                
             })
+            
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 }

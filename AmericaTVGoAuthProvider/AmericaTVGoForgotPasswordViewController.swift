@@ -22,6 +22,46 @@ class AmericaTVGoForgotPasswordViewController: UIViewController {
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        
+        if let email = self.emailTextField.text,
+            !email.isEmpty {
+            self.activityIndicator.startAnimating()
+            
+            let manager = AmericaTVGoAPIManager.shared
+            
+            manager.forgotPassword(email: email) { (success: Bool, message: String?) in
+                self.activityIndicator.stopAnimating()
+                if success {
+                    let alertViewController = UIAlertController(title: nil, message: message ?? "¡Recuperacion de contraseña exitoso!", preferredStyle: .alert)
+                    
+                    alertViewController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) -> Void in
+                        self.dismiss(animated: true) {
+                            
+                        }
+                    }))
+                    
+                    self.present(alertViewController, animated: true, completion: nil)
+                } else {
+                    let alertController = UIAlertController(title: nil, message: message ?? "Ocurrio un error.", preferredStyle: .alert)
+                    
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                        //self.dismiss(animated: true, completion: nil)
+                    }))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        } else {
+            let alertController = UIAlertController.init(title: nil,
+                                                         message: "Por favor asegúrate de escribir tu email.",
+                                                         preferredStyle: .alert)
+            alertController.addAction(UIAlertAction.init(title: "OK",
+                                                         style: .default,
+                                                         handler: { (action) in
+                                                            alertController.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alertController,
+                         animated: true,
+                         completion: nil)
+        }
     }
 }
