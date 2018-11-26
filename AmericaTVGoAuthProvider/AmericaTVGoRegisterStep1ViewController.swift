@@ -33,12 +33,14 @@ class AmericaTVGoRegisterStep1ViewController: UIViewController {
         
         if let email = emailTextField.text, let password = passwordTextField.text, email.isEmpty || password.isEmpty {
             alertMessage = "Los campos de correo y contraseña no pueden estar vacios."
+        } else if !AmericaTVGoUtils.validateEmail(emailTextField.text ?? "") {
+            alertMessage = "El formato del email no es correcto."
         } else if !(termsButton.isSelected && privacyButton.isSelected) {
             alertMessage = "Por favor acepte los términos y condiciones y la polica de privacidad."
         }
         
         if !alertMessage.isEmpty {
-            let alertController = UIAlertController(title: nil, message: alertMessage, preferredStyle: .alert)
+            let alertController = UIAlertController(title: "", message: alertMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alertController, animated: true, completion: nil)
             return

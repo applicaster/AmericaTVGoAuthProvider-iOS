@@ -69,7 +69,7 @@ class AmericaTVGoLoginViewController: UIViewController {
         if let email = self.emailTextField.text,
             let password = self.passwordTextField.text,
             !email.isEmpty,
-            !password.isEmpty {
+            !password.isEmpty, AmericaTVGoUtils.validateEmail(email) {
             self.activityIndicator.startAnimating()
             
             let manager = AmericaTVGoAPIManager.shared
