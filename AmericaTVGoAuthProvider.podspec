@@ -15,7 +15,8 @@ AmericaTVGo Authorization Client
   s.public_header_files  = 'AmericaTVGoAuthProvider/*.h'
   s.requires_arc = true
   s.resources = [
-    "AmericaTVGoAuthProvider/Resources/*.{png,xib}"
+    "AmericaTVGoAuthProvider/Resources/*.{png,xib}",
+    "AmericaTVGoAuthProvider/Resources/iap.plist"
   ]
 
   s.xcconfig =  { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',

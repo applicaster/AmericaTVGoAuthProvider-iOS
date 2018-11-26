@@ -15,7 +15,8 @@ Pod::Spec.new do |s|
   s.source_files = '__framework_name__/**/*.{h,m,swift}'
 
   s.resources = [
-    "__framework_name__/**/*.{png,xib}"
+    "__framework_name__/**/*.{png,xib}",
+    "__framework_name__/**/iap.plist"
   ]
 
   s.xcconfig =  { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
