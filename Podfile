@@ -10,9 +10,18 @@ pre_install do |installer|
     Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
 end
 
-target 'AmericaTVGoAuthProviderDemoApp' do
-    pod 'AmericaTVGoAuthProvider' , :path => 'AmericaTVGoAuthProvider.podspec'
+#target 'AmericaTVGoAuthProviderDemoApp' do
+#    pod 'AmericaTVGoAuthProvider' , :path => 'AmericaTVGoAuthProvider.podspec'
+#end
+
+target 'AmericaTVGoAuthProvider' do
+    pod 'ApplicasterSDK'
+    pod 'ZappPlugins'
+    pod 'AFNetworking'
+    pod 'TPKeyboardAvoiding'
 end
+
+
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|

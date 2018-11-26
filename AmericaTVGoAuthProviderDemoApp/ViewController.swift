@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     }
 
     @IBAction func handleRegister(_ sender: Any) {
-        let controller = AmericaTVGoRegisterViewController()
         
     }
     

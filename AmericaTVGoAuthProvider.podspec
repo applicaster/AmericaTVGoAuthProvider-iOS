@@ -11,11 +11,11 @@ AmericaTVGo Authorization Client
   s.author           = { 'roi kedarya' => 'r.kedarya@applicaster.com' }
   s.source           = { :git => 'git@github.com:applicaster/AmericaTVGoAuthProvider-iOS.git', :tag => s.version.to_s }
   s.platform     = :ios, '9.0'
-  s.source_files = 'AmericaTVGoAuthProvider/**/*.{swift,h,m}'
-  s.public_header_files  = 'AmericaTVGoAuthProvider/**/*.h'
+  s.source_files = 'AmericaTVGoAuthProvider/*.{swift,h,m}'
+  s.public_header_files  = 'AmericaTVGoAuthProvider/*.h'
   s.requires_arc = true
   s.resources = [
-    "AmericaTVGoAuthProvider/Resources/**/*.{png,xib}"
+    "AmericaTVGoAuthProvider/Resources/*.{png,xib}"
   ]
 
   s.xcconfig =  { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
@@ -23,4 +23,7 @@ AmericaTVGo Authorization Client
                       'ENABLE_BITCODE' => 'YES'
                   }
   s.dependency 'ApplicasterSDK'
+  s.dependency 'ZappPlugins'
+  s.dependency 'AFNetworking'
+  s.dependency 'TPKeyboardAvoiding'
 end

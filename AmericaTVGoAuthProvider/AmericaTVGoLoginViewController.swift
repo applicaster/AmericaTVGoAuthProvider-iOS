@@ -11,30 +11,25 @@ import ApplicasterSDK
 
 class AmericaTVGoLoginViewController: UIViewController {
     
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailTextField: AmericaTVGoTextField!
+    @IBOutlet weak var passwordTextField: AmericaTVGoTextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var hideRevealButton: UIButton!
-    @IBOutlet weak var closeButton: UIButton!
     
     private let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
     private var delegate:APAuthorizationClientDelegate?
     
-    @IBAction func hideRevealButtonClicked(_ sender: Any) {
-        if self.passwordTextField.isSecureTextEntry {
-            self.hideRevealButton.setTitle("Ocultar", for: .normal)
-            self.passwordTextField.isSecureTextEntry = false
-        } else {
-            self.hideRevealButton.setTitle("Mostar", for: .normal)
-            self.passwordTextField.isSecureTextEntry = true
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let _ = emailTextField.becomeFirstResponder()
     }
    
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, andDelegate delegate:APAuthorizationClientDelegate?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        if let delegate = delegate {
-            self.delegate = delegate
-        }
+        
+        self.delegate = delegate
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(registerLaterNotification(_:)), name: AmericaTVGoRegisterLaterNotification, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,11 +54,15 @@ class AmericaTVGoLoginViewController: UIViewController {
     }
     
     @IBAction func registerButtonClicked(_ sender: Any) {
-        let registerViewController = AmericaTVGoRegisterViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder), delegate:delegate)
-        //registerViewController.delegate = self.delegate
-        self.present(registerViewController,
-                     animated: true,
-                     completion: nil)
+        let registerViewController = AmericaTVGoRegisterStep0ViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
+        let navController = UINavigationController(rootViewController: registerViewController)
+        navController.isNavigationBarHidden = true
+        
+        if let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal() {
+            topMostViewController.present(navController, animated: true, completion: nil)
+        } else {
+            self.present(navController, animated: true, completion: nil)
+        }
     }
     
     @IBAction func submitButtonClicked(_ sender: Any) {
@@ -95,7 +94,7 @@ class AmericaTVGoLoginViewController: UIViewController {
                             self.dismiss(animated: true) {
                                 //no token - user didn't pay - go to payment screen
                                 //if let userId = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) {
-                                    let purchaseVC = AmericaTVGoInAppPurchaseViewController(nibName: "AmericaTVGoInAppPurchaseViewController", bundle: Bundle(for: self.classForCoder))
+                                    /*let purchaseVC = AmericaTVGoInAppPurchaseViewController(nibName: "AmericaTVGoInAppPurchaseViewController", bundle: Bundle(for: self.classForCoder))
                                 
                                     if let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal() {
                                         topMostViewController.present(purchaseVC, animated: true, completion: {
@@ -103,7 +102,7 @@ class AmericaTVGoLoginViewController: UIViewController {
                                         })
                                     } else {
                                         self.present(purchaseVC, animated: true, completion: nil)
-                                    }
+                                    }*/
                                 //}
                             }
                         })
@@ -141,5 +140,19 @@ class AmericaTVGoLoginViewController: UIViewController {
     
     open override var shouldAutorotate: Bool {
         return true
+    }
+    
+    @objc
+    func registerLaterNotification(_ sender: Notification) {
+        if let controller = sender.userInfo?["sender"] as? UIViewController {
+            controller.modalTransitionStyle = .crossDissolve
+            
+            controller.dismiss(animated: false) {
+                self.dismiss(animated: true) {
+                    //self.delegate?.didCancelAuthorization!(false)
+                    self.delegate?.didFinishAuthorization!(withToken: "")
+                }
+            }
+        }
     }
 }

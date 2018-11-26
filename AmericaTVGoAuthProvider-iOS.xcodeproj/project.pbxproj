@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86D8AC9C21A47BAB0044DAE2 /* iap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86D8AC9B21A47BAB0044DAE2 /* iap.plist */; };
+		86D8AC9E21A47C2D0044DAE2 /* AmericaTVGoIAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D8AC9D21A47C2D0044DAE2 /* AmericaTVGoIAPManager.swift */; };
+		86D8ACA121A5D6760044DAE2 /* AmericaTVGoProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D8AC9F21A5D6760044DAE2 /* AmericaTVGoProductCollectionViewCell.swift */; };
+		86D8ACA221A5D6760044DAE2 /* AmericaTvGoProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86D8ACA021A5D6760044DAE2 /* AmericaTvGoProductCollectionViewCell.xib */; };
+		86D8ACA421A5D99E0044DAE2 /* AmericaTVGoProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D8ACA321A5D99E0044DAE2 /* AmericaTVGoProduct.swift */; };
 		86DCFCB52194E91000D4E82A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFC9A2194E91000D4E82A /* ViewController.swift */; };
 		86DCFCC72194E91000D4E82A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCAE2194E91000D4E82A /* Assets.xcassets */; };
 		86DCFCC82194E91000D4E82A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCAF2194E91000D4E82A /* LaunchScreen.storyboard */; };
@@ -18,7 +23,6 @@
 		86DCFCEF2194EA6500D4E82A /* AmericaTVGoAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFCE82194EA6500D4E82A /* AmericaTVGoAPIManager.swift */; };
 		86DCFCF02194EA6500D4E82A /* AmericaTVGoForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFCE92194EA6500D4E82A /* AmericaTVGoForgotPasswordViewController.swift */; };
 		86DCFCF12194EA6500D4E82A /* AmericaTVGoEndpointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFCEA2194EA6500D4E82A /* AmericaTVGoEndpointManager.swift */; };
-		86DCFCF22194EA6500D4E82A /* AmericaTVGoInAppPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFCEB2194EA6500D4E82A /* AmericaTVGoInAppPurchaseViewController.swift */; };
 		86DCFCF32194EA6500D4E82A /* AmericaTVGoAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFCEC2194EA6500D4E82A /* AmericaTVGoAuthProvider.swift */; };
 		86DCFCF42194EA6500D4E82A /* AmericaTVGoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFCED2194EA6500D4E82A /* AmericaTVGoLoginViewController.swift */; };
 		86DCFCF52194EA6500D4E82A /* AmericaTVGoRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFCEE2194EA6500D4E82A /* AmericaTVGoRegisterViewController.swift */; };
@@ -26,14 +30,32 @@
 		86DCFD022194EA6D00D4E82A /* navbar_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCF82194EA6D00D4E82A /* navbar_logo@2x.png */; };
 		86DCFD032194EA6D00D4E82A /* AmericaTVGoLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCF92194EA6D00D4E82A /* AmericaTVGoLoginViewController.xib */; };
 		86DCFD042194EA6D00D4E82A /* login_close_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCFA2194EA6D00D4E82A /* login_close_button@2x.png */; };
-		86DCFD052194EA6D00D4E82A /* AmericaTVGoInAppPurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCFB2194EA6D00D4E82A /* AmericaTVGoInAppPurchaseViewController.xib */; };
 		86DCFD062194EA6D00D4E82A /* login_back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCFC2194EA6D00D4E82A /* login_back_button.png */; };
 		86DCFD072194EA6D00D4E82A /* AmericaTVGoRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCFD2194EA6D00D4E82A /* AmericaTVGoRegisterViewController.xib */; };
 		86DCFD082194EA6D00D4E82A /* login_back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCFE2194EA6D00D4E82A /* login_back_button@2x.png */; };
 		86DCFD092194EA6D00D4E82A /* navbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCFF2194EA6D00D4E82A /* navbar_logo.png */; };
 		86DCFD0A2194EA6D00D4E82A /* login_close_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD002194EA6D00D4E82A /* login_close_button.png */; };
 		86DCFD0D2194EA7A00D4E82A /* plugin-manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD0C2194EA7A00D4E82A /* plugin-manifest.json */; };
-		8B42F1F2D142ADC9C35D7C7F /* Pods_AmericaTVGoAuthProviderDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182166E5163A3125D8218677 /* Pods_AmericaTVGoAuthProviderDemoApp.framework */; };
+		86DCFD15219B72F100D4E82A /* checkbox_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD12219B72F100D4E82A /* checkbox_on.png */; };
+		86DCFD16219B72F100D4E82A /* checkbox_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD13219B72F100D4E82A /* checkbox_on@2x.png */; };
+		86DCFD17219B72F100D4E82A /* checkbox_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD14219B72F100D4E82A /* checkbox_on@3x.png */; };
+		86DCFD1B219B730C00D4E82A /* checkbox_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD18219B730C00D4E82A /* checkbox_off@3x.png */; };
+		86DCFD1C219B730C00D4E82A /* checkbox_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD19219B730C00D4E82A /* checkbox_off.png */; };
+		86DCFD1D219B730C00D4E82A /* checkbox_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD1A219B730C00D4E82A /* checkbox_off@2x.png */; };
+		86DCFD1F219B808800D4E82A /* AmericaTVGoShadowBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD1E219B808800D4E82A /* AmericaTVGoShadowBoxView.swift */; };
+		86DCFD22219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD20219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.swift */; };
+		86DCFD23219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD21219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.xib */; };
+		86DCFD25219DEF4B00D4E82A /* UIColor+AmericaTVGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD24219DEF4B00D4E82A /* UIColor+AmericaTVGo.swift */; };
+		86DCFD28219E170900D4E82A /* AmericaTVGoAuthProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DCFCD12194E97400D4E82A /* AmericaTVGoAuthProvider.framework */; };
+		86DCFD2B219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD29219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.swift */; };
+		86DCFD2C219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD2A219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.xib */; };
+		86DCFD2F219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD2D219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.swift */; };
+		86DCFD30219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD2E219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.xib */; };
+		86DCFD32219F4EE600D4E82A /* AmericaTVGoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD31219F4EE600D4E82A /* AmericaTVGoTextField.swift */; };
+		86DCFD35219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD33219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.swift */; };
+		86DCFD36219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD34219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib */; };
+		86DCFD3821A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD3721A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift */; };
+		EA4D8A03A10FE31F09AE98CA /* Pods_AmericaTVGoAuthProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3B41B1B827E438FEFAC664 /* Pods_AmericaTVGoAuthProvider.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +76,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07D08D4CF88570AF0EE68512 /* Pods-AmericaTVGoAuthProvider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmericaTVGoAuthProvider.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmericaTVGoAuthProvider/Pods-AmericaTVGoAuthProvider.release.xcconfig"; sourceTree = "<group>"; };
 		182166E5163A3125D8218677 /* Pods_AmericaTVGoAuthProviderDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmericaTVGoAuthProviderDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B0C50E219241510009A878 /* AmericaTVGoAuthProviderDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericaTVGoAuthProviderDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		86C2446151218C977AEB8376 /* Pods-AmericaTVGoAuthProvider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmericaTVGoAuthProvider.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmericaTVGoAuthProvider/Pods-AmericaTVGoAuthProvider.debug.xcconfig"; sourceTree = "<group>"; };
+		86D8AC9B21A47BAB0044DAE2 /* iap.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = iap.plist; sourceTree = "<group>"; };
+		86D8AC9D21A47C2D0044DAE2 /* AmericaTVGoIAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoIAPManager.swift; sourceTree = "<group>"; };
+		86D8AC9F21A5D6760044DAE2 /* AmericaTVGoProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		86D8ACA021A5D6760044DAE2 /* AmericaTvGoProductCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTvGoProductCollectionViewCell.xib; sourceTree = "<group>"; };
+		86D8ACA321A5D99E0044DAE2 /* AmericaTVGoProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoProduct.swift; sourceTree = "<group>"; };
 		86DCFC9A2194E91000D4E82A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		86DCFCAE2194E91000D4E82A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86DCFCB02194E91000D4E82A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -71,7 +100,6 @@
 		86DCFCE82194EA6500D4E82A /* AmericaTVGoAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmericaTVGoAPIManager.swift; sourceTree = "<group>"; };
 		86DCFCE92194EA6500D4E82A /* AmericaTVGoForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmericaTVGoForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		86DCFCEA2194EA6500D4E82A /* AmericaTVGoEndpointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmericaTVGoEndpointManager.swift; sourceTree = "<group>"; };
-		86DCFCEB2194EA6500D4E82A /* AmericaTVGoInAppPurchaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmericaTVGoInAppPurchaseViewController.swift; sourceTree = "<group>"; };
 		86DCFCEC2194EA6500D4E82A /* AmericaTVGoAuthProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmericaTVGoAuthProvider.swift; sourceTree = "<group>"; };
 		86DCFCED2194EA6500D4E82A /* AmericaTVGoLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmericaTVGoLoginViewController.swift; sourceTree = "<group>"; };
 		86DCFCEE2194EA6500D4E82A /* AmericaTVGoRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmericaTVGoRegisterViewController.swift; sourceTree = "<group>"; };
@@ -79,15 +107,31 @@
 		86DCFCF82194EA6D00D4E82A /* navbar_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar_logo@2x.png"; sourceTree = "<group>"; };
 		86DCFCF92194EA6D00D4E82A /* AmericaTVGoLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmericaTVGoLoginViewController.xib; sourceTree = "<group>"; };
 		86DCFCFA2194EA6D00D4E82A /* login_close_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_close_button@2x.png"; sourceTree = "<group>"; };
-		86DCFCFB2194EA6D00D4E82A /* AmericaTVGoInAppPurchaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmericaTVGoInAppPurchaseViewController.xib; sourceTree = "<group>"; };
 		86DCFCFC2194EA6D00D4E82A /* login_back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_back_button.png; sourceTree = "<group>"; };
 		86DCFCFD2194EA6D00D4E82A /* AmericaTVGoRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmericaTVGoRegisterViewController.xib; sourceTree = "<group>"; };
 		86DCFCFE2194EA6D00D4E82A /* login_back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_back_button@2x.png"; sourceTree = "<group>"; };
 		86DCFCFF2194EA6D00D4E82A /* navbar_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_logo.png; sourceTree = "<group>"; };
 		86DCFD002194EA6D00D4E82A /* login_close_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_close_button.png; sourceTree = "<group>"; };
 		86DCFD0C2194EA7A00D4E82A /* plugin-manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "plugin-manifest.json"; sourceTree = "<group>"; };
-		8DA0DD907F7C6FAD07E24760 /* Pods-AmericaTVGoAuthProviderDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmericaTVGoAuthProviderDemoApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmericaTVGoAuthProviderDemoApp/Pods-AmericaTVGoAuthProviderDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
-		D550B567AEBBF5922531EAE2 /* Pods-AmericaTVGoAuthProviderDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmericaTVGoAuthProviderDemoApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmericaTVGoAuthProviderDemoApp/Pods-AmericaTVGoAuthProviderDemoApp.release.xcconfig"; sourceTree = "<group>"; };
+		86DCFD12219B72F100D4E82A /* checkbox_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_on.png; sourceTree = "<group>"; };
+		86DCFD13219B72F100D4E82A /* checkbox_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox_on@2x.png"; sourceTree = "<group>"; };
+		86DCFD14219B72F100D4E82A /* checkbox_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox_on@3x.png"; sourceTree = "<group>"; };
+		86DCFD18219B730C00D4E82A /* checkbox_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox_off@3x.png"; sourceTree = "<group>"; };
+		86DCFD19219B730C00D4E82A /* checkbox_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_off.png; sourceTree = "<group>"; };
+		86DCFD1A219B730C00D4E82A /* checkbox_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox_off@2x.png"; sourceTree = "<group>"; };
+		86DCFD1E219B808800D4E82A /* AmericaTVGoShadowBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoShadowBoxView.swift; sourceTree = "<group>"; };
+		86DCFD20219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AmericaTVGoRegisterStep0ViewController.swift; path = AmericaTVGoAuthProvider/AmericaTVGoRegisterStep0ViewController.swift; sourceTree = SOURCE_ROOT; };
+		86DCFD21219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AmericaTVGoRegisterStep0ViewController.xib; path = AmericaTVGoAuthProvider/Resources/AmericaTVGoRegisterStep0ViewController.xib; sourceTree = SOURCE_ROOT; };
+		86DCFD24219DEF4B00D4E82A /* UIColor+AmericaTVGo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AmericaTVGo.swift"; sourceTree = "<group>"; };
+		86DCFD29219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoRegisterStep1ViewController.swift; sourceTree = "<group>"; };
+		86DCFD2A219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTVGoRegisterStep1ViewController.xib; sourceTree = "<group>"; };
+		86DCFD2D219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoRegisterStep1PremiumViewController.swift; sourceTree = "<group>"; };
+		86DCFD2E219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTVGoRegisterStep1PremiumViewController.xib; sourceTree = "<group>"; };
+		86DCFD31219F4EE600D4E82A /* AmericaTVGoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoTextField.swift; sourceTree = "<group>"; };
+		86DCFD33219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoRegisterStep2PremiumViewController.swift; sourceTree = "<group>"; };
+		86DCFD34219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTVGoRegisterStep2PremiumViewController.xib; sourceTree = "<group>"; };
+		86DCFD3721A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoStrikethroughLabel.swift; sourceTree = "<group>"; };
+		9B3B41B1B827E438FEFAC664 /* Pods_AmericaTVGoAuthProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmericaTVGoAuthProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B42F1F2D142ADC9C35D7C7F /* Pods_AmericaTVGoAuthProviderDemoApp.framework in Frameworks */,
+				86DCFD28219E170900D4E82A /* AmericaTVGoAuthProvider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA4D8A03A10FE31F09AE98CA /* Pods_AmericaTVGoAuthProvider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				182166E5163A3125D8218677 /* Pods_AmericaTVGoAuthProviderDemoApp.framework */,
+				9B3B41B1B827E438FEFAC664 /* Pods_AmericaTVGoAuthProvider.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -167,10 +213,20 @@
 				86DCFCEC2194EA6500D4E82A /* AmericaTVGoAuthProvider.swift */,
 				86DCFCEA2194EA6500D4E82A /* AmericaTVGoEndpointManager.swift */,
 				86DCFCE92194EA6500D4E82A /* AmericaTVGoForgotPasswordViewController.swift */,
-				86DCFCEB2194EA6500D4E82A /* AmericaTVGoInAppPurchaseViewController.swift */,
 				86DCFCE82194EA6500D4E82A /* AmericaTVGoAPIManager.swift */,
 				86DCFCED2194EA6500D4E82A /* AmericaTVGoLoginViewController.swift */,
 				86DCFCEE2194EA6500D4E82A /* AmericaTVGoRegisterViewController.swift */,
+				86DCFD20219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.swift */,
+				86DCFD29219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.swift */,
+				86DCFD2D219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.swift */,
+				86DCFD33219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.swift */,
+				86DCFD1E219B808800D4E82A /* AmericaTVGoShadowBoxView.swift */,
+				86DCFD24219DEF4B00D4E82A /* UIColor+AmericaTVGo.swift */,
+				86DCFD31219F4EE600D4E82A /* AmericaTVGoTextField.swift */,
+				86DCFD3721A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift */,
+				86D8AC9D21A47C2D0044DAE2 /* AmericaTVGoIAPManager.swift */,
+				86D8AC9F21A5D6760044DAE2 /* AmericaTVGoProductCollectionViewCell.swift */,
+				86D8ACA321A5D99E0044DAE2 /* AmericaTVGoProduct.swift */,
 				86DCFD0B2194EA7A00D4E82A /* manifest */,
 				86DCFCF62194EA6D00D4E82A /* Resources */,
 				86DCFCD42194E97400D4E82A /* Info.plist */,
@@ -190,16 +246,27 @@
 		86DCFCF62194EA6D00D4E82A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				86D8AC9B21A47BAB0044DAE2 /* iap.plist */,
 				86DCFCF72194EA6D00D4E82A /* AmericaTVGoForgotPasswordViewController.xib */,
 				86DCFCF82194EA6D00D4E82A /* navbar_logo@2x.png */,
 				86DCFCF92194EA6D00D4E82A /* AmericaTVGoLoginViewController.xib */,
 				86DCFCFA2194EA6D00D4E82A /* login_close_button@2x.png */,
-				86DCFCFB2194EA6D00D4E82A /* AmericaTVGoInAppPurchaseViewController.xib */,
 				86DCFCFC2194EA6D00D4E82A /* login_back_button.png */,
 				86DCFCFD2194EA6D00D4E82A /* AmericaTVGoRegisterViewController.xib */,
+				86DCFD21219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.xib */,
+				86DCFD2A219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.xib */,
+				86DCFD2E219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.xib */,
+				86DCFD34219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib */,
+				86D8ACA021A5D6760044DAE2 /* AmericaTvGoProductCollectionViewCell.xib */,
 				86DCFCFE2194EA6D00D4E82A /* login_back_button@2x.png */,
 				86DCFCFF2194EA6D00D4E82A /* navbar_logo.png */,
 				86DCFD002194EA6D00D4E82A /* login_close_button.png */,
+				86DCFD19219B730C00D4E82A /* checkbox_off.png */,
+				86DCFD1A219B730C00D4E82A /* checkbox_off@2x.png */,
+				86DCFD18219B730C00D4E82A /* checkbox_off@3x.png */,
+				86DCFD12219B72F100D4E82A /* checkbox_on.png */,
+				86DCFD13219B72F100D4E82A /* checkbox_on@2x.png */,
+				86DCFD14219B72F100D4E82A /* checkbox_on@3x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -215,8 +282,8 @@
 		B6B2550210566941657976B7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8DA0DD907F7C6FAD07E24760 /* Pods-AmericaTVGoAuthProviderDemoApp.debug.xcconfig */,
-				D550B567AEBBF5922531EAE2 /* Pods-AmericaTVGoAuthProviderDemoApp.release.xcconfig */,
+				86C2446151218C977AEB8376 /* Pods-AmericaTVGoAuthProvider.debug.xcconfig */,
+				07D08D4CF88570AF0EE68512 /* Pods-AmericaTVGoAuthProvider.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -239,12 +306,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 23B0C52B219241570009A878 /* Build configuration list for PBXNativeTarget "AmericaTVGoAuthProviderDemoApp" */;
 			buildPhases = (
-				0DE7B1BC03CF9852AB260885 /* [CP] Check Pods Manifest.lock */,
 				23B0C50A219241510009A878 /* Sources */,
 				23B0C50B219241510009A878 /* Frameworks */,
 				23B0C50C219241510009A878 /* Resources */,
-				2586512A17A2EB8CBCB21EFF /* [CP] Embed Pods Frameworks */,
-				3E58658BFA97B3D086879689 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -259,10 +323,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86DCFCE22194E97500D4E82A /* Build configuration list for PBXNativeTarget "AmericaTVGoAuthProvider" */;
 			buildPhases = (
+				9C1A9B742064E684DC65F132 /* [CP] Check Pods Manifest.lock */,
 				86DCFCCC2194E97400D4E82A /* Headers */,
 				86DCFCCD2194E97400D4E82A /* Sources */,
 				86DCFCCE2194E97400D4E82A /* Frameworks */,
 				86DCFCCF2194E97400D4E82A /* Resources */,
+				556DCDAC37B52874282FA59B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -350,17 +416,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86DCFD16219B72F100D4E82A /* checkbox_on@2x.png in Resources */,
 				86DCFD012194EA6D00D4E82A /* AmericaTVGoForgotPasswordViewController.xib in Resources */,
+				86DCFD15219B72F100D4E82A /* checkbox_on.png in Resources */,
 				86DCFD0D2194EA7A00D4E82A /* plugin-manifest.json in Resources */,
+				86DCFD1C219B730C00D4E82A /* checkbox_off.png in Resources */,
+				86DCFD2C219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.xib in Resources */,
 				86DCFD082194EA6D00D4E82A /* login_back_button@2x.png in Resources */,
+				86DCFD17219B72F100D4E82A /* checkbox_on@3x.png in Resources */,
+				86DCFD23219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.xib in Resources */,
+				86DCFD1B219B730C00D4E82A /* checkbox_off@3x.png in Resources */,
+				86D8ACA221A5D6760044DAE2 /* AmericaTvGoProductCollectionViewCell.xib in Resources */,
 				86DCFD022194EA6D00D4E82A /* navbar_logo@2x.png in Resources */,
-				86DCFD052194EA6D00D4E82A /* AmericaTVGoInAppPurchaseViewController.xib in Resources */,
+				86D8AC9C21A47BAB0044DAE2 /* iap.plist in Resources */,
 				86DCFD0A2194EA6D00D4E82A /* login_close_button.png in Resources */,
 				86DCFD072194EA6D00D4E82A /* AmericaTVGoRegisterViewController.xib in Resources */,
+				86DCFD36219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib in Resources */,
 				86DCFD032194EA6D00D4E82A /* AmericaTVGoLoginViewController.xib in Resources */,
 				86DCFD062194EA6D00D4E82A /* login_back_button.png in Resources */,
 				86DCFD092194EA6D00D4E82A /* navbar_logo.png in Resources */,
+				86DCFD30219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.xib in Resources */,
 				86DCFD042194EA6D00D4E82A /* login_close_button@2x.png in Resources */,
+				86DCFD1D219B730C00D4E82A /* checkbox_off@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,7 +451,31 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0DE7B1BC03CF9852AB260885 /* [CP] Check Pods Manifest.lock */ = {
+		556DCDAC37B52874282FA59B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AmericaTVGoAuthProvider/Pods-AmericaTVGoAuthProvider-resources.sh",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterShareExtensionUIResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmericaTVGoAuthProvider/Pods-AmericaTVGoAuthProvider-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C1A9B742064E684DC65F132 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -389,95 +490,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AmericaTVGoAuthProviderDemoApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AmericaTVGoAuthProvider-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2586512A17A2EB8CBCB21EFF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AmericaTVGoAuthProviderDemoApp/Pods-AmericaTVGoAuthProviderDemoApp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/AmericaTVGoAuthProvider/AmericaTVGoAuthProvider.framework",
-				"${PODS_ROOT}/ApplicasterSDK/ApplicasterSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/FBNotifications/FBNotifications.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
-				"${PODS_ROOT}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds.framework",
-				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
-				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
-				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
-				"${BUILT_PRODUCTS_DIR}/ZappAnalyticsPluginsSDK/ZappAnalyticsPluginsSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/ZappGeneralPluginsSDK/ZappGeneralPluginsSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/ZappLoginPluginsSDK/ZappLoginPluginsSDK.framework",
-				"${PODS_ROOT}/ZappPlugins/ZappPlugins.framework",
-				"${BUILT_PRODUCTS_DIR}/ZappPushPluginsSDK/ZappPushPluginsSDK.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AmericaTVGoAuthProvider.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ApplicasterSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBNotifications.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleInteractiveMediaAds.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZappAnalyticsPluginsSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZappGeneralPluginsSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZappLoginPluginsSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZappPlugins.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZappPushPluginsSDK.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmericaTVGoAuthProviderDemoApp/Pods-AmericaTVGoAuthProviderDemoApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3E58658BFA97B3D086879689 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AmericaTVGoAuthProviderDemoApp/Pods-AmericaTVGoAuthProviderDemoApp-resources.sh",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterShareExtensionUIResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmericaTVGoAuthProviderDemoApp/Pods-AmericaTVGoAuthProviderDemoApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -499,10 +516,20 @@
 				86DCFCEF2194EA6500D4E82A /* AmericaTVGoAPIManager.swift in Sources */,
 				86DCFCF12194EA6500D4E82A /* AmericaTVGoEndpointManager.swift in Sources */,
 				86DCFCF02194EA6500D4E82A /* AmericaTVGoForgotPasswordViewController.swift in Sources */,
+				86D8ACA121A5D6760044DAE2 /* AmericaTVGoProductCollectionViewCell.swift in Sources */,
 				86DCFCF42194EA6500D4E82A /* AmericaTVGoLoginViewController.swift in Sources */,
-				86DCFCF22194EA6500D4E82A /* AmericaTVGoInAppPurchaseViewController.swift in Sources */,
+				86DCFD3821A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift in Sources */,
+				86DCFD22219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.swift in Sources */,
+				86DCFD1F219B808800D4E82A /* AmericaTVGoShadowBoxView.swift in Sources */,
+				86DCFD35219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.swift in Sources */,
 				86DCFCF52194EA6500D4E82A /* AmericaTVGoRegisterViewController.swift in Sources */,
+				86DCFD25219DEF4B00D4E82A /* UIColor+AmericaTVGo.swift in Sources */,
+				86DCFD32219F4EE600D4E82A /* AmericaTVGoTextField.swift in Sources */,
 				86DCFCF32194EA6500D4E82A /* AmericaTVGoAuthProvider.swift in Sources */,
+				86D8AC9E21A47C2D0044DAE2 /* AmericaTVGoIAPManager.swift in Sources */,
+				86DCFD2B219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.swift in Sources */,
+				86D8ACA421A5D99E0044DAE2 /* AmericaTVGoProduct.swift in Sources */,
+				86DCFD2F219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,7 +696,6 @@
 		};
 		23B0C52C219241570009A878 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8DA0DD907F7C6FAD07E24760 /* Pods-AmericaTVGoAuthProviderDemoApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -687,7 +713,6 @@
 		};
 		23B0C52D219241570009A878 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D550B567AEBBF5922531EAE2 /* Pods-AmericaTVGoAuthProviderDemoApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -705,6 +730,7 @@
 		};
 		86DCFCE32194E97500D4E82A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86C2446151218C977AEB8376 /* Pods-AmericaTVGoAuthProvider.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -734,6 +760,7 @@
 		};
 		86DCFCE42194E97500D4E82A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07D08D4CF88570AF0EE68512 /* Pods-AmericaTVGoAuthProvider.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
