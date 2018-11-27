@@ -44,25 +44,18 @@ class AmericaTVGoForgotPasswordViewController: UIViewController {
                 } else {
                     let alertController = UIAlertController(title: nil, message: message ?? "Ocurrio un error.", preferredStyle: .alert)
                     
-                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                        //self.dismiss(animated: true, completion: nil)
-                    }))
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
         } else {
-            let alertController = UIAlertController.init(title: nil,
-                                                         message: "Por favor asegúrate de escribir tu email.",
-                                                         preferredStyle: .alert)
-            alertController.addAction(UIAlertAction.init(title: "OK",
-                                                         style: .default,
-                                                         handler: { (action) in
-                                                            alertController.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alertController,
-                         animated: true,
-                         completion: nil)
+            let alertController = UIAlertController(title: nil,
+                                                    message: "Por favor asegúrate de escribir tu email.",
+                                                    preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 }

@@ -16,6 +16,7 @@ enum AmericaTVGoEndpointType: Int {
     case userDetailsUpdate
     case passwordRecovery
     case subscription
+    case products
 }
 
 @objc
@@ -62,9 +63,17 @@ class AmericaTVGoEndpointManager: NSObject {
             } else {
                 urlString = "http://dev.tvgo.americadigital.pe/api/usuarios/app/set/purchase"
             }
+        case .products:
+            if production {
+                urlString = "https://tvgo.americatv.com.pe/api/usuarios/app/list/paquetes?partner=applicaster&tipo=ios"
+            } else {
+                urlString = "http://dev.tvgo.americadigital.pe/api/usuarios/app/list/paquetes?partner=applicaster&tipo=ios"
+            }
         }
         return URL(string: urlString)!
     }
+    
+    // MARK: -
     
     func messageForMessageID(_ messageID: String) -> String? {
         var messageList = [String: String]()

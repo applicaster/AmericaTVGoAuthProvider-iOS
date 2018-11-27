@@ -36,6 +36,8 @@ class AmericaTVGoLoginViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: -
+    
     @IBAction func forgotPasswordButtonClicked(_ sender: Any) {
         let forgotPasswordViewController = AmericaTVGoForgotPasswordViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
         self.present(forgotPasswordViewController,
@@ -44,13 +46,7 @@ class AmericaTVGoLoginViewController: UIViewController {
     }
     
     @IBAction func closeButtonClicked(_ sender: Any) {
-        self.dismiss(animated: true) {
-            self.delegate?.didCancelAuthorization!(false)
-            let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal()
-            if let playerViewController = topMostViewController as? APPlayerViewController{
-                playerViewController.dismiss(animated: true)
-            }
-        }
+        handleDismiss()
     }
     
     @IBAction func registerButtonClicked(_ sender: Any) {
@@ -76,6 +72,11 @@ class AmericaTVGoLoginViewController: UIViewController {
             
             manager.loginUser(email: email, password: password) { (success: Bool, token: String?, message: String?) in
                 self.activityIndicator.stopAnimating()
+                
+                let user = AmericaTVGoIAPManager.shared.currentUser
+                user.email = email
+                user.password = password
+                
                 if success {
                     if let aToken = token {
                         let alertController = UIAlertController(title: self.appName, message: message ?? "¡Login Exitoso!", preferredStyle: .alert)
@@ -91,7 +92,7 @@ class AmericaTVGoLoginViewController: UIViewController {
                         let alertController = UIAlertController(title: self.appName, message: message ?? "¡No tiene suscripción activa!", preferredStyle: .alert)
                         
                         alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
-                            self.dismiss(animated: true) {
+                            //self.dismiss(animated: true) {
                                 //no token - user didn't pay - go to payment screen
                                 //if let userId = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) {
                                     /*let purchaseVC = AmericaTVGoInAppPurchaseViewController(nibName: "AmericaTVGoInAppPurchaseViewController", bundle: Bundle(for: self.classForCoder))
@@ -104,7 +105,7 @@ class AmericaTVGoLoginViewController: UIViewController {
                                         self.present(purchaseVC, animated: true, completion: nil)
                                     }*/
                                 //}
-                            }
+                            //}
                         })
                         
                         self.present(alertController, animated: true, completion: nil)
@@ -134,6 +135,27 @@ class AmericaTVGoLoginViewController: UIViewController {
         }
     }
     
+    // MARK: -
+    
+    fileprivate func handleDismiss() {
+        self.dismiss(animated: true) {
+            let user = AmericaTVGoIAPManager.shared.currentUser
+            
+            if user.token.isEmpty {
+                self.delegate?.didCancelAuthorization!(false)
+            } else {
+                self.delegate?.didFinishAuthorization!(withToken: user.token)
+            }
+            
+            let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal()
+            if let viewController = topMostViewController as? AmericaTVGoLoginViewController {
+                viewController.dismiss(animated: true)
+            }
+        }
+    }
+    
+    // MARK: -
+    
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return UI_USER_INTERFACE_IDIOM() == .pad ? .landscape  : .portrait
     }
@@ -142,16 +164,15 @@ class AmericaTVGoLoginViewController: UIViewController {
         return true
     }
     
+    // MARK: -
+    
     @objc
     func registerLaterNotification(_ sender: Notification) {
         if let controller = sender.userInfo?["sender"] as? UIViewController {
             controller.modalTransitionStyle = .crossDissolve
             
             controller.dismiss(animated: false) {
-                self.dismiss(animated: true) {
-                    //self.delegate?.didCancelAuthorization!(false)
-                    self.delegate?.didFinishAuthorization!(withToken: "")
-                }
+                self.handleDismiss()
             }
         }
     }

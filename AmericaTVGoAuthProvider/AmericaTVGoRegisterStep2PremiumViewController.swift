@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import StoreKit
 
 let AmericaTVGoRegisterLaterNotification = Notification.Name("AmericaTVGoRegisterLaterNotification")
 
 class AmericaTVGoRegisterStep2PremiumViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     @IBOutlet weak var productsCollectionView: UICollectionView!
     
+    @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var productsCollectionViewHeightConstraint: NSLayoutConstraint!
     var products = [AmericaTVGoProduct]()
     
     fileprivate var selectedIndex: Int?
@@ -20,10 +23,6 @@ class AmericaTVGoRegisterStep2PremiumViewController: UIViewController, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        products.append(AmericaTVGoProduct(identifier: "1000", duration: "1", unit: "año", oldPrice: "s/ 120", newPrice: "s/ 90"))
-        products.append(AmericaTVGoProduct(identifier: "1001", duration: "6", unit: "meses", oldPrice: "s/ 60", newPrice: "s/ 50"))
-        products.append(AmericaTVGoProduct(identifier: "1002", duration: "1", unit: "mes", oldPrice: " ", newPrice: "s/ 10"))
         
         productsCollectionView.register(UINib(nibName: "AmericaTVGoProductCollectionViewCell", bundle: Bundle(for: self.classForCoder)), forCellWithReuseIdentifier: "productCell")
         
@@ -31,8 +30,21 @@ class AmericaTVGoRegisterStep2PremiumViewController: UIViewController, UICollect
         productsCollectionView.dataSource = self
         
         productsCollectionView.reloadData()
+        
+        productsCollectionViewHeightConstraint.constant = productsCollectionView.collectionViewLayout.collectionViewContentSize.height
+        
+        progressIndicator.startAnimating()
+        AmericaTVGoIAPManager.shared.retrieveRemoteProducts { (newProducts) in
+            self.products = newProducts
+            self.progressIndicator.stopAnimating()
+            self.productsCollectionView.reloadData()
+        }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     @IBAction func handleGoBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -40,7 +52,15 @@ class AmericaTVGoRegisterStep2PremiumViewController: UIViewController, UICollect
     @IBAction func handleRegistration(_ sender: Any) {
         if let index = self.selectedIndex {
             let product = products[index]
-            print("User selected \(product.timeDuration) \(product.timeUnit) @ \(product.newPrice)")
+            let user = AmericaTVGoIAPManager.shared.currentUser
+            user.product = product
+            
+            let message = "User selected:\n\(product.timeDuration)\n\(product.timeUnit) @ \(product.newPrice)"
+            
+            let alertController = UIAlertController(title: "IAP Flow...", message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            
         } else {
             let alertController = UIAlertController(title: nil, message: "Por favor seleccione una promoción.", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

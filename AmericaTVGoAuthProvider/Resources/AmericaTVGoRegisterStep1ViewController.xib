@@ -15,6 +15,7 @@
                 <outlet property="emailTextField" destination="5LD-eB-y3W" id="Ne4-gD-iPX"/>
                 <outlet property="passwordTextField" destination="wyw-DB-4km" id="GHZ-UO-5Pb"/>
                 <outlet property="privacyButton" destination="AH7-Xh-Inm" id="6OX-v6-AeY"/>
+                <outlet property="progressIndicator" destination="Afk-DB-SqM" id="ocK-yp-gYn"/>
                 <outlet property="termsButton" destination="Nhx-vZ-Any" id="2LC-g0-8H6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -143,13 +144,16 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="Mostrar"/>
                         </button>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Afk-DB-SqM">
+                            <rect key="frame" x="177.5" y="315" width="20" height="20"/>
+                        </activityIndicatorView>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="Afk-DB-SqM" firstAttribute="top" secondItem="hPg-NL-AEK" secondAttribute="bottom" constant="8" id="0eh-OO-DWD"/>
                         <constraint firstAttribute="trailing" secondItem="Ch4-BL-Q9I" secondAttribute="trailing" constant="20" id="0ia-Ow-wP1"/>
                         <constraint firstItem="Nhx-vZ-Any" firstAttribute="top" secondItem="Ch4-BL-Q9I" secondAttribute="bottom" constant="20" id="2Um-f5-Uti"/>
                         <constraint firstItem="Nhx-vZ-Any" firstAttribute="leading" secondItem="Srt-ZJ-yzP" secondAttribute="leading" constant="20" id="2Wd-Cg-WA0"/>
                         <constraint firstItem="uEK-Gp-3qY" firstAttribute="top" secondItem="o1Y-2j-91s" secondAttribute="bottom" id="38i-d8-nak"/>
-                        <constraint firstAttribute="bottom" secondItem="hPg-NL-AEK" secondAttribute="bottom" constant="20" id="5eh-PL-KFF"/>
                         <constraint firstItem="hPg-NL-AEK" firstAttribute="top" secondItem="AH7-Xh-Inm" secondAttribute="bottom" constant="20" id="7AQ-lK-MpE"/>
                         <constraint firstItem="5LD-eB-y3W" firstAttribute="top" secondItem="lZi-V6-kwo" secondAttribute="bottom" constant="20" id="Agu-3p-BBc"/>
                         <constraint firstItem="hPg-NL-AEK" firstAttribute="width" secondItem="Srt-ZJ-yzP" secondAttribute="width" multiplier="1:3" id="Blv-Ar-jIw"/>
@@ -161,8 +165,10 @@
                         <constraint firstItem="AH7-Xh-Inm" firstAttribute="leading" secondItem="Srt-ZJ-yzP" secondAttribute="leading" constant="20" id="MdR-y8-QNQ"/>
                         <constraint firstItem="MT0-pU-0gR" firstAttribute="leading" secondItem="wyw-DB-4km" secondAttribute="trailing" constant="8" id="MeM-4c-1AK"/>
                         <constraint firstItem="Ch4-BL-Q9I" firstAttribute="top" secondItem="wyw-DB-4km" secondAttribute="bottom" id="Oww-f4-5zq"/>
+                        <constraint firstAttribute="bottom" secondItem="Afk-DB-SqM" secondAttribute="bottom" constant="20" id="QK4-MM-KKu"/>
                         <constraint firstAttribute="trailing" secondItem="lZi-V6-kwo" secondAttribute="trailing" constant="20" id="R8F-zo-fX5"/>
                         <constraint firstItem="wyw-DB-4km" firstAttribute="top" secondItem="rZl-Gd-mgn" secondAttribute="bottom" constant="20" id="TIY-Ge-HQt"/>
+                        <constraint firstItem="Afk-DB-SqM" firstAttribute="centerX" secondItem="Srt-ZJ-yzP" secondAttribute="centerX" id="W5h-qy-iof"/>
                         <constraint firstItem="Ch4-BL-Q9I" firstAttribute="leading" secondItem="Srt-ZJ-yzP" secondAttribute="leading" constant="20" id="XAL-4P-yKZ"/>
                         <constraint firstItem="wyw-DB-4km" firstAttribute="leading" secondItem="Srt-ZJ-yzP" secondAttribute="leading" constant="20" id="Xlo-Tb-cko"/>
                         <constraint firstItem="o1Y-2j-91s" firstAttribute="leading" secondItem="Srt-ZJ-yzP" secondAttribute="leading" constant="20" id="dEp-sn-nTX"/>

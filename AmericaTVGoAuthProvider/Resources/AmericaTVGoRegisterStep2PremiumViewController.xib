@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AmericaTVGoRegisterStep2PremiumViewController" customModule="AmericaTVGoAuthProvider" customModuleProvider="target">
             <connections>
                 <outlet property="productsCollectionView" destination="f3z-Ez-WKs" id="MEN-IV-VDI"/>
+                <outlet property="productsCollectionViewHeightConstraint" destination="SCJ-l2-QHS" id="PJC-xn-dyW"/>
+                <outlet property="progressIndicator" destination="Wen-GO-oHa" id="5N3-am-f9a"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -48,7 +50,7 @@
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="f3z-Ez-WKs">
+                        <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="f3z-Ez-WKs">
                             <rect key="frame" x="20" y="62" width="335" height="140"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -61,6 +63,9 @@
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                         </collectionView>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Wen-GO-oHa">
+                            <rect key="frame" x="177.5" y="122" width="20" height="20"/>
+                        </activityIndicatorView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gua-ny-gIZ" customClass="AmericaTVGoShadowBoxView" customModule="AmericaTVGoAuthProvider" customModuleProvider="target">
                             <rect key="frame" x="58.5" y="222" width="258" height="46"/>
                             <subviews>
@@ -124,9 +129,11 @@
                         <constraint firstAttribute="bottom" secondItem="t1q-TX-UxO" secondAttribute="bottom" constant="20" id="UW3-yg-7Nn"/>
                         <constraint firstItem="gua-ny-gIZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="czR-ph-icP" secondAttribute="leading" constant="20" id="XS6-xV-gTI"/>
                         <constraint firstAttribute="trailing" secondItem="tB6-zn-YIZ" secondAttribute="trailing" constant="20" id="YSH-Ld-12B"/>
+                        <constraint firstItem="Wen-GO-oHa" firstAttribute="centerX" secondItem="f3z-Ez-WKs" secondAttribute="centerX" id="Zij-Sh-EV4"/>
                         <constraint firstItem="gua-ny-gIZ" firstAttribute="width" secondItem="t1q-TX-UxO" secondAttribute="width" id="bdW-MZ-j0V"/>
                         <constraint firstAttribute="trailing" secondItem="f3z-Ez-WKs" secondAttribute="trailing" constant="20" id="mAa-lK-i97"/>
                         <constraint firstItem="tB6-zn-YIZ" firstAttribute="top" secondItem="xiy-A5-yNc" secondAttribute="bottom" id="tSD-do-FC7"/>
+                        <constraint firstItem="Wen-GO-oHa" firstAttribute="centerY" secondItem="f3z-Ez-WKs" secondAttribute="centerY" id="y0E-W3-tBQ"/>
                     </constraints>
                 </scrollView>
             </subviews>

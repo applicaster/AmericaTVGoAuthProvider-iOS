@@ -56,6 +56,9 @@
 		86DCFD36219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD34219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib */; };
 		86DCFD3821A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD3721A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift */; };
 		86F57B7721AC6F7F0060BC31 /* AmericaTVGoUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F57B7621AC6F7F0060BC31 /* AmericaTVGoUtils.swift */; };
+		86F57B7A21ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F57B7821ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.swift */; };
+		86F57B7B21ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F57B7921ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.xib */; };
+		86F57B7D21ADBFF40060BC31 /* AmericaTVGoUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F57B7C21ADBFF40060BC31 /* AmericaTVGoUser.swift */; };
 		EA4D8A03A10FE31F09AE98CA /* Pods_AmericaTVGoAuthProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3B41B1B827E438FEFAC664 /* Pods_AmericaTVGoAuthProvider.framework */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +136,9 @@
 		86DCFD34219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTVGoRegisterStep2PremiumViewController.xib; sourceTree = "<group>"; };
 		86DCFD3721A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoStrikethroughLabel.swift; sourceTree = "<group>"; };
 		86F57B7621AC6F7F0060BC31 /* AmericaTVGoUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoUtils.swift; sourceTree = "<group>"; };
+		86F57B7821ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoRegistrationFinishedViewController.swift; sourceTree = "<group>"; };
+		86F57B7921ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTVGoRegistrationFinishedViewController.xib; sourceTree = "<group>"; };
+		86F57B7C21ADBFF40060BC31 /* AmericaTVGoUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoUser.swift; sourceTree = "<group>"; };
 		9B3B41B1B827E438FEFAC664 /* Pods_AmericaTVGoAuthProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmericaTVGoAuthProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -222,6 +228,7 @@
 				86DCFD29219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.swift */,
 				86DCFD2D219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.swift */,
 				86DCFD33219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.swift */,
+				86F57B7821ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.swift */,
 				86DCFD1E219B808800D4E82A /* AmericaTVGoShadowBoxView.swift */,
 				86DCFD24219DEF4B00D4E82A /* UIColor+AmericaTVGo.swift */,
 				86F57B7621AC6F7F0060BC31 /* AmericaTVGoUtils.swift */,
@@ -230,6 +237,7 @@
 				86D8AC9D21A47C2D0044DAE2 /* AmericaTVGoIAPManager.swift */,
 				86D8AC9F21A5D6760044DAE2 /* AmericaTVGoProductCollectionViewCell.swift */,
 				86D8ACA321A5D99E0044DAE2 /* AmericaTVGoProduct.swift */,
+				86F57B7C21ADBFF40060BC31 /* AmericaTVGoUser.swift */,
 				86DCFD0B2194EA7A00D4E82A /* manifest */,
 				86DCFCF62194EA6D00D4E82A /* Resources */,
 				86DCFCD42194E97400D4E82A /* Info.plist */,
@@ -260,6 +268,7 @@
 				86DCFD2A219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.xib */,
 				86DCFD2E219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.xib */,
 				86DCFD34219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib */,
+				86F57B7921ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.xib */,
 				86D8ACA021A5D6760044DAE2 /* AmericaTvGoProductCollectionViewCell.xib */,
 				86DCFCFE2194EA6D00D4E82A /* login_back_button@2x.png */,
 				86DCFCFF2194EA6D00D4E82A /* navbar_logo.png */,
@@ -437,6 +446,7 @@
 				86DCFD36219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib in Resources */,
 				86DCFD032194EA6D00D4E82A /* AmericaTVGoLoginViewController.xib in Resources */,
 				86DCFD062194EA6D00D4E82A /* login_back_button.png in Resources */,
+				86F57B7B21ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.xib in Resources */,
 				86DCFD092194EA6D00D4E82A /* navbar_logo.png in Resources */,
 				86DCFD30219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.xib in Resources */,
 				86DCFD042194EA6D00D4E82A /* login_close_button@2x.png in Resources */,
@@ -517,12 +527,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				86DCFCEF2194EA6500D4E82A /* AmericaTVGoAPIManager.swift in Sources */,
+				86F57B7D21ADBFF40060BC31 /* AmericaTVGoUser.swift in Sources */,
 				86DCFCF12194EA6500D4E82A /* AmericaTVGoEndpointManager.swift in Sources */,
 				86DCFCF02194EA6500D4E82A /* AmericaTVGoForgotPasswordViewController.swift in Sources */,
 				86D8ACA121A5D6760044DAE2 /* AmericaTVGoProductCollectionViewCell.swift in Sources */,
 				86F57B7721AC6F7F0060BC31 /* AmericaTVGoUtils.swift in Sources */,
 				86DCFCF42194EA6500D4E82A /* AmericaTVGoLoginViewController.swift in Sources */,
 				86DCFD3821A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift in Sources */,
+				86F57B7A21ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.swift in Sources */,
 				86DCFD22219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.swift in Sources */,
 				86DCFD1F219B808800D4E82A /* AmericaTVGoShadowBoxView.swift in Sources */,
 				86DCFD35219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.swift in Sources */,

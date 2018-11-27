@@ -15,6 +15,7 @@
                 <outlet property="emailTextField" destination="LQL-7X-X9U" id="Jw4-fA-n06"/>
                 <outlet property="passwordTextField" destination="FSm-Ro-ZNJ" id="2N8-KG-9hj"/>
                 <outlet property="privacyButton" destination="BbA-50-Kgy" id="SGf-Pc-CdZ"/>
+                <outlet property="progressIndicator" destination="V1r-cU-ezh" id="GrN-V1-jCF"/>
                 <outlet property="termsButton" destination="xPL-aD-bI9" id="XFS-eX-n3f"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -158,6 +159,9 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="V1r-cU-ezh">
+                            <rect key="frame" x="177.5" y="308" width="20" height="20"/>
+                        </activityIndicatorView>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="yrz-HL-8su" secondAttribute="trailing" constant="20" id="1dd-rp-WuD"/>
@@ -184,6 +188,8 @@
                         <constraint firstItem="BbA-50-Kgy" firstAttribute="top" secondItem="xPL-aD-bI9" secondAttribute="bottom" constant="8" id="VfX-x7-VJn"/>
                         <constraint firstItem="tYl-Rq-ghb" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="VhT-XZ-4FA"/>
                         <constraint firstItem="tmI-zH-Wky" firstAttribute="firstBaseline" secondItem="FSm-Ro-ZNJ" secondAttribute="firstBaseline" id="YPD-Zl-AG7"/>
+                        <constraint firstItem="V1r-cU-ezh" firstAttribute="centerX" secondItem="lLe-WN-WvM" secondAttribute="centerX" id="aOQ-36-pjO"/>
+                        <constraint firstItem="V1r-cU-ezh" firstAttribute="top" secondItem="aI6-oP-jqs" secondAttribute="bottom" constant="8" id="bOg-na-Loz"/>
                         <constraint firstItem="4Cr-gu-EZh" firstAttribute="leading" secondItem="lLe-WN-WvM" secondAttribute="leading" constant="20" id="dVN-mS-1nl"/>
                         <constraint firstItem="lLe-WN-WvM" firstAttribute="trailing" secondItem="tmI-zH-Wky" secondAttribute="trailing" constant="20" id="dsN-Bb-cJs"/>
                         <constraint firstItem="zIh-dw-q7X" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="e33-Ga-adb"/>
@@ -202,7 +208,7 @@
                     <viewLayoutGuide key="safeArea" id="lLe-WN-WvM"/>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="toS-MQ-pcI" secondAttribute="trailing" constant="20" id="4Fq-vH-S5R"/>
                 <constraint firstItem="r9S-Ow-wBb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="HmQ-qh-dG5"/>

@@ -28,18 +28,20 @@ class AmericaTVGoRegisterStep0ViewController: UIViewController, AmericaTVGoShado
         var controller: UIViewController!
         
         if basicBoxView.isSelected {
+            AmericaTVGoIAPManager.shared.currentUser.isPremium = false
             controller = AmericaTVGoRegisterStep1ViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
         } else if premiumBoxView.isSelected {
+            AmericaTVGoIAPManager.shared.currentUser.isPremium = true
             controller = AmericaTVGoRegisterStep1PremiumViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
         } else {
             let alertController = UIAlertController(title: "Selección invalida!", message: "Por favor seleccione una opción.", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
-            
-            return
         }
         
-        self.navigationController?.pushViewController(controller, animated: true)
+        if controller != nil {
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 
     // MARK: -

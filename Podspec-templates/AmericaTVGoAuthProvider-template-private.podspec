@@ -26,5 +26,8 @@ Pod::Spec.new do |s|
               }
 
   s.dependency 'ApplicasterSDK'
+  s.dependency 'ZappPlugins'
+  s.dependency 'AFNetworking'
+  s.dependency 'TPKeyboardAvoiding'
 
 end
