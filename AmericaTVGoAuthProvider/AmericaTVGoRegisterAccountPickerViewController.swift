@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AmericaTVGoRegisterStep0ViewController: UIViewController, AmericaTVGoShadowBoxViewDelegate {
+class AmericaTVGoRegisterAccountPickerViewController: UIViewController, AmericaTVGoShadowBoxViewDelegate {
 
     @IBOutlet weak var basicBoxView: AmericaTVGoShadowBoxView!
     @IBOutlet weak var premiumBoxView: AmericaTVGoShadowBoxView!
@@ -29,10 +29,10 @@ class AmericaTVGoRegisterStep0ViewController: UIViewController, AmericaTVGoShado
         
         if basicBoxView.isSelected {
             AmericaTVGoIAPManager.shared.currentUser.isPremium = false
-            controller = AmericaTVGoRegisterStep1ViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
+            controller = AmericaTVGoRegisterViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
         } else if premiumBoxView.isSelected {
             AmericaTVGoIAPManager.shared.currentUser.isPremium = true
-            controller = AmericaTVGoRegisterStep1PremiumViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
+            controller = AmericaTVGoRegisterPremiumViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
         } else {
             let alertController = UIAlertController(title: "Selección invalida!", message: "Por favor seleccione una opción.", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

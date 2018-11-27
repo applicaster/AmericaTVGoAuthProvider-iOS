@@ -1,5 +1,5 @@
 //
-//  AmericaTVGoRegisterStep2PremiumViewController.swift
+//  AmericaTVGoIAPProductsViewController.swift
 //  AmericaTVGoAuthProvider
 //
 //  Created by Jesus De Meyer on 11/16/18.
@@ -11,7 +11,7 @@ import StoreKit
 
 let AmericaTVGoRegisterLaterNotification = Notification.Name("AmericaTVGoRegisterLaterNotification")
 
-class AmericaTVGoRegisterStep2PremiumViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     @IBOutlet weak var productsCollectionView: UICollectionView!
     
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
@@ -46,7 +46,15 @@ class AmericaTVGoRegisterStep2PremiumViewController: UIViewController, UICollect
     }
     
     @IBAction func handleGoBack(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        if let navController = self.navigationController {
+            if navController.topViewController == self {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                navController.popViewController(animated: true)
+            }
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func handleRegistration(_ sender: Any) {

@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AmericaTVGoRegisterStep1PremiumViewController" customModule="AmericaTVGoAuthProvider" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AmericaTVGoRegisterPremiumViewController">
             <connections>
                 <outlet property="emailTextField" destination="LQL-7X-X9U" id="Jw4-fA-n06"/>
                 <outlet property="passwordTextField" destination="FSm-Ro-ZNJ" id="2N8-KG-9hj"/>

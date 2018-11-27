@@ -1,101 +1,97 @@
 //
-//  AmericaTVGoRegisterViewController.swift
-//  AmericaTVGoAuthProvider-iOS
+//  AmericaTVGoRegisterStep1ViewController.swift
+//  AmericaTVGoAuthProvider
 //
-//  Created by Roi Kedarya on 17/07/2018.
+//  Created by Jesus De Meyer on 11/16/18.
+//  Copyright © 2018 applicaster. All rights reserved.
 //
 
 import UIKit
 import ApplicasterSDK
 
 class AmericaTVGoRegisterViewController: UIViewController {
-    
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var hideRevealButton: UIButton!
+
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var termsButton: UIButton!
+    @IBOutlet weak var privacyButton: UIButton!
+    @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
-    var delegate:APAuthorizationClientDelegate?
-    
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, delegate:APAuthorizationClientDelegate?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        self.delegate = delegate
+        let user = AmericaTVGoIAPManager.shared.currentUser
+        emailTextField.text = user.email
+        passwordTextField.text = user.password
+    }
+
+    // MARK: -
+    @IBAction func handleGoBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    @IBAction func acceptLegal(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
     }
     
-    @IBAction func hideRevealButtonClicked(_ sender: Any) {
-        if self.passwordTextField.isSecureTextEntry {
-            self.hideRevealButton.setTitle("Ocultar", for: .normal)
-            self.passwordTextField.isSecureTextEntry = false
+    @IBAction func handleRegistration(_ sender: Any) {
+        var alertMessage = ""
+        
+        if let email = emailTextField.text, let password = passwordTextField.text, email.isEmpty || password.isEmpty {
+            alertMessage = "Los campos de correo y contraseña no pueden estar vacios."
+        } else if !AmericaTVGoUtils.validateEmail(emailTextField.text ?? "") {
+            alertMessage = "El formato del email no es correcto."
+        } else if !(termsButton.isSelected && privacyButton.isSelected) {
+            alertMessage = "Por favor acepte los términos y condiciones y la polica de privacidad."
+        }
+        
+        if !alertMessage.isEmpty {
+            let alertController = UIAlertController(title: "", message: alertMessage, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alertController, animated: true, completion: nil)
         } else {
-            self.hideRevealButton.setTitle("Mostar", for: .normal)
-            self.passwordTextField.isSecureTextEntry = true
+            let user = AmericaTVGoIAPManager.shared.currentUser
+            user.email = emailTextField.text!
+            user.password = passwordTextField.text!
+            
+            if user.isPremium {
+                let controller = AmericaTVGoIAPProductsViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
+                self.navigationController?.pushViewController(controller, animated: true)
+            } else {
+                handleRegistration()
+            }
         }
     }
     
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal()
-        if self == topMostViewController {
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    @IBAction func registerButtonClicked(_ sender: UIButton) {
-        if let email = self.emailTextField.text,
-            let password = self.passwordTextField.text,
-            !email.isEmpty,
-            !password.isEmpty {
-            self.activityIndicator.startAnimating()
+    func handleRegistration() {
+        let user = AmericaTVGoIAPManager.shared.currentUser
+        
+        if !(user.email.isEmpty || user.password.isEmpty) {
+            self.progressIndicator.startAnimating()
             
             let manager = AmericaTVGoAPIManager.shared
             
-            manager.registerUser(email: email, password: password, isPremium: true) { (success: Bool, token: String?, message: String?) in
-                self.activityIndicator.stopAnimating()
-
-                if success {
-                    let alertViewController = UIAlertController(title: nil, message: message ?? "¡Registro Exitoso!", preferredStyle: .alert)
+            manager.registerUser(email: user.email, password: user.password, isPremium: user.isPremium) { (success: Bool, token: String?, message: String?) in
+                DispatchQueue.main.async {
+                    self.progressIndicator.stopAnimating()
                     
-                    alertViewController.addAction(UIAlertAction(title: "OK", style: .default) { (_) -> Void in
-                        self.dismiss(animated: true) {
-                            if let aToken = token {
-                                if let loginScreen = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal() as? AmericaTVGoLoginViewController {
-                                    loginScreen.dismiss(animated: true) {
-                                        self.delegate?.didFinishAuthorization!(withToken: aToken)
-                                    }
-                                }
-                            }
+                    if success {
+                        if let aToken = token {
+                            user.token = aToken
                         }
-                    })
-                    
-                    self.present(alertViewController, animated: true, completion: nil)
-                    
-                    
-                    /*if let token = token as String? {
-                        self.dismiss(animated: true) {
-                            if let loginScreen = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal() as? AmericaTVGoLoginViewController {
-                                loginScreen.dismiss(animated: true, completion: {
-                                    self.delegate?.didFinishAuthorization!(withToken: token)
-                                })
-                            }
-                        }
-                    } else {
-                        //no token - user didn't pay - go to payment screen with the itunes account and create a subscribtion item
-                        if let userId = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) {
-                            
-                        }
-                    }*/
-                } else {
-                    let alertController = UIAlertController(title: nil, message: message ?? "Ocurrio un error.", preferredStyle: .alert)
-                    
-                    alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
                         
-                    })
-                    
-                    self.present(alertController, animated: true, completion: nil)
+                        let bundle = Bundle(for: self.classForCoder)
+                        let controller = AmericaTVGoRegistrationFinishedViewController.init(nibName: nil, bundle: bundle)
+                        self.navigationController?.pushViewController(controller, animated: true)
+                    } else {
+                        let alertController = UIAlertController(title: nil, message: message ?? "Ocurrio un error.", preferredStyle: .alert)
+                        
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
+                            
+                        })
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                    }
                 }
             }
         } else {

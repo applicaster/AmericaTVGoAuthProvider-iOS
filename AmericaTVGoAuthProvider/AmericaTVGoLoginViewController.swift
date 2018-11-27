@@ -50,8 +50,8 @@ class AmericaTVGoLoginViewController: UIViewController {
     }
     
     @IBAction func registerButtonClicked(_ sender: Any) {
-        let registerViewController = AmericaTVGoRegisterStep0ViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
-        let navController = UINavigationController(rootViewController: registerViewController)
+        let controller = AmericaTVGoRegisterAccountPickerViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
+        let navController = UINavigationController(rootViewController: controller)
         navController.isNavigationBarHidden = true
         
         if let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal() {
@@ -92,6 +92,12 @@ class AmericaTVGoLoginViewController: UIViewController {
                         let alertController = UIAlertController(title: self.appName, message: message ?? "¡No tiene suscripción activa!", preferredStyle: .alert)
                         
                         alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
+                            let controller = AmericaTVGoIAPProductsViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
+                            let navController = UINavigationController(rootViewController: controller)
+                            navController.isNavigationBarHidden = true
+                            
+                            self.present(navController, animated: true, completion: nil)
+                            
                             //self.dismiss(animated: true) {
                                 //no token - user didn't pay - go to payment screen
                                 //if let userId = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) {

@@ -25,13 +25,13 @@
 		86DCFCF12194EA6500D4E82A /* AmericaTVGoEndpointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFCEA2194EA6500D4E82A /* AmericaTVGoEndpointManager.swift */; };
 		86DCFCF32194EA6500D4E82A /* AmericaTVGoAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFCEC2194EA6500D4E82A /* AmericaTVGoAuthProvider.swift */; };
 		86DCFCF42194EA6500D4E82A /* AmericaTVGoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFCED2194EA6500D4E82A /* AmericaTVGoLoginViewController.swift */; };
-		86DCFCF52194EA6500D4E82A /* AmericaTVGoRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFCEE2194EA6500D4E82A /* AmericaTVGoRegisterViewController.swift */; };
+		86DCFCF52194EA6500D4E82A /* OldAmericaTVGoRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFCEE2194EA6500D4E82A /* OldAmericaTVGoRegisterViewController.swift */; };
 		86DCFD012194EA6D00D4E82A /* AmericaTVGoForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCF72194EA6D00D4E82A /* AmericaTVGoForgotPasswordViewController.xib */; };
 		86DCFD022194EA6D00D4E82A /* navbar_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCF82194EA6D00D4E82A /* navbar_logo@2x.png */; };
 		86DCFD032194EA6D00D4E82A /* AmericaTVGoLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCF92194EA6D00D4E82A /* AmericaTVGoLoginViewController.xib */; };
 		86DCFD042194EA6D00D4E82A /* login_close_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCFA2194EA6D00D4E82A /* login_close_button@2x.png */; };
 		86DCFD062194EA6D00D4E82A /* login_back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCFC2194EA6D00D4E82A /* login_back_button.png */; };
-		86DCFD072194EA6D00D4E82A /* AmericaTVGoRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCFD2194EA6D00D4E82A /* AmericaTVGoRegisterViewController.xib */; };
+		86DCFD072194EA6D00D4E82A /* OldAmericaTVGoRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCFD2194EA6D00D4E82A /* OldAmericaTVGoRegisterViewController.xib */; };
 		86DCFD082194EA6D00D4E82A /* login_back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCFE2194EA6D00D4E82A /* login_back_button@2x.png */; };
 		86DCFD092194EA6D00D4E82A /* navbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFCFF2194EA6D00D4E82A /* navbar_logo.png */; };
 		86DCFD0A2194EA6D00D4E82A /* login_close_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD002194EA6D00D4E82A /* login_close_button.png */; };
@@ -43,17 +43,17 @@
 		86DCFD1C219B730C00D4E82A /* checkbox_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD19219B730C00D4E82A /* checkbox_off.png */; };
 		86DCFD1D219B730C00D4E82A /* checkbox_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD1A219B730C00D4E82A /* checkbox_off@2x.png */; };
 		86DCFD1F219B808800D4E82A /* AmericaTVGoShadowBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD1E219B808800D4E82A /* AmericaTVGoShadowBoxView.swift */; };
-		86DCFD22219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD20219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.swift */; };
-		86DCFD23219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD21219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.xib */; };
+		86DCFD22219DE94E00D4E82A /* AmericaTVGoRegisterAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD20219DE94E00D4E82A /* AmericaTVGoRegisterAccountPickerViewController.swift */; };
+		86DCFD23219DE94E00D4E82A /* AmericaTVGoRegisterAccountPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD21219DE94E00D4E82A /* AmericaTVGoRegisterAccountPickerViewController.xib */; };
 		86DCFD25219DEF4B00D4E82A /* UIColor+AmericaTVGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD24219DEF4B00D4E82A /* UIColor+AmericaTVGo.swift */; };
 		86DCFD28219E170900D4E82A /* AmericaTVGoAuthProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DCFCD12194E97400D4E82A /* AmericaTVGoAuthProvider.framework */; };
-		86DCFD2B219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD29219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.swift */; };
-		86DCFD2C219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD2A219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.xib */; };
-		86DCFD2F219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD2D219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.swift */; };
-		86DCFD30219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD2E219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.xib */; };
+		86DCFD2B219F2D2000D4E82A /* AmericaTVGoRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD29219F2D2000D4E82A /* AmericaTVGoRegisterViewController.swift */; };
+		86DCFD2C219F2D2000D4E82A /* AmericaTVGoRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD2A219F2D2000D4E82A /* AmericaTVGoRegisterViewController.xib */; };
+		86DCFD2F219F494800D4E82A /* AmericaTVGoRegisterPremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD2D219F494800D4E82A /* AmericaTVGoRegisterPremiumViewController.swift */; };
+		86DCFD30219F494800D4E82A /* AmericaTVGoRegisterPremiumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD2E219F494800D4E82A /* AmericaTVGoRegisterPremiumViewController.xib */; };
 		86DCFD32219F4EE600D4E82A /* AmericaTVGoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD31219F4EE600D4E82A /* AmericaTVGoTextField.swift */; };
-		86DCFD35219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD33219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.swift */; };
-		86DCFD36219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD34219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib */; };
+		86DCFD35219F562700D4E82A /* AmericaTVGoIAPProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD33219F562700D4E82A /* AmericaTVGoIAPProductsViewController.swift */; };
+		86DCFD36219F562700D4E82A /* AmericaTVGoIAPProductsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCFD34219F562700D4E82A /* AmericaTVGoIAPProductsViewController.xib */; };
 		86DCFD3821A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCFD3721A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift */; };
 		86F57B7721AC6F7F0060BC31 /* AmericaTVGoUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F57B7621AC6F7F0060BC31 /* AmericaTVGoUtils.swift */; };
 		86F57B7A21ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F57B7821ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.swift */; };
@@ -106,13 +106,13 @@
 		86DCFCEA2194EA6500D4E82A /* AmericaTVGoEndpointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmericaTVGoEndpointManager.swift; sourceTree = "<group>"; };
 		86DCFCEC2194EA6500D4E82A /* AmericaTVGoAuthProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmericaTVGoAuthProvider.swift; sourceTree = "<group>"; };
 		86DCFCED2194EA6500D4E82A /* AmericaTVGoLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmericaTVGoLoginViewController.swift; sourceTree = "<group>"; };
-		86DCFCEE2194EA6500D4E82A /* AmericaTVGoRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmericaTVGoRegisterViewController.swift; sourceTree = "<group>"; };
+		86DCFCEE2194EA6500D4E82A /* OldAmericaTVGoRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldAmericaTVGoRegisterViewController.swift; sourceTree = "<group>"; };
 		86DCFCF72194EA6D00D4E82A /* AmericaTVGoForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmericaTVGoForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		86DCFCF82194EA6D00D4E82A /* navbar_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar_logo@2x.png"; sourceTree = "<group>"; };
 		86DCFCF92194EA6D00D4E82A /* AmericaTVGoLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmericaTVGoLoginViewController.xib; sourceTree = "<group>"; };
 		86DCFCFA2194EA6D00D4E82A /* login_close_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_close_button@2x.png"; sourceTree = "<group>"; };
 		86DCFCFC2194EA6D00D4E82A /* login_back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_back_button.png; sourceTree = "<group>"; };
-		86DCFCFD2194EA6D00D4E82A /* AmericaTVGoRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmericaTVGoRegisterViewController.xib; sourceTree = "<group>"; };
+		86DCFCFD2194EA6D00D4E82A /* OldAmericaTVGoRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OldAmericaTVGoRegisterViewController.xib; sourceTree = "<group>"; };
 		86DCFCFE2194EA6D00D4E82A /* login_back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_back_button@2x.png"; sourceTree = "<group>"; };
 		86DCFCFF2194EA6D00D4E82A /* navbar_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_logo.png; sourceTree = "<group>"; };
 		86DCFD002194EA6D00D4E82A /* login_close_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_close_button.png; sourceTree = "<group>"; };
@@ -124,16 +124,16 @@
 		86DCFD19219B730C00D4E82A /* checkbox_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_off.png; sourceTree = "<group>"; };
 		86DCFD1A219B730C00D4E82A /* checkbox_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox_off@2x.png"; sourceTree = "<group>"; };
 		86DCFD1E219B808800D4E82A /* AmericaTVGoShadowBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoShadowBoxView.swift; sourceTree = "<group>"; };
-		86DCFD20219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AmericaTVGoRegisterStep0ViewController.swift; path = AmericaTVGoAuthProvider/AmericaTVGoRegisterStep0ViewController.swift; sourceTree = SOURCE_ROOT; };
-		86DCFD21219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AmericaTVGoRegisterStep0ViewController.xib; path = AmericaTVGoAuthProvider/Resources/AmericaTVGoRegisterStep0ViewController.xib; sourceTree = SOURCE_ROOT; };
+		86DCFD20219DE94E00D4E82A /* AmericaTVGoRegisterAccountPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AmericaTVGoRegisterAccountPickerViewController.swift; path = AmericaTVGoAuthProvider/AmericaTVGoRegisterAccountPickerViewController.swift; sourceTree = SOURCE_ROOT; };
+		86DCFD21219DE94E00D4E82A /* AmericaTVGoRegisterAccountPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AmericaTVGoRegisterAccountPickerViewController.xib; path = AmericaTVGoAuthProvider/Resources/AmericaTVGoRegisterAccountPickerViewController.xib; sourceTree = SOURCE_ROOT; };
 		86DCFD24219DEF4B00D4E82A /* UIColor+AmericaTVGo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AmericaTVGo.swift"; sourceTree = "<group>"; };
-		86DCFD29219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoRegisterStep1ViewController.swift; sourceTree = "<group>"; };
-		86DCFD2A219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTVGoRegisterStep1ViewController.xib; sourceTree = "<group>"; };
-		86DCFD2D219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoRegisterStep1PremiumViewController.swift; sourceTree = "<group>"; };
-		86DCFD2E219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTVGoRegisterStep1PremiumViewController.xib; sourceTree = "<group>"; };
+		86DCFD29219F2D2000D4E82A /* AmericaTVGoRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoRegisterViewController.swift; sourceTree = "<group>"; };
+		86DCFD2A219F2D2000D4E82A /* AmericaTVGoRegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTVGoRegisterViewController.xib; sourceTree = "<group>"; };
+		86DCFD2D219F494800D4E82A /* AmericaTVGoRegisterPremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoRegisterPremiumViewController.swift; sourceTree = "<group>"; };
+		86DCFD2E219F494800D4E82A /* AmericaTVGoRegisterPremiumViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTVGoRegisterPremiumViewController.xib; sourceTree = "<group>"; };
 		86DCFD31219F4EE600D4E82A /* AmericaTVGoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoTextField.swift; sourceTree = "<group>"; };
-		86DCFD33219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoRegisterStep2PremiumViewController.swift; sourceTree = "<group>"; };
-		86DCFD34219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTVGoRegisterStep2PremiumViewController.xib; sourceTree = "<group>"; };
+		86DCFD33219F562700D4E82A /* AmericaTVGoIAPProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoIAPProductsViewController.swift; sourceTree = "<group>"; };
+		86DCFD34219F562700D4E82A /* AmericaTVGoIAPProductsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTVGoIAPProductsViewController.xib; sourceTree = "<group>"; };
 		86DCFD3721A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoStrikethroughLabel.swift; sourceTree = "<group>"; };
 		86F57B7621AC6F7F0060BC31 /* AmericaTVGoUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoUtils.swift; sourceTree = "<group>"; };
 		86F57B7821ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoRegistrationFinishedViewController.swift; sourceTree = "<group>"; };
@@ -223,11 +223,11 @@
 				86DCFCE92194EA6500D4E82A /* AmericaTVGoForgotPasswordViewController.swift */,
 				86DCFCE82194EA6500D4E82A /* AmericaTVGoAPIManager.swift */,
 				86DCFCED2194EA6500D4E82A /* AmericaTVGoLoginViewController.swift */,
-				86DCFCEE2194EA6500D4E82A /* AmericaTVGoRegisterViewController.swift */,
-				86DCFD20219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.swift */,
-				86DCFD29219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.swift */,
-				86DCFD2D219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.swift */,
-				86DCFD33219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.swift */,
+				86DCFCEE2194EA6500D4E82A /* OldAmericaTVGoRegisterViewController.swift */,
+				86DCFD20219DE94E00D4E82A /* AmericaTVGoRegisterAccountPickerViewController.swift */,
+				86DCFD29219F2D2000D4E82A /* AmericaTVGoRegisterViewController.swift */,
+				86DCFD2D219F494800D4E82A /* AmericaTVGoRegisterPremiumViewController.swift */,
+				86DCFD33219F562700D4E82A /* AmericaTVGoIAPProductsViewController.swift */,
 				86F57B7821ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.swift */,
 				86DCFD1E219B808800D4E82A /* AmericaTVGoShadowBoxView.swift */,
 				86DCFD24219DEF4B00D4E82A /* UIColor+AmericaTVGo.swift */,
@@ -263,11 +263,11 @@
 				86DCFCF92194EA6D00D4E82A /* AmericaTVGoLoginViewController.xib */,
 				86DCFCFA2194EA6D00D4E82A /* login_close_button@2x.png */,
 				86DCFCFC2194EA6D00D4E82A /* login_back_button.png */,
-				86DCFCFD2194EA6D00D4E82A /* AmericaTVGoRegisterViewController.xib */,
-				86DCFD21219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.xib */,
-				86DCFD2A219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.xib */,
-				86DCFD2E219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.xib */,
-				86DCFD34219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib */,
+				86DCFCFD2194EA6D00D4E82A /* OldAmericaTVGoRegisterViewController.xib */,
+				86DCFD21219DE94E00D4E82A /* AmericaTVGoRegisterAccountPickerViewController.xib */,
+				86DCFD2A219F2D2000D4E82A /* AmericaTVGoRegisterViewController.xib */,
+				86DCFD2E219F494800D4E82A /* AmericaTVGoRegisterPremiumViewController.xib */,
+				86DCFD34219F562700D4E82A /* AmericaTVGoIAPProductsViewController.xib */,
 				86F57B7921ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.xib */,
 				86D8ACA021A5D6760044DAE2 /* AmericaTvGoProductCollectionViewCell.xib */,
 				86DCFCFE2194EA6D00D4E82A /* login_back_button@2x.png */,
@@ -433,22 +433,22 @@
 				86DCFD15219B72F100D4E82A /* checkbox_on.png in Resources */,
 				86DCFD0D2194EA7A00D4E82A /* plugin-manifest.json in Resources */,
 				86DCFD1C219B730C00D4E82A /* checkbox_off.png in Resources */,
-				86DCFD2C219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.xib in Resources */,
+				86DCFD2C219F2D2000D4E82A /* AmericaTVGoRegisterViewController.xib in Resources */,
 				86DCFD082194EA6D00D4E82A /* login_back_button@2x.png in Resources */,
 				86DCFD17219B72F100D4E82A /* checkbox_on@3x.png in Resources */,
-				86DCFD23219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.xib in Resources */,
+				86DCFD23219DE94E00D4E82A /* AmericaTVGoRegisterAccountPickerViewController.xib in Resources */,
 				86DCFD1B219B730C00D4E82A /* checkbox_off@3x.png in Resources */,
 				86D8ACA221A5D6760044DAE2 /* AmericaTvGoProductCollectionViewCell.xib in Resources */,
 				86DCFD022194EA6D00D4E82A /* navbar_logo@2x.png in Resources */,
 				86D8AC9C21A47BAB0044DAE2 /* iap.plist in Resources */,
 				86DCFD0A2194EA6D00D4E82A /* login_close_button.png in Resources */,
-				86DCFD072194EA6D00D4E82A /* AmericaTVGoRegisterViewController.xib in Resources */,
-				86DCFD36219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.xib in Resources */,
+				86DCFD072194EA6D00D4E82A /* OldAmericaTVGoRegisterViewController.xib in Resources */,
+				86DCFD36219F562700D4E82A /* AmericaTVGoIAPProductsViewController.xib in Resources */,
 				86DCFD032194EA6D00D4E82A /* AmericaTVGoLoginViewController.xib in Resources */,
 				86DCFD062194EA6D00D4E82A /* login_back_button.png in Resources */,
 				86F57B7B21ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.xib in Resources */,
 				86DCFD092194EA6D00D4E82A /* navbar_logo.png in Resources */,
-				86DCFD30219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.xib in Resources */,
+				86DCFD30219F494800D4E82A /* AmericaTVGoRegisterPremiumViewController.xib in Resources */,
 				86DCFD042194EA6D00D4E82A /* login_close_button@2x.png in Resources */,
 				86DCFD1D219B730C00D4E82A /* checkbox_off@2x.png in Resources */,
 			);
@@ -535,17 +535,17 @@
 				86DCFCF42194EA6500D4E82A /* AmericaTVGoLoginViewController.swift in Sources */,
 				86DCFD3821A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift in Sources */,
 				86F57B7A21ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.swift in Sources */,
-				86DCFD22219DE94E00D4E82A /* AmericaTVGoRegisterStep0ViewController.swift in Sources */,
+				86DCFD22219DE94E00D4E82A /* AmericaTVGoRegisterAccountPickerViewController.swift in Sources */,
 				86DCFD1F219B808800D4E82A /* AmericaTVGoShadowBoxView.swift in Sources */,
-				86DCFD35219F562700D4E82A /* AmericaTVGoRegisterStep2PremiumViewController.swift in Sources */,
-				86DCFCF52194EA6500D4E82A /* AmericaTVGoRegisterViewController.swift in Sources */,
+				86DCFD35219F562700D4E82A /* AmericaTVGoIAPProductsViewController.swift in Sources */,
+				86DCFCF52194EA6500D4E82A /* OldAmericaTVGoRegisterViewController.swift in Sources */,
 				86DCFD25219DEF4B00D4E82A /* UIColor+AmericaTVGo.swift in Sources */,
 				86DCFD32219F4EE600D4E82A /* AmericaTVGoTextField.swift in Sources */,
 				86DCFCF32194EA6500D4E82A /* AmericaTVGoAuthProvider.swift in Sources */,
 				86D8AC9E21A47C2D0044DAE2 /* AmericaTVGoIAPManager.swift in Sources */,
-				86DCFD2B219F2D2000D4E82A /* AmericaTVGoRegisterStep1ViewController.swift in Sources */,
+				86DCFD2B219F2D2000D4E82A /* AmericaTVGoRegisterViewController.swift in Sources */,
 				86D8ACA421A5D99E0044DAE2 /* AmericaTVGoProduct.swift in Sources */,
-				86DCFD2F219F494800D4E82A /* AmericaTVGoRegisterStep1PremiumViewController.swift in Sources */,
+				86DCFD2F219F494800D4E82A /* AmericaTVGoRegisterPremiumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

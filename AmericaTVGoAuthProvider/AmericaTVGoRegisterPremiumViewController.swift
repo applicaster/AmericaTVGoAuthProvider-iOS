@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AmericaTVGoRegisterStep1PremiumViewController: AmericaTVGoRegisterStep1ViewController {
+class AmericaTVGoRegisterPremiumViewController: AmericaTVGoRegisterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
