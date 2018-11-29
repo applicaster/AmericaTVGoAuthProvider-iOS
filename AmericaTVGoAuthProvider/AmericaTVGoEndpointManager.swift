@@ -67,7 +67,7 @@ class AmericaTVGoEndpointManager: NSObject {
             if production {
                 urlString = "https://tvgo.americatv.com.pe/api/usuarios/app/list/paquetes?partner=applicaster&tipo=ios"
             } else {
-                urlString = "http://dev.tvgo.americadigital.pe/api/usuarios/app/list/paquetes?partner=applicaster&tipo=ios"
+                urlString = "http://dev.tvgo.americadigital.pe/api/usuarios/app/list/paquetes?partner=applicaster&tipo=android"
             }
         }
         return URL(string: urlString)!

@@ -60,15 +60,27 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     @IBAction func handleRegistration(_ sender: Any) {
         if let index = self.selectedIndex {
             let product = products[index]
-            let user = AmericaTVGoIAPManager.shared.currentUser
-            user.product = product
             
-            let message = "User selected:\n\(product.timeDuration)\n\(product.timeUnit) @ \(product.newPrice)"
-            
-            let alertController = UIAlertController(title: "IAP Flow...", message: message, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-            
+            if AmericaTVGoIAPManager.shared.purchasesAllowed {
+                let user = AmericaTVGoIAPManager.shared.currentUser
+                user.product = product
+                
+                /*if let iapProduct = AmericaTVGoIAPManager.shared.iapProductWithIdentifier(product.identifier) {
+                    AmericaTVGoIAPManager.shared.submitProduct(iapProduct)
+                }*/
+                let message = "Coming soon: \(product.identifier)"
+                
+                let alertController = UIAlertController(title: "Ocurrió un error", message: message, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+                
+            } else {
+                let message = "No es posible hacer la compra de: \(product.identifier)"
+                
+                let alertController = UIAlertController(title: "Ocurrió un error", message: message, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+            }
         } else {
             let alertController = UIAlertController(title: nil, message: "Por favor seleccione una promoción.", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

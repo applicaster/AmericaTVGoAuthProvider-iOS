@@ -7,21 +7,33 @@
 //
 
 import StoreKit
+import CommonCrypto
 
-class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate {
+class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     static let shared = AmericaTVGoIAPManager()
     
     lazy var currentUser: AmericaTVGoUser = {
         return AmericaTVGoUser()
     }()
     
+    var purchasesAllowed: Bool {
+        return SKPaymentQueue.canMakePayments()
+    }
+    
     fileprivate var productRequest: SKProductsRequest?
     fileprivate var products = [AmericaTVGoProduct]()
+    fileprivate var iapProducts = [SKProduct]()
     
     fileprivate var productRequestCompleted: (() -> Void)?
     
     override init() {
         super.init()
+        
+        SKPaymentQueue.default().add(self)
+    }
+    
+    deinit {
+        SKPaymentQueue.default().remove(self)
     }
     
     /*fileprivate func loadIAPIdentifiers() -> [String] {
@@ -41,7 +53,7 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate {
     // MARK: -
     
     func retrieveRemoteProducts(completion: @escaping (_ products: [AmericaTVGoProduct]) -> Void){
-        let url = AmericaTVGoEndpointManager.shared.urlForEndpoint(ofType: .products)
+        let url = AmericaTVGoEndpointManager.shared.urlForEndpoint(ofType: .products, production: false)
         
         let session = URLSession(configuration: .default)
         
@@ -64,11 +76,7 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate {
                                 newProduct.newPrice = value.stringValue
                             }
                             if let value = remoteProduct["titulo"] as? String {
-                                let comps = value.split(separator: " ")
-                                if comps.count == 2 {
-                                    newProduct.timeDuration = String(comps[0])
-                                    newProduct.timeUnit = String(comps[1])
-                                }
+                                newProduct.timeUnit = value 
                             }
                             if let value = remoteProduct["is_promotion"] as? NSNumber {
                                 newProduct.isPromotion = value.boolValue
@@ -92,6 +100,8 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate {
         task.resume()
     }
     
+    // MARK: -
+    
     fileprivate func validateIAPIdentifiers(completion: @escaping () -> Void) {
         if self.products.isEmpty {
             completion()
@@ -111,32 +121,125 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate {
     // MARK: -
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        var cleanedProducts = Array(self.products)
+        let ids = products.map { $0.identifier }
         
-        for invalidIdentifier in response.invalidProductIdentifiers {
-            if let index = self.products.firstIndex(where: {$0.identifier == invalidIdentifier}) {
-                cleanedProducts.remove(at: index)
+        iapProducts.removeAll()
+        
+        var validProducts = Array(self.products)
+        
+        for iapProduct in response.products {
+            if response.invalidProductIdentifiers.contains(iapProduct.productIdentifier) && ids.contains(iapProduct.productIdentifier) {
+                if let index = self.products.firstIndex(where: { $0.identifier == iapProduct.productIdentifier }) {
+                    validProducts.remove(at: index)
+                }
+            } else {
+                iapProducts.append(iapProduct)
             }
         }
+//
+//        var cleanedProducts = Array(self.products)
+//
+//        for invalidIdentifier in response.invalidProductIdentifiers {
+//            if let index = self.products.firstIndex(where: {$0.identifier == invalidIdentifier}) {
+//                cleanedProducts.remove(at: index)
+//            }
+//        }
         
-        self.products = cleanedProducts
+        self.products = validProducts
         
         self.productRequestCompleted?()
     }
     
     // MARK: -
     
-    func productWithIdentifier(_ id: String) -> AmericaTVGoProduct? {
-        var foundProduct: AmericaTVGoProduct?
-        
-        for product in self.products {
-            if product.identifier == id {
-                foundProduct = product
-                break
+    func iapProductWithIdentifier(_ id: String) -> SKProduct? {
+        for iapProduct in self.iapProducts {
+            if iapProduct.productIdentifier == id {
+                return iapProduct
             }
         }
         
-        return foundProduct
+        return nil
     }
+    
+    // MARK: -
+    
+    func submitProduct(_ product: SKProduct) {
+        let payment = SKMutablePayment(product: product)
+        SKPaymentQueue.default().add(payment)
+    }
+    
+    func productPurchasedWithIdentifier(_ identifier: String) -> Bool {
+        guard let receiptURL = Bundle(for: self.classForCoder).appStoreReceiptURL else {
+            return false
+        }
+        
+        guard let receiptData = try? Data(contentsOf: receiptURL) else {
+            return false
+        }
+        
+        guard let receiptJSON = try? JSONSerialization.jsonObject(with: receiptData, options: []) as? [String: Any] else {
+            return false
+        }
+        
+        if let status = receiptJSON!["status"] as? NSNumber {
+            print("Status \(status)")
+        }
+        
+        return false
+    }
+    
+    // MARK: -
+    
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .deferred:
+                print("deferred")
+            case .failed:
+                print("failed \(transaction.error?.localizedDescription ?? "")")
+            case .purchased:
+                print("purchased")
+            case .purchasing:
+                print("is purchasing")
+            case .restored:
+                print("restored")
+            }
+        }
+    }
+    
+    // MARK: - Utils
+    
+    /*fileprivate func hashedValueForAccountName(_ userAccountName: String) -> String? {
+        let HASH_SIZE = Int(32)
+        
+        var hashedChars = [CUnsignedChar]()
+        let accountName = userAccountName.utf8CString
+        let accountNameLen = accountName.count
+    
+        // Confirm that the length of the user name is small enough
+        // to be recast when calling the hash function.
+        if accountNameLen > UInt32.max {
+            print("Account name too long to hash: \(userAccountName)")
+            return nil
+        }
+        CC_SHA256(accountName as! UnsafeRawPointer, CC_LONG(accountNameLen), hashedChars)
+    
+        // Convert the array of bytes into a string showing its hex representation.
+        var userAccountHash = String()
+        for i in 0..<HASH_SIZE {
+            // Add a dash every four bytes, for readability.
+            if (i != 0 && i%4 == 0) {
+                userAccountHash += "-"
+            }
+            userAccountHash += String(format: "%02x", arguments: [hashedChars[i]])
+        }
+    
+        return userAccountHash
+    }*/
     
 }
