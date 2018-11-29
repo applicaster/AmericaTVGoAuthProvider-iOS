@@ -1,0 +1,31 @@
+{
+	"api": {
+		"require_startup_execution": false,
+		"class_name": "AmericaTVGoAuthProvider"
+	},
+	"dependency_repository_url": [],
+	"ui_builder_support": true,
+	"platform": "ios",
+	"author_name": "Roi Kedarya",
+	"author_email": "r.kedarya@applicaster.com",
+	"manifest_version": "6.0.0",
+	"name": "AmericaTV Login Plugin iOS",
+	"description": "AmericaTVGo auth provider.",
+	"type": "auth_provider",
+	"identifier": "AmericaTVGoAuthProvider-iOS",
+	"dependency_name": "AmericaTVGoAuthProvider",
+	"dependency_version": "6.0.0",
+	"whitelisted_account_ids": ["51dbf21552a62eeefe000001"],
+	"min_zapp_sdk": "10.0.0",
+	"deprecated_since_zapp_sdk": "",
+	"unsupported_since_zapp_sdk": "",
+	"react_native": false,
+	"custom_configuration_fields": [
+			{
+				"key": "provider_key",
+				"type": "text",
+				"default": "americaTV",
+				"tooltip_text": "The provider key is taken from the Applicaster CMS. Select Admin -> Policies and in the settings of the auth provider, take the 'Client type' value."
+			}
+	]
+}
