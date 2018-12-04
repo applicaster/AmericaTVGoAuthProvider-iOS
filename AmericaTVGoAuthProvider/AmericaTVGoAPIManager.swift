@@ -11,6 +11,8 @@ import AFNetworking
 import ApplicasterSDK
 
 let AmericaTVGoAPIManagerUserIDKey = "AmericaTVGoAPIManagerUserIDKey"
+let AmericaTVGoAPIManagerUserEmailKey = "AmericaTVGoAPIManagerUserEmailKey"
+let AmericaTVGoAPIManagerUserTokenKey = "AmericaTVGoAPIManagerUserTokenKey"
 
 class AmericaTVGoAPIManager: NSObject {
     static let shared = AmericaTVGoAPIManager()
@@ -21,53 +23,37 @@ class AmericaTVGoAPIManager: NSObject {
 //    public var apiKey:String?
     
     public func loginUser(email: String, password: String, completion:@escaping ((_ succes: Bool, _ token:String?, _ message: String?) -> Void)) {
-        let sessionManager = AFHTTPSessionManager()
-        sessionManager.requestSerializer = AFHTTPRequestSerializer()
-        sessionManager.requestSerializer.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        sessionManager.responseSerializer = AFJSONResponseSerializer()
-        let loginURL = AmericaTVGoEndpointManager.shared.urlForEndpoint(ofType: .login, production: isProduction)
-        let params: [String: String] = ["correo":email,
+        let parameters: [String: String] = ["correo":email,
                                         "password":password,
                                         "uuid":APIdentityClient.deviceID()]
-    
-        sessionManager.post(loginURL.absoluteString,
-                            parameters: params,
-                            progress: nil,
-                            success: { (task, object) in
-                                if  let objectDictionary = object as? NSDictionary {
-                                    var message: String? = nil
-                                    
-                                    if let messageID = (objectDictionary["messages"] as? [Any])?.first as? Int {
-                                        message = AmericaTVGoEndpointManager.shared.messageForMessageID("\(messageID)")
-                                    }
-                                    
-                                    if let status = objectDictionary.object(forKey: "status") as? Bool {
-                                         //Login succesful
-                                        if status == true {
-                                            if let token = objectDictionary["token"] as? String {
-                                                completion(true, token, message)
-                                            } else {
-                                                //Go to payment methods (with user id)
-                                                if let userID = objectDictionary.object(forKey: "idusuario") as? String {
-                                                    UserDefaults.standard.set(userID, forKey: AmericaTVGoAPIManagerUserIDKey)
-                                                    UserDefaults.standard.synchronize()
-                                                    
-                                                    completion(true, nil, message)
-                                                } else {
-                                                    //no userId & no token - this is an edge case, it should not happen, unless something
-                                                    //with the regestration went wrong
-                                                    completion(false, nil, message)
-                                                }
-                                            }
-                                        } else {
-                                            //login failed
-                                            completion(false, nil, message)
-                                        }
-                                    }
-                                }
-                                
-        }) { (task, error) in
-            completion(false, nil, nil)
+        
+        self.query(type: .login, parameters: parameters) { (_ success: Bool, _ jsonInfo: [String : Any]?) in
+            if success {
+                if let objectDictionary = jsonInfo {
+                    let message = self.getMessage(from: objectDictionary)
+                    
+                    if let status = objectDictionary["status"] as? Bool {
+                        if status == true {
+                            let user = AmericaTVGoIAPManager.shared.currentUser
+                            user.update(json: objectDictionary)
+                            self.updateUserDefaultsFromCurrentUser()
+                            
+                            if !user.token.isEmpty {
+                                completion(true, user.token, message)
+                            } else {
+                                completion(true, nil, message)
+                            }
+                        } else {
+                            //login failed
+                            completion(false, nil, message)
+                        }
+                    }
+                } else {
+                    completion(false, nil, nil)
+                }
+            } else {
+                completion(false, nil, nil)
+            }
         }
     }
     
@@ -112,16 +98,42 @@ class AmericaTVGoAPIManager: NSObject {
                     
                     if let status = objectDictionary["status"] as? Bool {
                         if status == true {
-                            //paying user has a token and a new user (didn't pay) get a null value
-                            let token = objectDictionary["token"] as? String
+                            let user = AmericaTVGoIAPManager.shared.currentUser
+                            user.update(json: objectDictionary)
                             
-                            if let userID = objectDictionary["idusuario"] as? String {
-                                UserDefaults.standard.set(userID, forKey: AmericaTVGoAPIManagerUserIDKey)
-                            }
+                            self.updateUserDefaultsFromCurrentUser()
                             
-                            UserDefaults.standard.synchronize()
+                            completion(true, user.token, message)
+                        } else {
+                            completion(false, nil, message)
+                        }
+                    }
+                } else {
+                    completion(false, nil, nil)
+                }
+            } else {
+                completion(false, nil, nil)
+            }
+        }
+    }
+    
+    public func getUser(id: String, completion:@escaping ((_ success: Bool, _ token:String?, _ message: String?) -> Void)) {
+        let parameters: [String: String] = ["idusuario": id,
+                                            "uuid": APIdentityClient.deviceID()]
+        
+        self.query(type: .userDetails, parameters: parameters) { (_ success: Bool, _ jsonInfo: [String : Any]?) in
+            if success {
+                if let objectDictionary = jsonInfo {
+                    let message = self.getMessage(from: objectDictionary)
+                    
+                    if let status = objectDictionary["status"] as? Bool {
+                        if status == true {
+                            let user = AmericaTVGoIAPManager.shared.currentUser
+                            user.update(json: objectDictionary)
                             
-                            completion(true, token, message)
+                            self.updateUserDefaultsFromCurrentUser()
+                            
+                            completion(true, user.token, message)
                         } else {
                             completion(false, nil, message)
                         }
@@ -171,4 +183,16 @@ class AmericaTVGoAPIManager: NSObject {
         
         return message
     }
+    
+    fileprivate func updateUserDefaultsFromCurrentUser() {
+        let user = AmericaTVGoIAPManager.shared.currentUser
+        
+        UserDefaults.standard.set(user.id, forKey: AmericaTVGoAPIManagerUserIDKey)
+        UserDefaults.standard.set(user.email, forKey: AmericaTVGoAPIManagerUserEmailKey)
+        UserDefaults.standard.set(user.token, forKey: AmericaTVGoAPIManagerUserTokenKey)
+        
+        UserDefaults.standard.synchronize()
+    }
 }
+
+
