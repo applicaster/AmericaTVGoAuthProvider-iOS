@@ -63,6 +63,9 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
             if let jsonData = data, let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
                 if let status = json!["status"] as? NSNumber, status.boolValue == true {
                     if let remoteProducts = json!["paquetes"] as? [[String: Any]] {
+                        let formatter = NumberFormatter()
+                        formatter.maximumFractionDigits = 2
+                        
                         for remoteProduct in remoteProducts {
                             var newProduct = AmericaTVGoProduct()
                             
@@ -70,13 +73,19 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
                                 newProduct.identifier = value
                             }
                             if let value = remoteProduct["regular_price"] as? NSNumber {
-                                newProduct.oldPrice = value.stringValue
+                                newProduct.oldPrice = formatter.string(from: value) ?? ""
                             }
                             if let value = remoteProduct["precio"] as? NSNumber {
-                                newProduct.newPrice = value.stringValue
+                                newProduct.newPrice = formatter.string(from: value) ?? ""
                             }
                             if let value = remoteProduct["titulo"] as? String {
-                                newProduct.timeUnit = value 
+                                let comps = value.split(separator: " ")
+                                if comps.count == 2 {
+                                    newProduct.timeDuration = String(comps[0])
+                                    newProduct.timeUnit = String(comps[1])
+                                } else {
+                                    newProduct.timeUnit = value
+                                }
                             }
                             if let value = remoteProduct["is_promotion"] as? NSNumber {
                                 newProduct.isPromotion = value.boolValue

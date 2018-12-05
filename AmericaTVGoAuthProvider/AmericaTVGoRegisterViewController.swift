@@ -53,13 +53,8 @@ class AmericaTVGoRegisterViewController: UIViewController {
             let user = AmericaTVGoIAPManager.shared.currentUser
             user.email = emailTextField.text!
             user.password = passwordTextField.text!
-            
-            if user.isPremium {
-                let controller = AmericaTVGoIAPProductsViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
-                self.navigationController?.pushViewController(controller, animated: true)
-            } else {
-                handleRegistration()
-            }
+        
+            handleRegistration()
         }
     }
     
@@ -81,8 +76,15 @@ class AmericaTVGoRegisterViewController: UIViewController {
                         }
                         
                         let bundle = Bundle(for: self.classForCoder)
-                        let controller = AmericaTVGoRegistrationFinishedViewController.init(nibName: nil, bundle: bundle)
-                        self.navigationController?.pushViewController(controller, animated: true)
+                        var viewController: UIViewController
+                        
+                        if user.isPremium {
+                            viewController = AmericaTVGoIAPProductsViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
+                        } else {
+                            viewController = AmericaTVGoRegistrationFinishedViewController.init(nibName: nil, bundle: bundle)
+                        }
+                        
+                        self.navigationController?.pushViewController(viewController, animated: true)
                     } else {
                         let alertController = UIAlertController(title: nil, message: message ?? "Ocurrio un error.", preferredStyle: .alert)
                         

@@ -9,8 +9,6 @@
 import UIKit
 import StoreKit
 
-let AmericaTVGoRegisterLaterNotification = Notification.Name("AmericaTVGoRegisterLaterNotification")
-
 class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     @IBOutlet weak var productsCollectionView: UICollectionView!
     
@@ -29,9 +27,9 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         productsCollectionView.delegate = self
         productsCollectionView.dataSource = self
         
-        productsCollectionView.reloadData()
+        //productsCollectionView.reloadData()
         
-        productsCollectionViewHeightConstraint.constant = productsCollectionView.collectionViewLayout.collectionViewContentSize.height
+        //productsCollectionViewHeightConstraint.constant = productsCollectionView.collectionViewLayout.collectionViewContentSize.height
         
         progressIndicator.startAnimating()
         AmericaTVGoIAPManager.shared.retrieveRemoteProducts { (newProducts) in
@@ -53,7 +51,7 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
                 navController.popViewController(animated: true)
             }
         } else {
-            self.dismiss(animated: true, completion: nil)
+            NotificationCenter.default.post(name: AmericaTVGoRegisterLaterNotification, object: nil, userInfo: ["sender": self])
         }
     }
     
@@ -132,5 +130,15 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8.0
+    }
+    
+    // MARK: -
+    
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UI_USER_INTERFACE_IDIOM() == .pad ? .landscape  : .portrait
+    }
+    
+    open override var shouldAutorotate: Bool {
+        return true
     }
 }

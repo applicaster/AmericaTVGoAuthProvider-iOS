@@ -26,13 +26,28 @@ class AmericaTVGoUser {
     var product: AmericaTVGoProduct?
     var token: String = ""
     
+    func isLoggedIn() -> Bool {
+        return !self.id.isEmpty
+    }
+    
+    func logout() {
+        self.id = ""
+        self.email = ""
+        self.token = ""
+        self.product = nil
+    }
+    
     func update(json: [String: Any]) {
         if let value = json["token"] as? String {
             self.token = value
         }
         
-        guard let details = json["data"] as? [String: Any] else {
-            return
+        var details = [String: Any]()
+        
+        if let data = json["data"] as? [String: Any] {
+            details = data
+        } else {
+            details = json
         }
         
         /*

@@ -28,12 +28,22 @@ class AmericaTVGoLoginViewController: UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         self.delegate = delegate
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(registerLaterNotification(_:)), name: AmericaTVGoRegisterLaterNotification, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let user = AmericaTVGoIAPManager.shared.currentUser
+        
+        emailTextField.text = user.email
+        
+        if let password = APKeychain.getStringForKey(user.id) {
+            passwordTextField.text = password
+        }
     }
     
     // MARK: -
@@ -78,7 +88,7 @@ class AmericaTVGoLoginViewController: UIViewController {
                 user.password = password
                 
                 if success {
-                    if let aToken = token {
+                    if let aToken = token, !aToken.isEmpty {
                         let alertController = UIAlertController(title: self.appName, message: message ?? "¡Login Exitoso!", preferredStyle: .alert)
                         
                         alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
@@ -168,18 +178,5 @@ class AmericaTVGoLoginViewController: UIViewController {
     
     open override var shouldAutorotate: Bool {
         return true
-    }
-    
-    // MARK: -
-    
-    @objc
-    func registerLaterNotification(_ sender: Notification) {
-        if let controller = sender.userInfo?["sender"] as? UIViewController {
-            controller.modalTransitionStyle = .crossDissolve
-            
-            controller.dismiss(animated: false) {
-                self.handleDismiss()
-            }
-        }
     }
 }

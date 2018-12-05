@@ -12,6 +12,8 @@ import ZappLoginPluginsSDK
 
 public typealias AmericaTVGoAuthProviderCompletion = ((ZPLoginOperationStatus) -> Void)
 
+let AmericaTVGoRegisterLaterNotification = Notification.Name("AmericaTVGoRegisterLaterNotification")
+
 class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHookProtocol, ZPBaseLoginProviderFlowHandler {
     var delegate: APAuthorizationClientDelegate!
     
@@ -33,81 +35,119 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
     
     required init!(authorizationProvider authProvider: APAuthorizationProvider!, andParams params: [AnyHashable : Any]!) {
         super.init()
+        
+        if let providerID = authProvider.uniqueID {
+            UserDefaults.standard.set(providerID, forKey: AmericaTVGoAPIManagerAuthProviderIDKey)
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(registerLaterNotification(_:)), name: AmericaTVGoRegisterLaterNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: AmericaTVGoRegisterLaterNotification, object: nil)
     }
     
     // MARK: -
     
-    func login(_ additionalParameters: [String : Any]?, completion: @escaping ((ZPLoginOperationStatus) -> Void)) {
-        self.completion = completion
+    func login(userID: String, completion: @escaping ((ZPLoginOperationStatus) -> Void)) {
         self.performingLogin = true
-        //self.startAuthorizationProcess()
         
+        AmericaTVGoAPIManager.shared.getUser(id: userID) { (_ success: Bool, _ token: String?, _ message: String?) in
+            let user = AmericaTVGoIAPManager.shared.currentUser
+            
+            if let userPassword = APKeychain.getStringForKey(userID) {
+                AmericaTVGoAPIManager.shared.loginUser(email: user.email, password: userPassword) { (success: Bool, token: String?, message: String?) in
+                    AmericaTVGoAPIManager.updateUserDefaultsFromCurrentUser()
+                    
+                    self.performingLogin = false
+                    
+                    AmericaTVGoAPIManager.shared.updateToken(token ?? "")
+                    
+                    completion(.completedSuccessfully)
+                }
+            } else {
+                self.performingLogin = false
+                
+                AmericaTVGoAPIManager.shared.updateToken("")
+                
+                completion(.completedSuccessfully)
+            }
+        }
     }
     
     func logout(_ completion: @escaping ((ZPLoginOperationStatus) -> Void)) {
-        UserDefaults.standard.removeObject(forKey: AmericaTVGoIAPManager.shared.currentUser.email)
-        UserDefaults.standard.removeObject(forKey: AmericaTVGoIAPManager.shared.currentUser.token)
-        UserDefaults.standard.synchronize()
+        let user = AmericaTVGoIAPManager.shared.currentUser
+        
+        if user.isLoggedIn() {
+            AmericaTVGoAPIManager.clearUserDefaultsFromCurrentUser()
+            AmericaTVGoAPIManager.shared.updateToken("")
+            
+            user.logout()
+        }
+        
         completion(.cancelled)
     }
     
     func isAuthenticated() -> Bool {
-        if let token = UserDefaults.standard.object(forKey: AmericaTVGoIAPManager.shared.currentUser.token) as? String, !token.isEmpty {
+        if let token = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserTokenKey) as? String, !token.isEmpty {
             return true
         } else {
             return false
         }
     }
     
-    // MARK: -
+    // MARK: APAuthorizationClient
     
     func startAuthorizationProcess() {
         let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal()
-        let americaTVGoLoginViewController = AmericaTVGoLoginViewController.init(nibName: "AmericaTVGoLoginViewController", bundle: Bundle(for: type(of: self)), andDelegate: delegate)
-        topMostViewController?.present(americaTVGoLoginViewController, animated: true, completion: nil)
+        let viewController: UIViewController
+        
+        let user = AmericaTVGoIAPManager.shared.currentUser
+        
+        if user.id.isEmpty {
+            viewController = AmericaTVGoLoginViewController.init(nibName: "AmericaTVGoLoginViewController", bundle: Bundle(for: type(of: self)), andDelegate: delegate)
+        } else {
+            if user.token.isEmpty {
+                viewController = AmericaTVGoIAPProductsViewController.init(nibName: "AmericaTVGoIAPProductsViewController", bundle: Bundle(for: type(of: self)))
+            } else {
+                // should probably not happen
+                viewController = AmericaTVGoRegistrationFinishedViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
+            }
+        }
+        
+        topMostViewController?.present(viewController, animated: true, completion: nil)
+    }
+    
+    func handleUrlScheme(_ params: NSDictionary) {
+        if let type = params["type"] as? String, type == "auth_provider" {
+            if let action = params["action"] as? String, action == "logout" {
+                self.logout { (status) in
+                    // Nothing to do
+                }
+            }
+        } else {
+            let expectedUrlSchemeNameParam = self.urlSchemeName()
+            let nameParam = params["name"] as? String
+            
+            if expectedUrlSchemeNameParam.isEmpty || nameParam == expectedUrlSchemeNameParam {
+                if let userID = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) as? String {
+                    self.login(userID: userID) { (status) in
+                        // Nothing to do
+                    }
+                }
+            }
+        }
     }
     
     //MARK: ZPAppLoadingHookProtocol
     
     func executeAfterAppRootPresentation(displayViewController: UIViewController?, completion: (() -> Void)?) {
-        let user = AmericaTVGoIAPManager.shared.currentUser
-        
-        if user.id.isEmpty {
-            completion?()
-        } else {
-            //let oldToken = user.token.isEmpty
-            
-            AmericaTVGoAPIManager.shared.getUser(id: user.id) { (_ success: Bool, _ token: String?, _ message: String?) in
-                if let userToken = token {
-                    UserDefaults.standard.set(userToken, forKey: AmericaTVGoAPIManagerUserTokenKey)
-                    self.login(nil) { (status) in
-                        completion?()
-                    }
-                } else {
-                    UserDefaults.standard.set(nil, forKey: AmericaTVGoAPIManagerUserTokenKey)
-                    completion?()
-                }
-            }
-        }
-        let userHasToken = false
-        if !userHasToken {
-            self.login(nil, completion: { (status) in
+        if let userID = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) as? String, !userID.isEmpty {
+            self.login(userID: userID) { (status) in
                 completion?()
-            })
-        }
-        else {
-            completion?();
-        }
-    }
-    
-    @objc public func handleUrlScheme(_ params:NSDictionary) {
-        let expectedUrlSchemeNameParam = self.urlSchemeName()
-        let nameParam = params["name"] as? String
-        
-        if expectedUrlSchemeNameParam.isEmpty || nameParam == expectedUrlSchemeNameParam {
-            self.login(nil) { (status) in
-                // Nothing to do for now
             }
+        } else {
+            completion?()
         }
     }
     
@@ -119,10 +159,34 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
     //MARK: -
     
     func presentLoginScreen(delegate: ZPBaseLoginProviderLoginScreenDelegate?) {
-       print("hello")
+       
     }
     
     func hasAuthenticatedUser() -> Bool {
         return self.isAuthenticated()
+    }
+    
+    // MARK: -
+    
+    @objc
+    func registerLaterNotification(_ sender: Notification) {
+        if let controller = sender.userInfo?["sender"] as? UIViewController {
+            controller.modalTransitionStyle = .crossDissolve
+            
+            controller.dismiss(animated: false) {
+                let user = AmericaTVGoIAPManager.shared.currentUser
+                
+                if user.token.isEmpty {
+                    self.delegate?.didCancelAuthorization!(false)
+                } else {
+                    self.delegate?.didFinishAuthorization!(withToken: user.token)
+                }
+                
+                let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal()
+                if let viewController = topMostViewController {
+                    viewController.dismiss(animated: true)
+                }
+            }
+        }
     }
 }
