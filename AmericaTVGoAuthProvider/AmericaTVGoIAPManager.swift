@@ -9,6 +9,8 @@
 import StoreKit
 import CommonCrypto
 
+typealias AmericaTVGoIAPManagerPurchaseStateUpdated = ((_ success: Bool, _ transaction: SKPaymentTransaction) -> Void)
+
 class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     static let shared = AmericaTVGoIAPManager()
     
@@ -25,6 +27,7 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
     fileprivate var iapProducts = [SKProduct]()
     
     fileprivate var productRequestCompleted: (() -> Void)?
+    fileprivate var purchaseStateUpdated: AmericaTVGoIAPManagerPurchaseStateUpdated?
     
     override init() {
         super.init()
@@ -63,6 +66,9 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
             if let jsonData = data, let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
                 if let status = json!["status"] as? NSNumber, status.boolValue == true {
                     if let remoteProducts = json!["paquetes"] as? [[String: Any]] {
+                        let formatter = NumberFormatter()
+                        formatter.maximumFractionDigits = 2
+                        
                         for remoteProduct in remoteProducts {
                             var newProduct = AmericaTVGoProduct()
                             
@@ -70,13 +76,19 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
                                 newProduct.identifier = value
                             }
                             if let value = remoteProduct["regular_price"] as? NSNumber {
-                                newProduct.oldPrice = value.stringValue
+                                newProduct.oldPrice = formatter.string(from: value) ?? ""
                             }
                             if let value = remoteProduct["precio"] as? NSNumber {
-                                newProduct.newPrice = value.stringValue
+                                newProduct.newPrice = formatter.string(from: value) ?? ""
                             }
                             if let value = remoteProduct["titulo"] as? String {
-                                newProduct.timeUnit = value 
+                                let comps = value.split(separator: " ")
+                                if comps.count == 2 {
+                                    newProduct.timeDuration = String(comps[0])
+                                    newProduct.timeUnit = String(comps[1])
+                                } else {
+                                    newProduct.timeUnit = value
+                                }
                             }
                             if let value = remoteProduct["is_promotion"] as? NSNumber {
                                 newProduct.isPromotion = value.boolValue
@@ -164,8 +176,11 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
     
     // MARK: -
     
-    func submitProduct(_ product: SKProduct) {
+    func submitProduct(_ product: SKProduct, completion: @escaping AmericaTVGoIAPManagerPurchaseStateUpdated) {
         let payment = SKMutablePayment(product: product)
+        
+        self.purchaseStateUpdated = completion
+        
         SKPaymentQueue.default().add(payment)
     }
     
@@ -202,8 +217,10 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
                 print("deferred")
             case .failed:
                 print("failed \(transaction.error?.localizedDescription ?? "")")
+                self.purchaseStateUpdated?(false, transaction)
             case .purchased:
                 print("purchased")
+                self.purchaseStateUpdated?(true, transaction)
             case .purchasing:
                 print("is purchasing")
             case .restored:

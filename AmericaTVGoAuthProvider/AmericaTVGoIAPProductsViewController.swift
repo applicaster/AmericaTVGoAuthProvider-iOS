@@ -9,8 +9,6 @@
 import UIKit
 import StoreKit
 
-let AmericaTVGoRegisterLaterNotification = Notification.Name("AmericaTVGoRegisterLaterNotification")
-
 class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     @IBOutlet weak var productsCollectionView: UICollectionView!
     
@@ -29,9 +27,9 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         productsCollectionView.delegate = self
         productsCollectionView.dataSource = self
         
-        productsCollectionView.reloadData()
+        //productsCollectionView.reloadData()
         
-        productsCollectionViewHeightConstraint.constant = productsCollectionView.collectionViewLayout.collectionViewContentSize.height
+        //productsCollectionViewHeightConstraint.constant = productsCollectionView.collectionViewLayout.collectionViewContentSize.height
         
         progressIndicator.startAnimating()
         AmericaTVGoIAPManager.shared.retrieveRemoteProducts { (newProducts) in
@@ -53,7 +51,7 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
                 navController.popViewController(animated: true)
             }
         } else {
-            self.dismiss(animated: true, completion: nil)
+            NotificationCenter.default.post(name: AmericaTVGoRegisterLaterNotification, object: nil, userInfo: ["sender": self])
         }
     }
     
@@ -65,15 +63,25 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
                 let user = AmericaTVGoIAPManager.shared.currentUser
                 user.product = product
                 
-                /*if let iapProduct = AmericaTVGoIAPManager.shared.iapProductWithIdentifier(product.identifier) {
-                    AmericaTVGoIAPManager.shared.submitProduct(iapProduct)
-                }*/
-                let message = "Coming soon: \(product.identifier)"
-                
-                let alertController = UIAlertController(title: "Ocurrió un error", message: message, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
-                
+                if let iapProduct = AmericaTVGoIAPManager.shared.iapProductWithIdentifier(product.identifier) {
+                    AmericaTVGoIAPManager.shared.submitProduct(iapProduct) { (_ success: Bool, transaction: SKPaymentTransaction) in
+                        if success {
+                            AmericaTVGoAPIManager.shared.registerPurchaseForUser(userID: AmericaTVGoIAPManager.shared.currentUser.id, packageName: transaction.transactionIdentifier ?? "", subscriptionID: product.identifier, token: "") { (success: Bool, token: String?, message: String?) in
+                                
+                                let alertController = UIAlertController(title: nil, message: message ?? "¡La compra fue exitosa!", preferredStyle: .alert)
+                                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                                    let controller = AmericaTVGoRegistrationFinishedViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
+                                    self.navigationController?.pushViewController(controller, animated: true)
+                                }))
+                                self.present(alertController, animated: true, completion: nil)
+                            }
+                        } else {
+                            let alertController = UIAlertController(title: "Ocurrió un error", message: transaction.error?.localizedDescription ?? "La transacción no se pudo completar exitosamente.", preferredStyle: .alert)
+                            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                    }
+                }
             } else {
                 let message = "No es posible hacer la compra de: \(product.identifier)"
                 
@@ -132,5 +140,15 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8.0
+    }
+    
+    // MARK: -
+    
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UI_USER_INTERFACE_IDIOM() == .pad ? .landscape  : .portrait
+    }
+    
+    open override var shouldAutorotate: Bool {
+        return true
     }
 }
