@@ -160,6 +160,40 @@ class AmericaTVGoAPIManager: NSObject {
         }
     }
     
+    public func registerPurchaseForUser(userID: String, packageName: String, subscriptionID: String, token: String, completion:@escaping ((_ success: Bool, _ token:String?, _ message: String?) -> Void)) {
+        let paramaters = ["packageName": packageName,
+                          "subscriptionId": subscriptionID,
+                          "token": token,
+                          "idusuario": userID,
+                          "os": "ios"]
+        
+        self.query(type: .subscription, parameters: paramaters) { (_ success: Bool, _ jsonInfo: [String: Any]?) in
+            if success {
+                if let objectDictionary = jsonInfo {
+                    let message = self.getMessage(from: objectDictionary)
+                    
+                    if let status = objectDictionary["status"] as? Bool {
+                        if status == true {
+                            let user = AmericaTVGoIAPManager.shared.currentUser
+                            user.update(json: objectDictionary)
+                            AmericaTVGoAPIManager.updateUserDefaultsFromCurrentUser()
+                            
+                            self.updateToken(user.token)
+                            
+                            completion(true, user.token, message)
+                        } else {
+                            completion(false, nil, message)
+                        }
+                    }
+                } else {
+                    completion(false, nil, nil)
+                }
+            } else {
+                completion(false, nil, nil)
+            }
+        }
+    }
+    
     // MARK: -
     
     fileprivate func query(type: AmericaTVGoEndpointType, parameters: [String: Any], completion: @escaping (_ success: Bool, _ jsonInfo: [String: Any]?) -> Void) {

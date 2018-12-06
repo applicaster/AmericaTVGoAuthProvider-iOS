@@ -9,6 +9,8 @@
 import StoreKit
 import CommonCrypto
 
+typealias AmericaTVGoIAPManagerPurchaseStateUpdated = ((_ success: Bool, _ transaction: SKPaymentTransaction) -> Void)
+
 class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     static let shared = AmericaTVGoIAPManager()
     
@@ -25,6 +27,7 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
     fileprivate var iapProducts = [SKProduct]()
     
     fileprivate var productRequestCompleted: (() -> Void)?
+    fileprivate var purchaseStateUpdated: AmericaTVGoIAPManagerPurchaseStateUpdated?
     
     override init() {
         super.init()
@@ -173,8 +176,11 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
     
     // MARK: -
     
-    func submitProduct(_ product: SKProduct) {
+    func submitProduct(_ product: SKProduct, completion: @escaping AmericaTVGoIAPManagerPurchaseStateUpdated) {
         let payment = SKMutablePayment(product: product)
+        
+        self.purchaseStateUpdated = completion
+        
         SKPaymentQueue.default().add(payment)
     }
     
@@ -211,8 +217,10 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
                 print("deferred")
             case .failed:
                 print("failed \(transaction.error?.localizedDescription ?? "")")
+                self.purchaseStateUpdated?(false, transaction)
             case .purchased:
                 print("purchased")
+                self.purchaseStateUpdated?(true, transaction)
             case .purchasing:
                 print("is purchasing")
             case .restored:
