@@ -107,21 +107,6 @@ class AmericaTVGoLoginViewController: UIViewController {
                             navController.isNavigationBarHidden = true
                             
                             self.present(navController, animated: true, completion: nil)
-                            
-                            //self.dismiss(animated: true) {
-                                //no token - user didn't pay - go to payment screen
-                                //if let userId = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) {
-                                    /*let purchaseVC = AmericaTVGoInAppPurchaseViewController(nibName: "AmericaTVGoInAppPurchaseViewController", bundle: Bundle(for: self.classForCoder))
-                                
-                                    if let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal() {
-                                        topMostViewController.present(purchaseVC, animated: true, completion: {
-                                            
-                                        })
-                                    } else {
-                                        self.present(purchaseVC, animated: true, completion: nil)
-                                    }*/
-                                //}
-                            //}
                         })
                         
                         self.present(alertController, animated: true, completion: nil)

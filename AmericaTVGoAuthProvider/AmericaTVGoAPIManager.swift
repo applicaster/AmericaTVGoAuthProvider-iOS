@@ -140,8 +140,6 @@ class AmericaTVGoAPIManager: NSObject {
                         if status == true {
                             let user = AmericaTVGoIAPManager.shared.currentUser
                             user.update(json: objectDictionary)
-                            // TODO: temp solution
-                            //user.token = ""
                             AmericaTVGoAPIManager.updateUserDefaultsFromCurrentUser()
                             
                             self.updateToken(user.token)
