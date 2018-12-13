@@ -36,6 +36,12 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
             self.products = newProducts
             self.progressIndicator.stopAnimating()
             self.productsCollectionView.reloadData()
+            
+            if let error = AmericaTVGoIAPManager.shared.requestError {
+                let alertController = UIAlertController(title: "Ocurrio un error!", message: error.localizedDescription, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
     }
 

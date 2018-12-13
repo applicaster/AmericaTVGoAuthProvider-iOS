@@ -29,6 +29,8 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
     fileprivate var productRequestCompleted: (() -> Void)?
     fileprivate var purchaseStateUpdated: AmericaTVGoIAPManagerPurchaseStateUpdated?
     
+    var requestError: Error?
+    
     override init() {
         super.init()
         
@@ -56,16 +58,12 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
     // MARK: -
     
     func retrieveRemoteProducts(completion: @escaping (_ products: [AmericaTVGoProduct]) -> Void){
-        let url = AmericaTVGoEndpointManager.shared.urlForEndpoint(ofType: .products, production: false)
-        
-        let session = URLSession(configuration: .default)
-        
-        let task = session.dataTask(with: url) { (data, response, error) in
-            self.products.removeAll()
-            
-            if let jsonData = data, let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
-                if let status = json!["status"] as? NSNumber, status.boolValue == true {
-                    if let remoteProducts = json!["paquetes"] as? [[String: Any]] {
+        AmericaTVGoAPIManager.shared.getPackages { (_ success: Bool, _ jsonInfo: [String : Any]?, message: String?) in
+            if success {
+                self.products.removeAll()
+                
+                if let json = jsonInfo {
+                    if let remoteProducts = json["paquetes"] as? [[String: Any]] {
                         let formatter = NumberFormatter()
                         formatter.maximumFractionDigits = 2
                         
@@ -97,19 +95,17 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
                             self.products.append(newProduct)
                         }
                     }
+                } else {
+                    print("An error occured: \(message ?? "")")
                 }
-            } else {
-                print("An error occured: \(error?.localizedDescription ?? "")")
-            }
-            
-            self.validateIAPIdentifiers {
-                DispatchQueue.main.async {
-                    completion(self.products)
+                
+                self.validateIAPIdentifiers {
+                    DispatchQueue.main.async {
+                        completion(self.products)
+                    }
                 }
             }
         }
-        
-        task.resume()
     }
     
     // MARK: -
@@ -120,17 +116,21 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
         } else {
             let ids = self.products.map { $0.identifier }
             
-            let request = SKProductsRequest(productIdentifiers: Set(ids))
-            
-            request.delegate = self
-            
             self.productRequestCompleted = completion
-            self.productRequest = request
+            self.productRequest = SKProductsRequest(productIdentifiers: Set(ids))
+            self.productRequest?.delegate = self
             self.productRequest?.start()
         }
     }
     
     // MARK: -
+    
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        print("\(error.localizedDescription)")
+        self.requestError = error
+        self.products.removeAll()
+        self.productRequestCompleted?()
+    }
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         let ids = products.map { $0.identifier }
@@ -138,9 +138,10 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
         iapProducts.removeAll()
         
         var validProducts = Array(self.products)
+        let invalidProductIDs = response.invalidProductIdentifiers
         
         for iapProduct in response.products {
-            if response.invalidProductIdentifiers.contains(iapProduct.productIdentifier) && ids.contains(iapProduct.productIdentifier) {
+            if invalidProductIDs.contains(iapProduct.productIdentifier) && ids.contains(iapProduct.productIdentifier) {
                 if let index = self.products.firstIndex(where: { $0.identifier == iapProduct.productIdentifier }) {
                     validProducts.remove(at: index)
                 }

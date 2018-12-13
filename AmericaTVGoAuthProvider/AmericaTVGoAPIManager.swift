@@ -192,6 +192,31 @@ class AmericaTVGoAPIManager: NSObject {
         }
     }
     
+    func getPackages(completion: @escaping (_ success: Bool, _ jsonInfo: [String: Any]?, _ message: String?) -> Void) {
+        let paramaters = ["partner": "applicaster",
+                          "tipo": "ios"]
+        
+        self.query(type: .products, parameters: paramaters) { (_ success: Bool, _ jsonInfo: [String: Any]?) in
+            if success {
+                if let objectDictionary = jsonInfo {
+                    let message = self.getMessage(from: objectDictionary)
+                    
+                    if let status = objectDictionary["status"] as? Bool {
+                        if status == true {
+                            completion(true, objectDictionary, message)
+                        } else {
+                            completion(false, nil, message)
+                        }
+                    }
+                } else {
+                    completion(false, nil, nil)
+                }
+            } else {
+                completion(false, nil, nil)
+            }
+        }
+    }
+    
     // MARK: -
     
     fileprivate func query(type: AmericaTVGoEndpointType, parameters: [String: Any], completion: @escaping (_ success: Bool, _ jsonInfo: [String: Any]?) -> Void) {
@@ -214,7 +239,7 @@ class AmericaTVGoAPIManager: NSObject {
             completion(false, nil)
         }
         
-        if type == .userDetails {
+        if [.userDetails, .products].contains(type) {
             sessionManager.get(queryURL.absoluteString, parameters: parameters, progress: nil, success: { (task, object) in
                 success(task, object)
             }) { (task, error) in
