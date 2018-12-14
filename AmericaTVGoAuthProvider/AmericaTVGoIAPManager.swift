@@ -74,10 +74,10 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
                                 newProduct.identifier = value
                             }
                             if let value = remoteProduct["regular_price"] as? NSNumber {
-                                newProduct.oldPrice = formatter.string(from: value) ?? ""
+                                newProduct.oldPrice = "s/ "+(formatter.string(from: value) ?? "")
                             }
                             if let value = remoteProduct["precio"] as? NSNumber {
-                                newProduct.newPrice = formatter.string(from: value) ?? ""
+                                newProduct.newPrice = "s/ "+(formatter.string(from: value) ?? "")
                             }
                             if let value = remoteProduct["titulo"] as? String {
                                 let comps = value.split(separator: " ")
