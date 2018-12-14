@@ -21,7 +21,7 @@ let AmericaTVGoAPIManagaerInvalidToken = "<invalid_token>"
 class AmericaTVGoAPIManager: NSObject {
     static let shared = AmericaTVGoAPIManager()
     
-    var isProduction = false
+    var isProduction = true
     
     public func loginUser(email: String, password: String, completion:@escaping ((_ succes: Bool, _ token:String?, _ message: String?) -> Void)) {
         let parameters: [String: String] = ["correo":email,
