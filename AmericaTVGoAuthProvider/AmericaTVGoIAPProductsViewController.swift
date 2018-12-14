@@ -16,8 +16,8 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     @IBOutlet weak var productsCollectionViewHeightConstraint: NSLayoutConstraint!
     var products = [AmericaTVGoProduct]()
     
-    fileprivate var selectedIndex: Int?
     fileprivate var selectedContainerView: AmericaTVGoShadowBoxView?
+    fileprivate var selectedCell: AmericaTVGoProductCollectionViewCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +26,6 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         
         productsCollectionView.delegate = self
         productsCollectionView.dataSource = self
-        
-        //productsCollectionView.reloadData()
-        
-        //productsCollectionViewHeightConstraint.constant = productsCollectionView.collectionViewLayout.collectionViewContentSize.height
         
         progressIndicator.startAnimating()
         AmericaTVGoIAPManager.shared.retrieveRemoteProducts { (newProducts) in
@@ -62,43 +58,59 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     }
     
     @IBAction func handleRegistration(_ sender: Any) {
-        if let index = self.selectedIndex {
-            let product = products[index]
-            
-            if AmericaTVGoIAPManager.shared.purchasesAllowed {
-                let user = AmericaTVGoIAPManager.shared.currentUser
-                user.product = product
-                
-                if let iapProduct = AmericaTVGoIAPManager.shared.iapProductWithIdentifier(product.identifier) {
-                    AmericaTVGoIAPManager.shared.submitProduct(iapProduct) { (_ success: Bool, transaction: SKPaymentTransaction) in
-                        if success {
-                            AmericaTVGoAPIManager.shared.registerPurchaseForUser(userID: AmericaTVGoIAPManager.shared.currentUser.id, packageName: transaction.transactionIdentifier ?? "", subscriptionID: product.identifier, token: "") { (success: Bool, token: String?, message: String?) in
-                                
-                                let alertController = UIAlertController(title: nil, message: message ?? "¡La compra fue exitosa!", preferredStyle: .alert)
-                                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                                    let controller = AmericaTVGoRegistrationFinishedViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
-                                    self.navigationController?.pushViewController(controller, animated: true)
-                                }))
-                                self.present(alertController, animated: true, completion: nil)
-                            }
-                        } else {
-                            let alertController = UIAlertController(title: "Ocurrió un error", message: transaction.error?.localizedDescription ?? "La transacción no se pudo completar exitosamente.", preferredStyle: .alert)
-                            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                            self.present(alertController, animated: true, completion: nil)
-                        }
-                    }
-                }
-            } else {
-                let message = "No es posible hacer la compra de: \(product.identifier)"
-                
-                let alertController = UIAlertController(title: "Ocurrió un error", message: message, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
-            }
-        } else {
+        guard let selectedCell = self.selectedCell else {
             let alertController = UIAlertController(title: nil, message: "Por favor seleccione una promoción.", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        guard let indexPath = self.productsCollectionView.indexPath(for: selectedCell) else {
+            return
+        }
+        
+        let product = products[indexPath.row]
+        
+        if !AmericaTVGoIAPManager.shared.purchasesAllowed {
+            let message = "No es posible hacer la compra de: \(product.identifier)"
+            
+            let alertController = UIAlertController(title: "Ocurrió un error", message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+
+            return
+        }
+        
+        let user = AmericaTVGoIAPManager.shared.currentUser
+        user.product = product
+            
+        if let iapProduct = AmericaTVGoIAPManager.shared.iapProductWithIdentifier(product.identifier) {
+            AmericaTVGoIAPManager.shared.submitProduct(iapProduct) { (_ success: Bool, transaction: SKPaymentTransaction) in
+                if success {
+                    AmericaTVGoAPIManager.shared.registerPurchaseForUser(userID: AmericaTVGoIAPManager.shared.currentUser.id, packageName: transaction.transactionIdentifier ?? "", subscriptionID: product.identifier, token: "") { (success: Bool, token: String?, message: String?) in
+                        if success {
+                            AmericaTVGoAPIManager.shared.updateToken(token ?? AmericaTVGoAPIManagaerInvalidToken)
+                            let alertController = UIAlertController(title: nil, message: message ?? "¡La compra fue exitosa!", preferredStyle: .alert)
+                            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                                let controller = AmericaTVGoRegistrationFinishedViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
+                                self.navigationController?.pushViewController(controller, animated: true)
+                            }))
+                            self.present(alertController, animated: true, completion: nil)
+                        } else {
+                            let alertController = UIAlertController(title: nil, message: message ?? "¡La compra no fue exitosa!", preferredStyle: .alert)
+                            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                                
+                            }))
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                        
+                    }
+                } else {
+                    let alertController = UIAlertController(title: "Ocurrió un error", message: transaction.error?.localizedDescription ?? "La transacción no se pudo completar exitosamente.", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
         }
         
     }
@@ -124,15 +136,26 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         
         cell.product = product
         
-        cell.selectHandler = { (_ selected: Bool) -> Void in
-            if self.selectedContainerView != cell.containerView {
-                self.selectedContainerView?.isSelected = false
-            }
-            self.selectedContainerView = selected ? cell.containerView : nil
-            self.selectedIndex = selected ? indexPath.row : nil
+        if indexPath.row == 0 && self.selectedCell == nil {
+            self.selectCell(cell)
+            cell.containerView.isSelected = true
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = self.productsCollectionView.cellForItem(at: indexPath) as? AmericaTVGoProductCollectionViewCell {
+            selectCell(cell)
+        }
+    }
+    
+    fileprivate func selectCell(_ cell: AmericaTVGoProductCollectionViewCell) {
+        if self.selectedContainerView != cell.containerView {
+            self.selectedContainerView?.isSelected = false
+        }
+        self.selectedContainerView = cell.containerView
+        self.selectedCell = cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

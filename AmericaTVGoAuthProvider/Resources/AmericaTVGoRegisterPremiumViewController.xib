@@ -144,9 +144,9 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDg-rp-8lj">
-                            <rect key="frame" x="149.5" y="68" width="113" height="28"/>
+                            <rect key="frame" x="149.5" y="68" width="71" height="28"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="incia sesion ahora.">
+                            <state key="normal" title="incia sesion">
                                 <color key="titleColor" red="0.79808610680000003" green="0.32679909470000001" blue="0.26271575689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <connections>
@@ -162,8 +162,15 @@
                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="V1r-cU-ezh">
                             <rect key="frame" x="177.5" y="308" width="20" height="20"/>
                         </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" ahora." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwN-Y9-neN">
+                            <rect key="frame" x="220.5" y="74" width="45" height="16"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="xwN-Y9-neN" firstAttribute="leading" secondItem="fDg-rp-8lj" secondAttribute="trailing" id="00H-0W-43k"/>
                         <constraint firstAttribute="trailing" secondItem="yrz-HL-8su" secondAttribute="trailing" constant="20" id="1dd-rp-WuD"/>
                         <constraint firstItem="xPL-aD-bI9" firstAttribute="top" secondItem="0L8-S6-oW5" secondAttribute="bottom" constant="20" id="1mY-qs-pqX"/>
                         <constraint firstItem="aI6-oP-jqs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="2od-8t-MdG"/>
@@ -176,7 +183,6 @@
                         <constraint firstItem="yrz-HL-8su" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="I5x-2x-btP"/>
                         <constraint firstItem="yrz-HL-8su" firstAttribute="top" secondItem="LQL-7X-X9U" secondAttribute="bottom" id="Ir7-yw-D2Q"/>
                         <constraint firstAttribute="trailing" secondItem="BbA-50-Kgy" secondAttribute="trailing" constant="20" id="M1P-Fm-3bI"/>
-                        <constraint firstItem="lLe-WN-WvM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fDg-rp-8lj" secondAttribute="trailing" constant="20" id="OVM-fg-SIq"/>
                         <constraint firstItem="xPL-aD-bI9" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="OvT-9k-Wk7"/>
                         <constraint firstItem="0L8-S6-oW5" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="PHc-vQ-VBj"/>
                         <constraint firstItem="n7P-SR-FAF" firstAttribute="top" secondItem="zIh-dw-q7X" secondAttribute="bottom" constant="8" id="RXQ-L7-61d"/>
@@ -193,7 +199,9 @@
                         <constraint firstItem="4Cr-gu-EZh" firstAttribute="leading" secondItem="lLe-WN-WvM" secondAttribute="leading" constant="20" id="dVN-mS-1nl"/>
                         <constraint firstItem="lLe-WN-WvM" firstAttribute="trailing" secondItem="tmI-zH-Wky" secondAttribute="trailing" constant="20" id="dsN-Bb-cJs"/>
                         <constraint firstItem="zIh-dw-q7X" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="e33-Ga-adb"/>
+                        <constraint firstItem="xwN-Y9-neN" firstAttribute="firstBaseline" secondItem="fDg-rp-8lj" secondAttribute="firstBaseline" id="fLm-MJ-SGo"/>
                         <constraint firstItem="aI6-oP-jqs" firstAttribute="top" secondItem="BbA-50-Kgy" secondAttribute="bottom" constant="20" id="gIr-qD-HlC"/>
+                        <constraint firstItem="lLe-WN-WvM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xwN-Y9-neN" secondAttribute="trailing" constant="20" id="h2q-VE-O4m"/>
                         <constraint firstAttribute="bottom" secondItem="aI6-oP-jqs" secondAttribute="bottom" constant="20" id="icx-mb-2Ab"/>
                         <constraint firstAttribute="trailing" secondItem="n7P-SR-FAF" secondAttribute="trailing" constant="20" id="kef-uh-QcB"/>
                         <constraint firstAttribute="trailing" secondItem="LQL-7X-X9U" secondAttribute="trailing" constant="20" id="nCX-Ei-jJA"/>

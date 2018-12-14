@@ -17,8 +17,6 @@ class AmericaTVGoProductCollectionViewCell: UICollectionViewCell, AmericaTVGoSha
     @IBOutlet weak var oldPriceLabel: AmericaTVGoStrikethroughLabel!
     @IBOutlet weak var newPriceLabel: UILabel!
     
-    var selectHandler: ((_ selected: Bool) -> Void)?
-    
     var product: AmericaTVGoProduct? {
         didSet {
             update()
@@ -45,6 +43,6 @@ class AmericaTVGoProductCollectionViewCell: UICollectionViewCell, AmericaTVGoSha
     }
     
     func americaTVGoShadowBoxViewDidSelect(_ view: AmericaTVGoShadowBoxView) {
-        self.selectHandler?(view.isSelected)
+        
     }
 }
