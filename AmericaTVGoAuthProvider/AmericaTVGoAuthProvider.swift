@@ -81,8 +81,15 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
         if user.isLoggedIn() {
             AmericaTVGoAPIManager.clearUserDefaultsFromCurrentUser()
             AmericaTVGoAPIManager.shared.updateToken("")
+            APKeychain.deleteString(forKey: user.id)
             
             user.logout()
+            
+            let alertController = UIAlertController(title: nil, message: "¡La sesión se ha cerrado!", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal()
+            topMostViewController?.present(alertController, animated: true, completion: nil)
         }
         
         completion(.cancelled)
@@ -107,7 +114,7 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
         if user.id.isEmpty {
             viewController = AmericaTVGoLoginViewController.init(nibName: "AmericaTVGoLoginViewController", bundle: Bundle(for: type(of: self)), andDelegate: delegate)
         } else {
-            if user.token.isEmpty {
+            if user.isLoggedIn() && user.token.isEmpty {
                 viewController = AmericaTVGoIAPProductsViewController.init(nibName: "AmericaTVGoIAPProductsViewController", bundle: Bundle(for: type(of: self)))
             } else {
                 // should probably not happen

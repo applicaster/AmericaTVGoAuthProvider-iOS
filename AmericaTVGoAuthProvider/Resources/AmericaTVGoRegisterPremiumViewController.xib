@@ -62,7 +62,7 @@
                             <rect key="frame" x="20" y="110" width="335" height="17"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             <connections>
                                 <outlet property="lineView" destination="yrz-HL-8su" id="ulc-2D-7a1"/>
                             </connections>
@@ -78,7 +78,7 @@
                             <rect key="frame" x="20" y="148" width="276" height="17"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             <connections>
                                 <outlet property="lineView" destination="0L8-S6-oW5" id="5It-g4-Swd"/>
                                 <outlet property="togglePasswordVisibilityButton" destination="tmI-zH-Wky" id="eKM-T2-5UO"/>

@@ -48,7 +48,13 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     @IBAction func handleGoBack(_ sender: Any) {
         if let navController = self.navigationController {
             if navController.topViewController == self {
-                self.dismiss(animated: true, completion: nil)
+                let user = AmericaTVGoIAPManager.shared.currentUser
+                
+                if user.id.isEmpty {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    NotificationCenter.default.post(name: AmericaTVGoRegisterLaterNotification, object: nil, userInfo: ["sender": self])
+                }
             } else {
                 navController.popViewController(animated: true)
             }
