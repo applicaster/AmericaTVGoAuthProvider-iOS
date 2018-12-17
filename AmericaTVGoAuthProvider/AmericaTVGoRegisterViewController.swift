@@ -19,15 +19,24 @@ class AmericaTVGoRegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        let user = AmericaTVGoIAPManager.shared.currentUser
-        emailTextField.text = user.email
-        passwordTextField.text = user.password
+        let _ = emailTextField.resignFirstResponder()
+        let _ = passwordTextField.resignFirstResponder()
     }
 
     // MARK: -
     @IBAction func handleGoBack(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        let user = AmericaTVGoIAPManager.shared.currentUser
+        
+        if user.id.isEmpty {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            NotificationCenter.default.post(name: AmericaTVGoRegisterLaterNotification, object: nil, userInfo: ["sender": self])
+        }
     }
     
     @IBAction func acceptLegal(_ sender: UIButton) {

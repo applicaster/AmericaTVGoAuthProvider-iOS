@@ -48,7 +48,7 @@
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Q00-gw-IiB" customClass="AmericaTVGoTextField" customModule="AmericaTVGoAuthProvider" customModuleProvider="target">
                             <rect key="frame" x="20" y="42.5" width="280" height="19"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" textContentType="email"/>
+                            <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             <connections>
                                 <outlet property="lineView" destination="oX6-pQ-M7E" id="9j4-hZ-iQ3"/>
                             </connections>

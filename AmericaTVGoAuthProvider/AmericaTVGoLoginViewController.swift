@@ -40,10 +40,13 @@ class AmericaTVGoLoginViewController: UIViewController {
         let user = AmericaTVGoIAPManager.shared.currentUser
         
         emailTextField.text = user.email
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        if let password = APKeychain.getStringForKey(user.id) {
-            passwordTextField.text = password
-        }
+        let _ = emailTextField.resignFirstResponder()
+        let _ = passwordTextField.resignFirstResponder()
     }
     
     // MARK: -
@@ -72,10 +75,14 @@ class AmericaTVGoLoginViewController: UIViewController {
     }
     
     @IBAction func submitButtonClicked(_ sender: Any) {
-        if let email = self.emailTextField.text,
-            let password = self.passwordTextField.text,
-            !email.isEmpty,
-            !password.isEmpty, AmericaTVGoUtils.validateEmail(email) {
+        let email = self.emailTextField.text ?? ""
+        let password = self.passwordTextField.text ?? ""
+        
+        login(email: email, password: password)
+    }
+    
+    fileprivate func login(email: String, password: String) {
+        if !email.isEmpty && !password.isEmpty && AmericaTVGoUtils.validateEmail(email) {
             self.activityIndicator.startAnimating()
             
             let manager = AmericaTVGoAPIManager.shared
@@ -119,7 +126,7 @@ class AmericaTVGoLoginViewController: UIViewController {
                     alertController.addAction(UIAlertAction.init(title: "OK", style: .default) { (_) in
                         
                     })
-
+                    
                     self.present(alertController, animated: true, completion: nil)
                 }
             }

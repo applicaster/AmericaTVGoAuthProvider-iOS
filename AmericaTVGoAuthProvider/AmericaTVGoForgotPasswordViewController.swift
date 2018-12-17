@@ -18,6 +18,12 @@ class AmericaTVGoForgotPasswordViewController: UIViewController {
         let _ = emailTextField.becomeFirstResponder()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let _ = emailTextField.resignFirstResponder()
+    }
+    
     @IBAction func backButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
