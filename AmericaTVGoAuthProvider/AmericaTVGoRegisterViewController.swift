@@ -8,6 +8,7 @@
 
 import UIKit
 import ApplicasterSDK
+import MBProgressHUD
 
 class AmericaTVGoRegisterViewController: UIViewController {
 
@@ -15,7 +16,6 @@ class AmericaTVGoRegisterViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var termsButton: UIButton!
     @IBOutlet weak var privacyButton: UIButton!
-    @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var registerButton: UIButton!
     override func viewDidLoad() {
@@ -72,15 +72,13 @@ class AmericaTVGoRegisterViewController: UIViewController {
         let user = AmericaTVGoIAPManager.shared.currentUser
         
         if !(user.email.isEmpty || user.password.isEmpty) {
-            self.progressIndicator.startAnimating()
             self.registerButton.isEnabled = false
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             
             let manager = AmericaTVGoAPIManager.shared
             
             manager.registerUser(email: user.email, password: user.password, isPremium: user.isPremium) { (success: Bool, token: String?, message: String?) in
                 DispatchQueue.main.async {
-                    self.progressIndicator.stopAnimating()
-                    
                     if success {
                         if let aToken = token {
                             user.token = aToken
@@ -97,7 +95,7 @@ class AmericaTVGoRegisterViewController: UIViewController {
                         
                         self.navigationController?.pushViewController(viewController, animated: true)
                     } else {
-                        let alertController = UIAlertController(title: nil, message: message ?? "Ocurrio un error.", preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "", message: message ?? "Ocurrio un error.", preferredStyle: .alert)
                         
                         alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
                             
@@ -106,6 +104,7 @@ class AmericaTVGoRegisterViewController: UIViewController {
                         self.present(alertController, animated: true, completion: nil)
                     }
                     self.registerButton.isEnabled = true
+                    MBProgressHUD.hide(for: self.view, animated: true)
                 }
             }
         } else {

@@ -8,11 +8,10 @@
 
 import UIKit
 import StoreKit
+import MBProgressHUD
 
 class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     @IBOutlet weak var productsCollectionView: UICollectionView!
-    
-    @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var productsCollectionViewHeightConstraint: NSLayoutConstraint!
     var products = [AmericaTVGoProduct]()
@@ -28,12 +27,12 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         productsCollectionView.delegate = self
         productsCollectionView.dataSource = self
         
-        progressIndicator.startAnimating()
         continueButton.isEnabled = false
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         
         AmericaTVGoIAPManager.shared.retrieveRemoteProducts { (newProducts) in
             self.products = newProducts
-            self.progressIndicator.stopAnimating()
             self.productsCollectionView.reloadData()
             
             if let error = AmericaTVGoIAPManager.shared.requestError {
@@ -43,6 +42,8 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
             } else {
                 self.continueButton.isEnabled = true
             }
+            
+            MBProgressHUD.hide(for: self.view, animated: true)
         }
     }
 
@@ -70,7 +71,7 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     
     @IBAction func handleRegistration(_ sender: Any) {
         guard let selectedCell = self.selectedCell else {
-            let alertController = UIAlertController(title: nil, message: "Por favor seleccione una promoción.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "", message: "Por favor seleccione una promoción.", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
             return
@@ -96,6 +97,7 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         user.product = product
         
         self.continueButton.isEnabled = false
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         
         if let iapProduct = AmericaTVGoIAPManager.shared.iapProductWithIdentifier(product.identifier) {
             AmericaTVGoIAPManager.shared.submitProduct(iapProduct) { (_ success: Bool, transaction: SKPaymentTransaction) in
@@ -103,26 +105,29 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
                     AmericaTVGoAPIManager.shared.registerPurchaseForUser(userID: AmericaTVGoIAPManager.shared.currentUser.id, packageName: transaction.transactionIdentifier ?? "", subscriptionID: product.identifier, token: "") { (success: Bool, token: String?, message: String?) in
                         if success {
                             AmericaTVGoAPIManager.shared.updateToken(token ?? AmericaTVGoAPIManagaerInvalidToken)
-                            let alertController = UIAlertController(title: nil, message: message ?? "¡La compra fue exitosa!", preferredStyle: .alert)
+                            let alertController = UIAlertController(title: "", message: message ?? "¡La compra fue exitosa!", preferredStyle: .alert)
                             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
                                 let controller = AmericaTVGoRegistrationFinishedViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
                                 self.navigationController?.pushViewController(controller, animated: true)
                             }))
                             self.present(alertController, animated: true, completion: nil)
                         } else {
-                            let alertController = UIAlertController(title: nil, message: message ?? "¡La compra no fue exitosa!", preferredStyle: .alert)
+                            let alertController = UIAlertController(title: "", message: message ?? "¡La compra no fue exitosa!", preferredStyle: .alert)
                             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
                                 
                             }))
                             self.present(alertController, animated: true, completion: nil)
                         }
+                        
                         self.continueButton.isEnabled = true
+                        MBProgressHUD.hide(for: self.view, animated: true)
                     }
                 } else {
                     let alertController = UIAlertController(title: "Ocurrió un error", message: transaction.error?.localizedDescription ?? "La transacción no se pudo completar exitosamente.", preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alertController, animated: true, completion: nil)
                     self.continueButton.isEnabled = true
+                    MBProgressHUD.hide(for: self.view, animated: true)
                 }
             }
         }

@@ -36,7 +36,7 @@ class AmericaTVGoRegisterAccountPickerViewController: UIViewController, AmericaT
             AmericaTVGoIAPManager.shared.currentUser.isPremium = true
             controller = AmericaTVGoRegisterPremiumViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
         } else {
-            let alertController = UIAlertController(title: "Selección invalida!", message: "Por favor seleccione una opción.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "", message: "Por favor seleccione una opción.", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         }
