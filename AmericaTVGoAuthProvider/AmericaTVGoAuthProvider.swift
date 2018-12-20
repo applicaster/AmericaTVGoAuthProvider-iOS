@@ -77,6 +77,7 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
     
     func logout(_ completion: @escaping ((ZPLoginOperationStatus) -> Void)) {
         let user = AmericaTVGoIAPManager.shared.currentUser
+        var message = ""
         
         if user.isLoggedIn() {
             AmericaTVGoAPIManager.clearUserDefaultsFromCurrentUser()
@@ -85,12 +86,16 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
             
             user.logout()
             
-            let alertController = UIAlertController(title: nil, message: "¡La sesión se ha cerrado!", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            
-            let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal()
-            topMostViewController?.present(alertController, animated: true, completion: nil)
+            message = "¡La sesión se ha cerrado!"
+        } else {
+            message = "No hay sesión activa."
         }
+        
+        let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal()
+        topMostViewController?.present(alertController, animated: true, completion: nil)
         
         completion(.cancelled)
     }

@@ -29,5 +29,7 @@ Pod::Spec.new do |s|
   s.dependency 'ZappPlugins'
   s.dependency 'AFNetworking'
   s.dependency 'TPKeyboardAvoiding'
+  s.dependency 'MBProgressHUD'
+  
 
 end

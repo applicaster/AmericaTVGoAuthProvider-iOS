@@ -19,6 +19,7 @@ target 'AmericaTVGoAuthProvider' do
     pod 'ZappPlugins'
     pod 'AFNetworking'
     pod 'TPKeyboardAvoiding'
+    pod 'MBProgressHUD'
 end
 
 

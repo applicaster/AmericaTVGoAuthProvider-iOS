@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AmericaTVGoLoginViewController" customModule="AmericaTVGoAuthProvider" customModuleProvider="target">
             <connections>
-                <outlet property="activityIndicator" destination="ycp-YF-uRe" id="URf-TM-0zA"/>
                 <outlet property="emailTextField" destination="Q00-gw-IiB" id="dxV-rM-UpQ"/>
                 <outlet property="loginButton" destination="OJe-DJ-TeB" id="pzz-pf-Nfu"/>
                 <outlet property="passwordTextField" destination="UFi-wD-L40" id="X5Q-79-QaL"/>
@@ -192,9 +191,6 @@
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Gd4-ks-8iJ" secondAttribute="trailing" constant="20" id="zBr-MZ-SII"/>
                     </constraints>
                 </scrollView>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ycp-YF-uRe">
-                    <rect key="frame" x="150" y="284" width="20" height="20"/>
-                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -205,11 +201,9 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="9TX-6w-bXb" secondAttribute="bottom" id="E3B-bg-i1i"/>
                 <constraint firstItem="Nq4-Ux-4Xf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tfy-gR-cbQ" secondAttribute="trailing" constant="8" id="KBP-IN-CxY"/>
                 <constraint firstItem="tfy-gR-cbQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Pia-uj-93x"/>
-                <constraint firstItem="ycp-YF-uRe" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="WgS-d9-1Uh"/>
                 <constraint firstItem="9TX-6w-bXb" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="YsG-VU-xSH"/>
                 <constraint firstItem="9TX-6w-bXb" firstAttribute="top" secondItem="tfy-gR-cbQ" secondAttribute="bottom" constant="8" id="ay3-Mi-Xjq"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Nq4-Ux-4Xf" secondAttribute="trailing" constant="20" id="bDS-w0-gK8"/>
-                <constraint firstItem="ycp-YF-uRe" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="j86-lS-uWe"/>
                 <constraint firstItem="9TX-6w-bXb" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="kx9-Wo-xMw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9TX-6w-bXb" secondAttribute="trailing" id="t8F-TA-Cgy"/>
             </constraints>

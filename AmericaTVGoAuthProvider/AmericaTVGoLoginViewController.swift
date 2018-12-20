@@ -8,12 +8,12 @@
 
 import UIKit
 import ApplicasterSDK
+import MBProgressHUD
 
 class AmericaTVGoLoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: AmericaTVGoTextField!
     @IBOutlet weak var passwordTextField: AmericaTVGoTextField!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loginButton: UIButton!
     
     private let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
@@ -84,13 +84,12 @@ class AmericaTVGoLoginViewController: UIViewController {
     
     fileprivate func login(email: String, password: String) {
         if !email.isEmpty && !password.isEmpty && AmericaTVGoUtils.validateEmail(email) {
-            self.activityIndicator.startAnimating()
             self.loginButton.isEnabled = false
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             
             let manager = AmericaTVGoAPIManager.shared
             
             manager.loginUser(email: email, password: password) { (success: Bool, token: String?, message: String?) in
-                self.activityIndicator.stopAnimating()
                 
                 let user = AmericaTVGoIAPManager.shared.currentUser
                 user.email = email
@@ -98,7 +97,7 @@ class AmericaTVGoLoginViewController: UIViewController {
                 
                 if success {
                     if let aToken = token, !aToken.isEmpty {
-                        let alertController = UIAlertController(title: self.appName, message: message ?? "¡Login Exitoso!", preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "", message: message ?? "¡Login Exitoso!", preferredStyle: .alert)
                         
                         alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
                             self.dismiss(animated: true) {
@@ -108,7 +107,7 @@ class AmericaTVGoLoginViewController: UIViewController {
                         
                         self.present(alertController, animated: true, completion: nil)
                     } else {
-                        let alertController = UIAlertController(title: self.appName, message: message ?? "¡No tiene suscripción activa!", preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "", message: message ?? "¡No tiene suscripción activa!", preferredStyle: .alert)
                         
                         alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
                             let controller = AmericaTVGoIAPProductsViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
@@ -133,6 +132,7 @@ class AmericaTVGoLoginViewController: UIViewController {
                 }
                 
                 self.loginButton.isEnabled = true
+                MBProgressHUD.hide(for: self.view, animated: true)
             }
         } else {
             // Please make sure to fill email and password
@@ -144,8 +144,6 @@ class AmericaTVGoLoginViewController: UIViewController {
             })
             
             self.present(alertController, animated: true, completion: nil)
-            
-            self.loginButton.isEnabled = true
         }
     }
     

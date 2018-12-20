@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AmericaTVGoAuthProvider'
-  s.version          = '1.2.7'
+  s.version          = '1.2.8'
   s.summary          = 'AmericaTVGo Authorization Client'
   s.description      = <<-DESC
 AmericaTVGo Authorization Client
@@ -27,4 +27,5 @@ AmericaTVGo Authorization Client
   s.dependency 'ZappPlugins'
   s.dependency 'AFNetworking'
   s.dependency 'TPKeyboardAvoiding'
+  s.dependency 'MBProgressHUD'
 end
