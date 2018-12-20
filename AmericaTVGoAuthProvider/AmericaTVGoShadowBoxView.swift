@@ -85,7 +85,9 @@ class AmericaTVGoShadowBoxView: UIView {
             
             if buttons.count == 1 {
                 let button = buttons.first!
-                button.sendActions(for: .touchUpInside)
+                if button.isEnabled {
+                    button.sendActions(for: .touchUpInside)
+                }
             }
         }
     }

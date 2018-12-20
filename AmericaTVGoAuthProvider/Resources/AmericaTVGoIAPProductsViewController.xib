@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AmericaTVGoIAPProductsViewController">
             <connections>
+                <outlet property="continueButton" destination="orz-bW-rdu" id="sjT-Dt-JMF"/>
                 <outlet property="productsCollectionView" destination="f3z-Ez-WKs" id="MEN-IV-VDI"/>
                 <outlet property="productsCollectionViewHeightConstraint" destination="SCJ-l2-QHS" id="PJC-xn-dyW"/>
                 <outlet property="progressIndicator" destination="Wen-GO-oHa" id="5N3-am-f9a"/>

@@ -17,6 +17,7 @@ class AmericaTVGoRegisterViewController: UIViewController {
     @IBOutlet weak var privacyButton: UIButton!
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var registerButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -72,6 +73,7 @@ class AmericaTVGoRegisterViewController: UIViewController {
         
         if !(user.email.isEmpty || user.password.isEmpty) {
             self.progressIndicator.startAnimating()
+            self.registerButton.isEnabled = false
             
             let manager = AmericaTVGoAPIManager.shared
             
@@ -103,6 +105,7 @@ class AmericaTVGoRegisterViewController: UIViewController {
                         
                         self.present(alertController, animated: true, completion: nil)
                     }
+                    self.registerButton.isEnabled = true
                 }
             }
         } else {
@@ -114,6 +117,7 @@ class AmericaTVGoRegisterViewController: UIViewController {
             })
             
             self.present(alertController, animated: true, completion: nil)
+            self.registerButton.isEnabled = true
         }
     }
 }
