@@ -12,6 +12,7 @@ class AmericaTVGoForgotPasswordViewController: UIViewController {
     @IBOutlet weak var emailTextField: AmericaTVGoTextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var sendButton: UIButton!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -32,6 +33,7 @@ class AmericaTVGoForgotPasswordViewController: UIViewController {
         if let email = self.emailTextField.text,
             !email.isEmpty {
             self.activityIndicator.startAnimating()
+            self.sendButton.isEnabled = false
             
             let manager = AmericaTVGoAPIManager.shared
             
@@ -54,6 +56,7 @@ class AmericaTVGoForgotPasswordViewController: UIViewController {
                     
                     self.present(alertController, animated: true, completion: nil)
                 }
+                self.sendButton.isEnabled = true
             }
         } else {
             let alertController = UIAlertController(title: nil,
@@ -62,6 +65,7 @@ class AmericaTVGoForgotPasswordViewController: UIViewController {
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             
             self.present(alertController, animated: true, completion: nil)
+            self.sendButton.isEnabled = true
         }
     }
 }

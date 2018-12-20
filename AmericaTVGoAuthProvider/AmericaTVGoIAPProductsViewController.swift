@@ -13,6 +13,7 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     @IBOutlet weak var productsCollectionView: UICollectionView!
     
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var productsCollectionViewHeightConstraint: NSLayoutConstraint!
     var products = [AmericaTVGoProduct]()
     
@@ -28,6 +29,8 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         productsCollectionView.dataSource = self
         
         progressIndicator.startAnimating()
+        continueButton.isEnabled = false
+        
         AmericaTVGoIAPManager.shared.retrieveRemoteProducts { (newProducts) in
             self.products = newProducts
             self.progressIndicator.stopAnimating()
@@ -37,6 +40,8 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
                 let alertController = UIAlertController(title: "Ocurrio un error!", message: error.localizedDescription, preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alertController, animated: true, completion: nil)
+            } else {
+                self.continueButton.isEnabled = true
             }
         }
     }
@@ -89,7 +94,9 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         
         let user = AmericaTVGoIAPManager.shared.currentUser
         user.product = product
-            
+        
+        self.continueButton.isEnabled = false
+        
         if let iapProduct = AmericaTVGoIAPManager.shared.iapProductWithIdentifier(product.identifier) {
             AmericaTVGoIAPManager.shared.submitProduct(iapProduct) { (_ success: Bool, transaction: SKPaymentTransaction) in
                 if success {
@@ -109,12 +116,13 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
                             }))
                             self.present(alertController, animated: true, completion: nil)
                         }
-                        
+                        self.continueButton.isEnabled = true
                     }
                 } else {
                     let alertController = UIAlertController(title: "Ocurrió un error", message: transaction.error?.localizedDescription ?? "La transacción no se pudo completar exitosamente.", preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alertController, animated: true, completion: nil)
+                    self.continueButton.isEnabled = true
                 }
             }
         }

@@ -16,6 +16,7 @@
                 <outlet property="passwordTextField" destination="wyw-DB-4km" id="GHZ-UO-5Pb"/>
                 <outlet property="privacyButton" destination="AH7-Xh-Inm" id="6OX-v6-AeY"/>
                 <outlet property="progressIndicator" destination="Afk-DB-SqM" id="ocK-yp-gYn"/>
+                <outlet property="registerButton" destination="QQc-eA-HDr" id="mjz-YZ-rPL"/>
                 <outlet property="termsButton" destination="Nhx-vZ-Any" id="2LC-g0-8H6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

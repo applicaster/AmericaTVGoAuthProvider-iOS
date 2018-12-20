@@ -18,6 +18,8 @@ class AmericaTVGoRegisterAccountPickerViewController: UIViewController, AmericaT
 
         self.basicBoxView.delegate = self
         self.premiumBoxView.delegate = self
+        
+        self.premiumBoxView.isSelected = true
     }
 
     @IBAction func handleGoBack(_ sender: Any) {

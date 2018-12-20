@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="activityIndicator" destination="ycp-YF-uRe" id="URf-TM-0zA"/>
                 <outlet property="emailTextField" destination="Q00-gw-IiB" id="dxV-rM-UpQ"/>
+                <outlet property="loginButton" destination="OJe-DJ-TeB" id="pzz-pf-Nfu"/>
                 <outlet property="passwordTextField" destination="UFi-wD-L40" id="X5Q-79-QaL"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ncY-r1-UGc"/>
             </connections>

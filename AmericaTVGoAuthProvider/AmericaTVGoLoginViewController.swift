@@ -14,6 +14,7 @@ class AmericaTVGoLoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: AmericaTVGoTextField!
     @IBOutlet weak var passwordTextField: AmericaTVGoTextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loginButton: UIButton!
     
     private let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
     private var delegate:APAuthorizationClientDelegate?
@@ -84,6 +85,7 @@ class AmericaTVGoLoginViewController: UIViewController {
     fileprivate func login(email: String, password: String) {
         if !email.isEmpty && !password.isEmpty && AmericaTVGoUtils.validateEmail(email) {
             self.activityIndicator.startAnimating()
+            self.loginButton.isEnabled = false
             
             let manager = AmericaTVGoAPIManager.shared
             
@@ -129,6 +131,8 @@ class AmericaTVGoLoginViewController: UIViewController {
                     
                     self.present(alertController, animated: true, completion: nil)
                 }
+                
+                self.loginButton.isEnabled = true
             }
         } else {
             // Please make sure to fill email and password
@@ -140,6 +144,8 @@ class AmericaTVGoLoginViewController: UIViewController {
             })
             
             self.present(alertController, animated: true, completion: nil)
+            
+            self.loginButton.isEnabled = true
         }
     }
     
