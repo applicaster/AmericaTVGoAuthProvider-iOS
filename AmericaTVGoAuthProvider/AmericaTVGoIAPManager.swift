@@ -222,6 +222,7 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
             case .purchased:
                 print("purchased")
                 self.purchaseStateUpdated?(true, transaction)
+                SKPaymentQueue.default().finishTransaction(transaction)
             case .purchasing:
                 print("is purchasing")
             case .restored:
