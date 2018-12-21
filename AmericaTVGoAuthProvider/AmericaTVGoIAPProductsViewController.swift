@@ -102,7 +102,15 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         if let iapProduct = AmericaTVGoIAPManager.shared.iapProductWithIdentifier(product.identifier) {
             AmericaTVGoIAPManager.shared.submitProduct(iapProduct) { (_ success: Bool, transaction: SKPaymentTransaction) in
                 if success {
-                    AmericaTVGoAPIManager.shared.registerPurchaseForUser(userID: AmericaTVGoIAPManager.shared.currentUser.id, packageName: transaction.transactionIdentifier ?? "", subscriptionID: product.identifier, token: "") { (success: Bool, token: String?, message: String?) in
+                    var receiptDataString = ""
+                    
+                    if let receiptURL = Bundle(for: self.classForCoder).appStoreReceiptURL {
+                        if let data = try? Data(contentsOf: receiptURL) {
+                            receiptDataString = String(data: data, encoding: String.Encoding.utf8) ?? ""
+                        }
+                    }
+                    
+                    AmericaTVGoAPIManager.shared.registerPurchaseForUser(userID: AmericaTVGoIAPManager.shared.currentUser.id, packageName: transaction.transactionIdentifier ?? "", subscriptionID: product.identifier, token: receiptDataString) { (success: Bool, token: String?, message: String?) in
                         if success {
                             AmericaTVGoAPIManager.shared.updateToken(token ?? AmericaTVGoAPIManagaerInvalidToken)
                             let alertController = UIAlertController(title: "", message: message ?? "¡La compra fue exitosa!", preferredStyle: .alert)
