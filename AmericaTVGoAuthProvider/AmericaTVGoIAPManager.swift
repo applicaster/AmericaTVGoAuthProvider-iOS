@@ -219,6 +219,7 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
             case .failed:
                 print("failed \(transaction.error?.localizedDescription ?? "")")
                 self.purchaseStateUpdated?(false, transaction)
+                SKPaymentQueue.default().finishTransaction(transaction)
             case .purchased:
                 print("purchased")
                 self.purchaseStateUpdated?(true, transaction)
@@ -227,11 +228,24 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
                 print("is purchasing")
             case .restored:
                 print("restored")
+                SKPaymentQueue.default().restoreCompletedTransactions()
             }
         }
     }
     
     // MARK: - Utils
+    
+    var receiptDataString: String? {
+        var result: String?
+        
+        if let receiptURL = Bundle.main.appStoreReceiptURL {
+            if let data = try? Data(contentsOf: receiptURL) {
+                result = data.base64EncodedString()
+            }
+        }
+        
+        return result
+    }
     
     /*fileprivate func hashedValueForAccountName(_ userAccountName: String) -> String? {
         let HASH_SIZE = Int(32)
