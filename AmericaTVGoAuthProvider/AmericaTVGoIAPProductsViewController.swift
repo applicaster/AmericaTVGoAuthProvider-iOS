@@ -10,7 +10,7 @@ import UIKit
 import StoreKit
 import MBProgressHUD
 
-class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SKRequestDelegate {
     @IBOutlet weak var productsCollectionView: UICollectionView!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var productsCollectionViewHeightConstraint: NSLayoutConstraint!
@@ -18,6 +18,10 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     
     fileprivate var selectedContainerView: AmericaTVGoShadowBoxView?
     fileprivate var selectedCell: AmericaTVGoProductCollectionViewCell?
+    
+    fileprivate var currentTransaction: SKPaymentTransaction?
+    fileprivate var currentProduct: SKProduct?
+    fileprivate var currentID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,33 +106,16 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         if let iapProduct = AmericaTVGoIAPManager.shared.iapProductWithIdentifier(product.identifier) {
             AmericaTVGoIAPManager.shared.submitProduct(iapProduct) { (_ success: Bool, transaction: SKPaymentTransaction) in
                 if success {
-                    var receiptDataString = ""
-                    
-                    if let receiptURL = Bundle(for: self.classForCoder).appStoreReceiptURL {
-                        if let data = try? Data(contentsOf: receiptURL) {
-                            receiptDataString = String(data: data, encoding: String.Encoding.utf8) ?? ""
-                        }
-                    }
-                    
-                    AmericaTVGoAPIManager.shared.registerPurchaseForUser(userID: AmericaTVGoIAPManager.shared.currentUser.id, packageName: transaction.transactionIdentifier ?? "", subscriptionID: product.identifier, token: receiptDataString) { (success: Bool, token: String?, message: String?) in
-                        if success {
-                            AmericaTVGoAPIManager.shared.updateToken(token ?? AmericaTVGoAPIManagaerInvalidToken)
-                            let alertController = UIAlertController(title: "", message: message ?? "¡La compra fue exitosa!", preferredStyle: .alert)
-                            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                                let controller = AmericaTVGoRegistrationFinishedViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
-                                self.navigationController?.pushViewController(controller, animated: true)
-                            }))
-                            self.present(alertController, animated: true, completion: nil)
-                        } else {
-                            let alertController = UIAlertController(title: "", message: message ?? "¡La compra no fue exitosa!", preferredStyle: .alert)
-                            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                                
-                            }))
-                            self.present(alertController, animated: true, completion: nil)
-                        }
+                    if let _ = AmericaTVGoIAPManager.shared.receiptDataString {
+                        self.validateTransaction(transaction, product: iapProduct, id: product.identifier)
+                    } else {
+                        self.currentTransaction = transaction
+                        self.currentProduct = iapProduct
+                        self.currentID = product.identifier
                         
-                        self.continueButton.isEnabled = true
-                        MBProgressHUD.hide(for: self.view, animated: true)
+                        let refreshRequest = SKReceiptRefreshRequest(receiptProperties: nil)
+                        refreshRequest.delegate = self
+                        refreshRequest.start()
                     }
                 } else {
                     let alertController = UIAlertController(title: "Ocurrió un error", message: transaction.error?.localizedDescription ?? "La transacción no se pudo completar exitosamente.", preferredStyle: .alert)
@@ -140,6 +127,31 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
             }
         }
         
+    }
+    
+    func validateTransaction(_ transaction: SKPaymentTransaction, product: SKProduct, id: String) {
+        let receiptDataString = AmericaTVGoIAPManager.shared.receiptDataString ?? ""
+        
+        AmericaTVGoAPIManager.shared.registerPurchaseForUser(userID: AmericaTVGoIAPManager.shared.currentUser.id, packageName: transaction.transactionIdentifier ?? "", subscriptionID: id, token: receiptDataString) { (success: Bool, token: String?, message: String?) in
+            if success {
+                AmericaTVGoAPIManager.shared.updateToken(token ?? AmericaTVGoAPIManagaerInvalidToken)
+                let alertController = UIAlertController(title: "", message: message ?? "¡La compra fue exitosa!", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                    let controller = AmericaTVGoRegistrationFinishedViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
+                    self.navigationController?.pushViewController(controller, animated: true)
+                }))
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                let alertController = UIAlertController(title: "", message: message ?? "¡La compra no fue exitosa!", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                    
+                }))
+                self.present(alertController, animated: true, completion: nil)
+            }
+            
+            self.continueButton.isEnabled = true
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
     }
     
     @IBAction func handleSubscribeLater(_ sender: Any) {
@@ -206,5 +218,11 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     
     open override var shouldAutorotate: Bool {
         return true
+    }
+    
+    // MARK: -
+    
+    func requestDidFinish(_ request: SKRequest) {
+        self.validateTransaction(self.currentTransaction!, product: self.currentProduct!, id: self.currentID!)
     }
 }
