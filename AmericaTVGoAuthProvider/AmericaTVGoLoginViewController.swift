@@ -8,7 +8,6 @@
 
 import UIKit
 import ApplicasterSDK
-import MBProgressHUD
 
 class AmericaTVGoLoginViewController: UIViewController {
     
@@ -85,7 +84,7 @@ class AmericaTVGoLoginViewController: UIViewController {
     fileprivate func login(email: String, password: String) {
         if !email.isEmpty && !password.isEmpty && AmericaTVGoUtils.validateEmail(email) {
             self.loginButton.isEnabled = false
-            MBProgressHUD.showAdded(to: self.view, animated: true)
+            AmericaTVGoUtils.shared.showHUD(self.view)
             
             let manager = AmericaTVGoAPIManager.shared
             
@@ -97,15 +96,21 @@ class AmericaTVGoLoginViewController: UIViewController {
                 
                 if success {
                     if let aToken = token, !aToken.isEmpty {
-                        let alertController = UIAlertController(title: "", message: message ?? "¡Login Exitoso!", preferredStyle: .alert)
-                        
-                        alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
+                        if message != nil {
+                            let alertController = UIAlertController(title: "", message: message ?? "¡Login Exitoso!", preferredStyle: .alert)
+                            
+                            alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
+                                self.dismiss(animated: true) {
+                                    self.delegate?.didFinishAuthorization!(withToken:aToken)
+                                }
+                            })
+                            
+                            self.present(alertController, animated: true, completion: nil)
+                        } else {
                             self.dismiss(animated: true) {
                                 self.delegate?.didFinishAuthorization!(withToken:aToken)
                             }
-                        })
-                        
-                        self.present(alertController, animated: true, completion: nil)
+                        }
                     } else {
                         let alertController = UIAlertController(title: "", message: message ?? "¡No tiene suscripción activa!", preferredStyle: .alert)
                         
@@ -132,7 +137,7 @@ class AmericaTVGoLoginViewController: UIViewController {
                 }
                 
                 self.loginButton.isEnabled = true
-                MBProgressHUD.hide(for: self.view, animated: true)
+                AmericaTVGoUtils.shared.hideHUD()
             }
         } else {
             // Please make sure to fill email and password

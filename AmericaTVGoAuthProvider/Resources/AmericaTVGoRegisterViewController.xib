@@ -38,7 +38,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Srt-ZJ-yzP">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Srt-ZJ-yzP">
                     <rect key="frame" x="0.0" y="56" width="375" height="611"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paso 2 de 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1Y-2j-91s">
@@ -152,7 +152,7 @@
                         <constraint firstItem="uEK-Gp-3qY" firstAttribute="top" secondItem="o1Y-2j-91s" secondAttribute="bottom" id="38i-d8-nak"/>
                         <constraint firstItem="hPg-NL-AEK" firstAttribute="top" secondItem="AH7-Xh-Inm" secondAttribute="bottom" constant="20" id="7AQ-lK-MpE"/>
                         <constraint firstItem="5LD-eB-y3W" firstAttribute="top" secondItem="lZi-V6-kwo" secondAttribute="bottom" constant="20" id="Agu-3p-BBc"/>
-                        <constraint firstItem="hPg-NL-AEK" firstAttribute="width" secondItem="Srt-ZJ-yzP" secondAttribute="width" multiplier="1:3" id="Blv-Ar-jIw"/>
+                        <constraint firstItem="hPg-NL-AEK" firstAttribute="width" relation="greaterThanOrEqual" secondItem="Srt-ZJ-yzP" secondAttribute="width" multiplier="1:3" id="Blv-Ar-jIw"/>
                         <constraint firstItem="5LD-eB-y3W" firstAttribute="leading" secondItem="Srt-ZJ-yzP" secondAttribute="leading" constant="20" id="CC9-P9-mGN"/>
                         <constraint firstAttribute="trailing" secondItem="MT0-pU-0gR" secondAttribute="trailing" constant="20" id="F6m-7A-PQ3"/>
                         <constraint firstItem="hPg-NL-AEK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Srt-ZJ-yzP" secondAttribute="leading" constant="20" id="HMN-Ld-q9I"/>
@@ -163,6 +163,7 @@
                         <constraint firstItem="Ch4-BL-Q9I" firstAttribute="top" secondItem="wyw-DB-4km" secondAttribute="bottom" id="Oww-f4-5zq"/>
                         <constraint firstAttribute="trailing" secondItem="lZi-V6-kwo" secondAttribute="trailing" constant="20" id="R8F-zo-fX5"/>
                         <constraint firstItem="wyw-DB-4km" firstAttribute="top" secondItem="rZl-Gd-mgn" secondAttribute="bottom" constant="20" id="TIY-Ge-HQt"/>
+                        <constraint firstAttribute="bottom" secondItem="hPg-NL-AEK" secondAttribute="bottom" constant="20" id="UNk-AE-Zs6"/>
                         <constraint firstItem="Ch4-BL-Q9I" firstAttribute="leading" secondItem="Srt-ZJ-yzP" secondAttribute="leading" constant="20" id="XAL-4P-yKZ"/>
                         <constraint firstItem="wyw-DB-4km" firstAttribute="leading" secondItem="Srt-ZJ-yzP" secondAttribute="leading" constant="20" id="Xlo-Tb-cko"/>
                         <constraint firstItem="o1Y-2j-91s" firstAttribute="leading" secondItem="Srt-ZJ-yzP" secondAttribute="leading" constant="20" id="dEp-sn-nTX"/>
@@ -189,7 +190,8 @@
                 <constraint firstItem="XtM-3g-mfL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aQd-xi-tTh" secondAttribute="trailing" constant="8" id="S3Q-yJ-2FN"/>
                 <constraint firstItem="aQd-xi-tTh" firstAttribute="centerY" secondItem="XtM-3g-mfL" secondAttribute="centerY" id="Sd0-Hx-SRB"/>
                 <constraint firstItem="Srt-ZJ-yzP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="a7u-Zp-cHg"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="aQd-xi-tTh" secondAttribute="top" id="eBF-n5-hrE"/>
+                <constraint firstItem="aQd-xi-tTh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="d9X-ll-FLV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="aQd-xi-tTh" secondAttribute="top" priority="750" id="eBF-n5-hrE"/>
                 <constraint firstItem="Srt-ZJ-yzP" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="eUp-pM-Sjq"/>
                 <constraint firstItem="aQd-xi-tTh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ehf-cN-ecE"/>
                 <constraint firstItem="Srt-ZJ-yzP" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="lXS-YL-foc"/>

@@ -172,7 +172,7 @@
                         <constraint firstItem="JCI-DX-UKc" firstAttribute="top" secondItem="voa-71-yqm" secondAttribute="bottom" id="am7-QP-Lm9"/>
                         <constraint firstItem="qRK-0z-lzR" firstAttribute="top" secondItem="jdg-qQ-Gfm" secondAttribute="bottom" constant="20" id="apQ-W2-cLT"/>
                         <constraint firstItem="78o-a8-4c4" firstAttribute="top" secondItem="JCI-DX-UKc" secondAttribute="bottom" constant="8" id="avU-bA-Iu7"/>
-                        <constraint firstItem="OlX-ml-2rP" firstAttribute="width" secondItem="KOT-G8-Y5U" secondAttribute="width" multiplier="1:3" id="fAO-b6-meQ"/>
+                        <constraint firstItem="OlX-ml-2rP" firstAttribute="width" relation="greaterThanOrEqual" secondItem="KOT-G8-Y5U" secondAttribute="width" multiplier="1:3" id="fAO-b6-meQ"/>
                         <constraint firstItem="jdg-qQ-Gfm" firstAttribute="top" secondItem="78o-a8-4c4" secondAttribute="bottom" constant="20" id="gr9-lJ-BR5"/>
                         <constraint firstAttribute="bottom" secondItem="OlX-ml-2rP" secondAttribute="bottom" constant="20" id="hnn-n0-3aU"/>
                         <constraint firstAttribute="centerX" secondItem="jdg-qQ-Gfm" secondAttribute="trailing" constant="4" id="jat-A3-Lzc"/>
@@ -190,7 +190,7 @@
             <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="KOT-G8-Y5U" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5CS-AL-EbH"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="HIb-oe-A9g" secondAttribute="top" id="8Kr-a7-1Hc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="HIb-oe-A9g" secondAttribute="top" priority="750" id="8Kr-a7-1Hc"/>
                 <constraint firstItem="KOT-G8-Y5U" firstAttribute="top" secondItem="HIb-oe-A9g" secondAttribute="bottom" constant="8" id="9hc-fM-O8i"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KOT-G8-Y5U" secondAttribute="trailing" id="AeS-M5-BcO"/>
                 <constraint firstItem="KOT-G8-Y5U" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="JIx-jE-w0H"/>
@@ -200,6 +200,7 @@
                 <constraint firstItem="1Hh-ba-fI8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HIb-oe-A9g" secondAttribute="trailing" constant="8" id="bPY-Xz-iCy"/>
                 <constraint firstItem="HIb-oe-A9g" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="eCa-e1-Njv"/>
                 <constraint firstItem="HIb-oe-A9g" firstAttribute="centerY" secondItem="1Hh-ba-fI8" secondAttribute="centerY" id="jKh-E1-1Ot"/>
+                <constraint firstItem="HIb-oe-A9g" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="qEg-jg-Ksh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1Hh-ba-fI8" secondAttribute="trailing" constant="20" id="xBe-09-XEH"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

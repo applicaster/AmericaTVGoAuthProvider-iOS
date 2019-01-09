@@ -8,7 +8,6 @@
 
 import UIKit
 import ApplicasterSDK
-import MBProgressHUD
 
 class AmericaTVGoRegisterViewController: UIViewController {
 
@@ -73,7 +72,7 @@ class AmericaTVGoRegisterViewController: UIViewController {
         
         if !(user.email.isEmpty || user.password.isEmpty) {
             self.registerButton.isEnabled = false
-            MBProgressHUD.showAdded(to: self.view, animated: true)
+            AmericaTVGoUtils.shared.showHUD(self.view)
             
             let manager = AmericaTVGoAPIManager.shared
             
@@ -104,7 +103,7 @@ class AmericaTVGoRegisterViewController: UIViewController {
                         self.present(alertController, animated: true, completion: nil)
                     }
                     self.registerButton.isEnabled = true
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    AmericaTVGoUtils.shared.hideHUD()
                 }
             }
         } else {

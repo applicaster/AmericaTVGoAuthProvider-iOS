@@ -135,6 +135,7 @@
             <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="OSE-pF-wEl" firstAttribute="centerY" secondItem="mdV-3p-ZKM" secondAttribute="centerY" id="5SC-Jg-3aG"/>
+                <constraint firstItem="OSE-pF-wEl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="HUy-gW-osR"/>
                 <constraint firstItem="czR-ph-icP" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="KjG-gW-CfR"/>
                 <constraint firstItem="mdV-3p-ZKM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OSE-pF-wEl" secondAttribute="trailing" constant="8" id="Nrl-4n-Rhq"/>
                 <constraint firstItem="czR-ph-icP" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Sr9-la-XcK"/>
@@ -145,7 +146,7 @@
                 <constraint firstItem="OSE-pF-wEl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="gHy-oO-OhY"/>
                 <constraint firstItem="mdV-3p-ZKM" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="iWJ-VS-nH2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="leading" secondItem="czR-ph-icP" secondAttribute="leading" id="kRy-hk-o7f"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="OSE-pF-wEl" secondAttribute="top" id="xIQ-3d-sd3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="OSE-pF-wEl" secondAttribute="top" priority="750" id="xIQ-3d-sd3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
