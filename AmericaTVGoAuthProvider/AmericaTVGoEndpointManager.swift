@@ -75,13 +75,15 @@ class AmericaTVGoEndpointManager: NSObject {
     
     // MARK: -
     
+    fileprivate let messageOK = 100104
+    
     func messageForMessageID(_ messageID: String) -> String? {
         var messageList = [String: String]()
         
         messageList["100101"] = "Las credenciales de comunicación son incorrectas!"
         messageList["100102"] = "La transacción debe enviar # CELULAR o DNI."
         messageList["100103"] = "Enviar data."
-        messageList["100104"] = "Ok!"
+        messageList["\(messageOK)"] = "Ok!"
         messageList["100105"] = "Se registra solicitud con estado cancelado!"
         messageList["100106"] = "Data incompleta..."
         messageList["100107"] = "La data se guardó con éxito!"
@@ -115,6 +117,10 @@ class AmericaTVGoEndpointManager: NSObject {
         }
         
         return nil
+    }
+    
+    func isMessageOK(_ messageID: Int) -> Bool {
+        return messageID == messageOK
     }
 }
 

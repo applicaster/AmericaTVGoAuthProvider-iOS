@@ -33,7 +33,7 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         
         continueButton.isEnabled = false
         
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        AmericaTVGoUtils.shared.showHUD(self.view)
         
         AmericaTVGoIAPManager.shared.retrieveRemoteProducts { (newProducts) in
             self.products = newProducts
@@ -47,7 +47,7 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
                 self.continueButton.isEnabled = true
             }
             
-            MBProgressHUD.hide(for: self.view, animated: true)
+            AmericaTVGoUtils.shared.hideHUD()
         }
     }
 
@@ -101,7 +101,7 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         user.product = product
         
         self.continueButton.isEnabled = false
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        AmericaTVGoUtils.shared.showHUD(self.view)
         
         if let iapProduct = AmericaTVGoIAPManager.shared.iapProductWithIdentifier(product.identifier) {
             AmericaTVGoIAPManager.shared.submitProduct(iapProduct) { (_ success: Bool, transaction: SKPaymentTransaction) in
@@ -122,7 +122,7 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
                     alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alertController, animated: true, completion: nil)
                     self.continueButton.isEnabled = true
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    AmericaTVGoUtils.shared.hideHUD()
                 }
             }
         }
@@ -150,7 +150,7 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
             }
             
             self.continueButton.isEnabled = true
-            MBProgressHUD.hide(for: self.view, animated: true)
+            AmericaTVGoUtils.shared.hideHUD()
         }
     }
     

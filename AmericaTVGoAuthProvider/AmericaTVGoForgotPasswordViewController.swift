@@ -6,7 +6,6 @@
 //
 
 import ApplicasterSDK
-import MBProgressHUD
 
 class AmericaTVGoForgotPasswordViewController: UIViewController {
     
@@ -33,7 +32,7 @@ class AmericaTVGoForgotPasswordViewController: UIViewController {
         if let email = self.emailTextField.text,
             !email.isEmpty {
             self.sendButton.isEnabled = false
-            MBProgressHUD.showAdded(to: self.view, animated: true)
+            AmericaTVGoUtils.shared.showHUD(self.view)
             
             let manager = AmericaTVGoAPIManager.shared
             
@@ -56,7 +55,7 @@ class AmericaTVGoForgotPasswordViewController: UIViewController {
                     self.present(alertController, animated: true, completion: nil)
                 }
                 self.sendButton.isEnabled = true
-                MBProgressHUD.hide(for: self.view, animated: true)
+                AmericaTVGoUtils.shared.hideHUD()
             }
         } else {
             let alertController = UIAlertController(title: "",
