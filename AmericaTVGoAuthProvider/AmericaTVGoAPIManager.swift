@@ -263,7 +263,9 @@ class AmericaTVGoAPIManager: NSObject {
         
         if let messages = jsonInfo["messages"] as? [Any] {
             if let messageID = messages.first as? Int {
-                message = AmericaTVGoEndpointManager.shared.messageForMessageID("\(messageID)")
+                if !AmericaTVGoEndpointManager.shared.isMessageOK(messageID) {
+                    message = AmericaTVGoEndpointManager.shared.messageForMessageID("\(messageID)")
+                }
             } else if let messageID = messages.first as? String {
                 message = AmericaTVGoEndpointManager.shared.messageForMessageID("\(messageID)")
             }
