@@ -293,7 +293,24 @@ class AmericaTVGoAPIManager: NSObject {
     
     func updateToken(_ token: String) {
         if let authManager = APAuthorizationManager.sharedInstance(), let authProviderID = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerAuthProviderIDKey) as? String {
-            authManager.setAuthorizationToken(token.isEmpty ? AmericaTVGoAPIManagaerInvalidToken : token, withAuthorizationProviderID: authProviderID)
+            if token.isEmpty {
+                UserDefaults.standard.removeObject(forKey: AmericaTVGoAPIManagerUserTokenKey)
+                
+                let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+                let docDir = paths[0] as NSString
+                let fullPath = docDir.appendingPathComponent("authorization_tokens.dat")
+                
+                let fm = FileManager.default
+                
+                if fm.fileExists(atPath: fullPath) {
+                    if let _ = try? fm.removeItem(atPath: fullPath) {
+                        // path deleted
+                    }
+                }
+            } else {
+                UserDefaults.standard.set(token, forKey: AmericaTVGoAPIManagerUserTokenKey)
+                authManager.setAuthorizationToken(token, withAuthorizationProviderID: authProviderID)
+            }
         }
     }
 }

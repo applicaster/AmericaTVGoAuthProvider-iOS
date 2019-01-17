@@ -13,6 +13,7 @@ import ZappLoginPluginsSDK
 public typealias AmericaTVGoAuthProviderCompletion = ((ZPLoginOperationStatus) -> Void)
 
 let AmericaTVGoRegisterLaterNotification = Notification.Name("AmericaTVGoRegisterLaterNotification")
+let AmericaTVGoCancelAuthenticationNotification = Notification.Name("AmericaTVGoCancelAuthenticationNotification")
 
 class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHookProtocol, ZPBaseLoginProviderFlowHandler {
     var delegate: APAuthorizationClientDelegate!
@@ -41,10 +42,12 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(registerLaterNotification(_:)), name: AmericaTVGoRegisterLaterNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(cancelAuthentication(_:)), name: AmericaTVGoCancelAuthenticationNotification, object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: AmericaTVGoRegisterLaterNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: AmericaTVGoCancelAuthenticationNotification, object: nil)
     }
     
     // MARK: -
@@ -201,4 +204,21 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
             }
         }
     }
+    
+    // MARK: -
+    
+    class func getTopMostViewController() -> UIViewController? {
+        if let viewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal() {
+            return viewController
+        }
+        
+        return nil
+    }
+    
+    @objc
+    func cancelAuthentication(_ sender: Notification) {
+        self.delegate?.didCancelAuthorization!(false)
+    }
+    
+    
 }

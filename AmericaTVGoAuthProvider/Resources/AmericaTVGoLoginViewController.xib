@@ -25,6 +25,7 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfy-gR-cbQ">
                     <rect key="frame" x="20" y="20" width="28" height="28"/>
+                    <viewLayoutGuide key="safeArea" id="7FD-Ay-Q7i"/>
                     <state key="normal" image="login_back_button.png"/>
                     <connections>
                         <action selector="closeButtonClicked:" destination="-1" eventType="touchUpInside" id="ssa-ZQ-Wd7"/>
@@ -194,7 +195,7 @@
             </subviews>
             <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="tfy-gR-cbQ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="0De-49-ZU3"/>
+                <constraint firstItem="tfy-gR-cbQ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" priority="750" id="0De-49-ZU3"/>
                 <constraint firstItem="Nq4-Ux-4Xf" firstAttribute="centerY" secondItem="tfy-gR-cbQ" secondAttribute="centerY" id="0Li-5T-SZE"/>
                 <constraint firstItem="9TX-6w-bXb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5Bt-9P-ru4"/>
                 <constraint firstItem="Nq4-Ux-4Xf" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" priority="750" id="6sa-0f-xuO"/>
@@ -206,6 +207,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Nq4-Ux-4Xf" secondAttribute="trailing" constant="20" id="bDS-w0-gK8"/>
                 <constraint firstItem="9TX-6w-bXb" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="kx9-Wo-xMw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9TX-6w-bXb" secondAttribute="trailing" id="t8F-TA-Cgy"/>
+                <constraint firstItem="tfy-gR-cbQ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="yPc-a9-34D"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="24.375" y="99.823943661971839"/>

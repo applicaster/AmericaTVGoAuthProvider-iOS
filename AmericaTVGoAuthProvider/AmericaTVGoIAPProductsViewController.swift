@@ -142,11 +142,15 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
                 }))
                 self.present(alertController, animated: true, completion: nil)
             } else {
+                NotificationCenter.default.post(name: AmericaTVGoCancelAuthenticationNotification, object: nil, userInfo: nil)
+                
+                let vc = AmericaTVGoAuthProvider.getTopMostViewController() ?? self
+                
                 let alertController = UIAlertController(title: "", message: message ?? "¡La compra no fue exitosa!", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
                     
                 }))
-                self.present(alertController, animated: true, completion: nil)
+                vc.present(alertController, animated: true, completion: nil)
             }
             
             self.continueButton.isEnabled = true
