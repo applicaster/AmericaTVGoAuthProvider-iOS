@@ -118,9 +118,13 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
                         refreshRequest.start()
                     }
                 } else {
-                    let alertController = UIAlertController(title: "Ocurrió un error", message: transaction.error?.localizedDescription ?? "La transacción no se pudo completar exitosamente.", preferredStyle: .alert)
+                    NotificationCenter.default.post(name: AmericaTVGoCancelAuthenticationNotification, object: nil, userInfo: nil)
+                    
+                    let vc = AmericaTVGoAuthProvider.getTopMostViewController() ?? self
+                    
+                    let alertController = UIAlertController(title: "No se realizo la compra.", message: transaction.error?.localizedDescription ?? "La transacción no se pudo completar exitosamente.", preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alertController, animated: true, completion: nil)
+                    vc.present(alertController, animated: true, completion: nil)
                     self.continueButton.isEnabled = true
                     AmericaTVGoUtils.shared.hideHUD()
                 }
