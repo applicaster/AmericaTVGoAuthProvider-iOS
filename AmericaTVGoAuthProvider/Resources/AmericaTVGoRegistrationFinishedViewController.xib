@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AmericaTVGoRegistrationFinishedViewController" customModule="AmericaTVGoAuthProvider" customModuleProvider="target">
             <connections>
+                <outlet property="detailsLabel" destination="vdx-Y2-Grn" id="Xh7-Yb-A5V"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

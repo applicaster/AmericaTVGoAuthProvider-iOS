@@ -10,9 +10,19 @@ import UIKit
 import ApplicasterSDK
 
 class AmericaTVGoRegistrationFinishedViewController: UIViewController {
-
+    @IBOutlet weak var detailsLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let user = AmericaTVGoIAPManager.shared.currentUser
+        if !user.isPremium {
+            if let text = detailsLabel.text {
+                let message = "Te hemos enviado a tu correo un mensaje para que puedas confirmar tu cuenta."
+                
+                detailsLabel.text = text+"\n\n"+message
+            }
+        }
     }
 
     @IBAction func handleContinue(_ sender: Any) {
