@@ -75,9 +75,9 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     
     @IBAction func handleRegistration(_ sender: Any) {
         guard let selectedCell = self.selectedCell else {
-            let alertController = UIAlertController(title: "", message: "Por favor seleccione una promoción.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            self.showSimpleAlert(title: "", message: "Por favor seleccione una promoción.") {
+                
+            }
             return
         }
         
@@ -88,12 +88,11 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         let product = products[indexPath.row]
         
         if !AmericaTVGoIAPManager.shared.purchasesAllowed {
-            let message = "No es posible hacer la compra de: \(product.identifier)"
+            let message = "Para poder comprar \(product.identifier), es necesario que el dispositivo tenga permiso de hacer compras."
             
-            let alertController = UIAlertController(title: "Ocurrió un error", message: message, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-
+            self.showSimpleAlert(title: "No se pueden realizar compras", message: message) {
+                
+            }
             return
         }
         
@@ -118,13 +117,24 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
                         refreshRequest.start()
                     }
                 } else {
-                    NotificationCenter.default.post(name: AmericaTVGoCancelAuthenticationNotification, object: nil, userInfo: nil)
+                    if let _ = AmericaTVGoIAPManager.shared.receiptDataString {
+                        self.validateTransaction(transaction, product: iapProduct, id: product.identifier)
+                    } else {
+                        NotificationCenter.default.post(name: AmericaTVGoCancelAuthenticationNotification, object: nil, userInfo: nil)
+                        
+                        var message = ""
+                        
+                        if let error = transaction.error?.localizedDescription {
+                            message = "Se produjo el siguiente error: \(error)."
+                        } else {
+                            message = "Hubo un problema al hacer la compra por iTunes."
+                        }
+                        
+                        self.showSimpleAlert(title: "La compra no fue exitosa", message: message, completion: {
+                            
+                        })
+                    }
                     
-                    let vc = AmericaTVGoAuthProvider.getTopMostViewController() ?? self
-                    
-                    let alertController = UIAlertController(title: "No se realizo la compra.", message: transaction.error?.localizedDescription ?? "La transacción no se pudo completar exitosamente.", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    vc.present(alertController, animated: true, completion: nil)
                     self.continueButton.isEnabled = true
                     AmericaTVGoUtils.shared.hideHUD()
                 }
@@ -138,23 +148,19 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         
         AmericaTVGoAPIManager.shared.registerPurchaseForUser(userID: AmericaTVGoIAPManager.shared.currentUser.id, packageName: transaction.transactionIdentifier ?? "", subscriptionID: id, token: receiptDataString) { (success: Bool, token: String?, message: String?) in
             if success {
-                AmericaTVGoAPIManager.shared.updateToken(token ?? AmericaTVGoAPIManagaerInvalidToken)
-                let alertController = UIAlertController(title: "", message: message ?? "¡La compra fue exitosa!", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                    let controller = AmericaTVGoRegistrationFinishedViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
-                    self.navigationController?.pushViewController(controller, animated: true)
-                }))
-                self.present(alertController, animated: true, completion: nil)
+                AmericaTVGoAPIManager.shared.updateToken(token ?? "")
+                
+                NotificationCenter.default.post(name: AmericaTVGoRegisterLaterNotification, object: nil, userInfo: nil)
+                
+                self.showSimpleAlert(title: "", message: message ?? "¡La compra fue exitosa!", completion: {
+                    
+                })
             } else {
                 NotificationCenter.default.post(name: AmericaTVGoCancelAuthenticationNotification, object: nil, userInfo: nil)
                 
-                let vc = AmericaTVGoAuthProvider.getTopMostViewController() ?? self
-                
-                let alertController = UIAlertController(title: "", message: message ?? "¡La compra no fue exitosa!", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                self.showSimpleAlert(title: "", message: message ?? "¡No se pudo verificar la compra!", completion: {
                     
-                }))
-                vc.present(alertController, animated: true, completion: nil)
+                })
             }
             
             self.continueButton.isEnabled = true
@@ -232,5 +238,17 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     
     func requestDidFinish(_ request: SKRequest) {
         self.validateTransaction(self.currentTransaction!, product: self.currentProduct!, id: self.currentID!)
+    }
+    
+    // MARK: -
+    
+    fileprivate func showSimpleAlert(title: String, message: String, completion: @escaping () -> Void) {
+        let vc = AmericaTVGoAuthProvider.getTopMostViewController() ?? self
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default) { (_) -> Void in
+            completion()
+        })
+        vc.present(alertController, animated: true, completion: nil)
     }
 }

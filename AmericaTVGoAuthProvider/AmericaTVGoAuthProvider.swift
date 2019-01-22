@@ -86,6 +86,8 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
             AmericaTVGoAPIManager.clearUserDefaultsFromCurrentUser()
             AmericaTVGoAPIManager.shared.updateToken("")
             APKeychain.deleteString(forKey: user.id)
+            self.delegate?.didCancelAuthorization!(false)
+            self.delegate?.didFinishAuthorization!(withToken: "")
             
             user.logout()
             
@@ -185,18 +187,18 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
     
     @objc
     func registerLaterNotification(_ sender: Notification) {
+        let user = AmericaTVGoIAPManager.shared.currentUser
+        
+        if user.token.isEmpty {
+            self.delegate?.didCancelAuthorization!(false)
+        } else {
+            self.delegate?.didFinishAuthorization!(withToken: user.token)
+        }
+        
         if let controller = sender.userInfo?["sender"] as? UIViewController {
             controller.modalTransitionStyle = .crossDissolve
             
             controller.dismiss(animated: false) {
-                let user = AmericaTVGoIAPManager.shared.currentUser
-                
-                if user.token.isEmpty {
-                    self.delegate?.didCancelAuthorization!(false)
-                } else {
-                    self.delegate?.didFinishAuthorization!(withToken: user.token)
-                }
-                
                 let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal()
                 if let viewController = topMostViewController {
                     viewController.dismiss(animated: true)
