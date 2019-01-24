@@ -62,7 +62,10 @@ class AmericaTVGoUser {
         
         if let value = details["idusuario"] as? String {
             self.id = value
+        } else if let value = details["idusuario"] as? Int {
+            self.id = "\(value)"
         }
+        
         if let value = details["nombres"] as? String {
             self.firstName = value
         }
