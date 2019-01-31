@@ -67,6 +67,24 @@ class AmericaTVGoRegisterViewController: UIViewController {
         }
     }
     
+    @IBAction func showTerms(_ sender: Any) {
+        let vc = AmericaTVWebViewViewController.init(nibName: nil, bundle: nil)
+        vc.url = URL(string: "https://tvgo.americatv.com.pe/terminos-condiciones")
+        
+        let navController = UINavigationController(rootViewController: vc)
+        
+        self.present(navController, animated: true, completion: nil)
+    }
+    
+    @IBAction func showPrivacy(_ sender: Any) {
+        let vc = AmericaTVWebViewViewController.init(nibName: nil, bundle: nil)
+        vc.url = URL(string: "https://tvgo.americatv.com.pe/politicas-de-privacidad")
+        
+        let navController = UINavigationController(rootViewController: vc)
+        
+        self.present(navController, animated: true, completion: nil)
+    }
+    
     func handleRegistration() {
         let user = AmericaTVGoIAPManager.shared.currentUser
         

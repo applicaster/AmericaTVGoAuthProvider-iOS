@@ -97,10 +97,10 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPL-aD-bI9">
-                            <rect key="frame" x="20" y="186" width="335" height="20"/>
+                            <rect key="frame" x="20" y="186" width="96" height="20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Acepto los términos y condiciones" image="checkbox_off.png">
+                            <state key="normal" title="Acepto los " image="checkbox_off.png">
                                 <color key="titleColor" red="0.29411764709999999" green="0.29411764709999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <state key="selected" image="checkbox_on.png"/>
@@ -109,10 +109,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BbA-50-Kgy">
-                            <rect key="frame" x="20" y="214" width="335" height="20"/>
+                            <rect key="frame" x="20" y="214" width="96" height="20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="He leído la politica de privacidad" image="checkbox_off.png">
+                            <state key="normal" title="He leído la " image="checkbox_off.png">
                                 <color key="titleColor" red="0.29411764709999999" green="0.29411764709999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <state key="selected" image="checkbox_on.png"/>
@@ -159,6 +159,26 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCc-z7-pyn">
+                            <rect key="frame" x="116" y="210" width="130" height="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="politica de privacidad">
+                                <color key="titleColor" red="0.79808610680000003" green="0.32679909470000001" blue="0.26271575689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </state>
+                            <connections>
+                                <action selector="showPrivacy:" destination="-1" eventType="touchUpInside" id="9gb-fi-2kh"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYd-GJ-c7a">
+                            <rect key="frame" x="116" y="182" width="141" height="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="términos y condiciones">
+                                <color key="titleColor" red="0.79808610680000003" green="0.32679909470000001" blue="0.26271575689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </state>
+                            <connections>
+                                <action selector="showTerms:" destination="-1" eventType="touchUpInside" id="FbX-dM-rCV"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="yrz-HL-8su" secondAttribute="trailing" constant="20" id="1dd-rp-WuD"/>
@@ -169,22 +189,24 @@
                         <constraint firstItem="4Cr-gu-EZh" firstAttribute="top" secondItem="n7P-SR-FAF" secondAttribute="bottom" constant="8" id="8HO-4t-eF6"/>
                         <constraint firstItem="BbA-50-Kgy" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="Dya-87-Yze"/>
                         <constraint firstAttribute="trailing" secondItem="0L8-S6-oW5" secondAttribute="trailing" constant="20" id="E3w-cz-eHb"/>
+                        <constraint firstItem="lCc-z7-pyn" firstAttribute="leading" secondItem="BbA-50-Kgy" secondAttribute="trailing" id="EMd-pY-nyf"/>
                         <constraint firstItem="LQL-7X-X9U" firstAttribute="top" secondItem="4Cr-gu-EZh" secondAttribute="bottom" constant="20" id="Fff-VW-OSp"/>
                         <constraint firstItem="FSm-Ro-ZNJ" firstAttribute="top" secondItem="yrz-HL-8su" secondAttribute="bottom" constant="20" id="FlL-tu-h2h"/>
                         <constraint firstItem="yrz-HL-8su" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="I5x-2x-btP"/>
                         <constraint firstItem="yrz-HL-8su" firstAttribute="top" secondItem="LQL-7X-X9U" secondAttribute="bottom" id="Ir7-yw-D2Q"/>
-                        <constraint firstAttribute="trailing" secondItem="BbA-50-Kgy" secondAttribute="trailing" constant="20" id="M1P-Fm-3bI"/>
+                        <constraint firstItem="lCc-z7-pyn" firstAttribute="firstBaseline" secondItem="BbA-50-Kgy" secondAttribute="firstBaseline" id="Odp-h2-rBN"/>
                         <constraint firstItem="xPL-aD-bI9" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="OvT-9k-Wk7"/>
                         <constraint firstItem="0L8-S6-oW5" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="PHc-vQ-VBj"/>
+                        <constraint firstItem="lLe-WN-WvM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lCc-z7-pyn" secondAttribute="trailing" constant="20" id="QeV-CX-Aca"/>
                         <constraint firstItem="n7P-SR-FAF" firstAttribute="top" secondItem="zIh-dw-q7X" secondAttribute="bottom" constant="8" id="RXQ-L7-61d"/>
                         <constraint firstItem="0L8-S6-oW5" firstAttribute="top" secondItem="FSm-Ro-ZNJ" secondAttribute="bottom" id="RwM-xf-8FU"/>
                         <constraint firstItem="zIh-dw-q7X" firstAttribute="top" secondItem="tYl-Rq-ghb" secondAttribute="bottom" id="UMR-Sj-8gI"/>
-                        <constraint firstAttribute="trailing" secondItem="xPL-aD-bI9" secondAttribute="trailing" constant="20" id="UX9-vZ-h2a"/>
                         <constraint firstItem="tmI-zH-Wky" firstAttribute="leading" secondItem="FSm-Ro-ZNJ" secondAttribute="trailing" constant="8" id="UsH-zx-QA0"/>
                         <constraint firstItem="aI6-oP-jqs" firstAttribute="width" relation="greaterThanOrEqual" secondItem="r9S-Ow-wBb" secondAttribute="width" multiplier="1:3" id="VTt-bf-pgx"/>
                         <constraint firstItem="BbA-50-Kgy" firstAttribute="top" secondItem="xPL-aD-bI9" secondAttribute="bottom" constant="8" id="VfX-x7-VJn"/>
                         <constraint firstItem="tYl-Rq-ghb" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="VhT-XZ-4FA"/>
                         <constraint firstItem="tmI-zH-Wky" firstAttribute="firstBaseline" secondItem="FSm-Ro-ZNJ" secondAttribute="firstBaseline" id="YPD-Zl-AG7"/>
+                        <constraint firstItem="lLe-WN-WvM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DYd-GJ-c7a" secondAttribute="trailing" constant="20" id="bNJ-KZ-hfu"/>
                         <constraint firstItem="4Cr-gu-EZh" firstAttribute="leading" secondItem="lLe-WN-WvM" secondAttribute="leading" constant="20" id="dVN-mS-1nl"/>
                         <constraint firstItem="lLe-WN-WvM" firstAttribute="trailing" secondItem="tmI-zH-Wky" secondAttribute="trailing" constant="20" id="dsN-Bb-cJs"/>
                         <constraint firstItem="zIh-dw-q7X" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="e33-Ga-adb"/>
@@ -192,7 +214,9 @@
                         <constraint firstAttribute="bottom" secondItem="aI6-oP-jqs" secondAttribute="bottom" constant="20" id="icx-mb-2Ab"/>
                         <constraint firstAttribute="trailing" secondItem="n7P-SR-FAF" secondAttribute="trailing" constant="20" id="kef-uh-QcB"/>
                         <constraint firstAttribute="trailing" secondItem="LQL-7X-X9U" secondAttribute="trailing" constant="20" id="nCX-Ei-jJA"/>
+                        <constraint firstItem="DYd-GJ-c7a" firstAttribute="leading" secondItem="xPL-aD-bI9" secondAttribute="trailing" id="oK1-vs-wRN"/>
                         <constraint firstItem="LQL-7X-X9U" firstAttribute="leading" secondItem="r9S-Ow-wBb" secondAttribute="leading" constant="20" id="pQc-2h-iiO"/>
+                        <constraint firstItem="DYd-GJ-c7a" firstAttribute="firstBaseline" secondItem="xPL-aD-bI9" secondAttribute="firstBaseline" id="r1g-EN-D2V"/>
                         <constraint firstItem="fDg-rp-8lj" firstAttribute="firstBaseline" secondItem="4Cr-gu-EZh" secondAttribute="firstBaseline" id="rCf-uE-ei9"/>
                         <constraint firstItem="n7P-SR-FAF" firstAttribute="centerX" secondItem="r9S-Ow-wBb" secondAttribute="centerX" id="rDz-Rx-znp"/>
                         <constraint firstItem="fDg-rp-8lj" firstAttribute="leading" secondItem="4Cr-gu-EZh" secondAttribute="trailing" id="sgG-so-x8i"/>

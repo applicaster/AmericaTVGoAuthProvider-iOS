@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047C832EB560E79039786398 /* Pods_AmericaTVGoAuthProviderDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182166E5163A3125D8218677 /* Pods_AmericaTVGoAuthProviderDemoApp.framework */; };
+		862FCFEB2203642C00A7F324 /* AmericaTVWebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862FCFEA2203642C00A7F324 /* AmericaTVWebViewViewController.swift */; };
+		862FCFED220375ED00A7F324 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 862FCFEC220375ED00A7F324 /* script.js */; };
 		86D8AC9C21A47BAB0044DAE2 /* iap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86D8AC9B21A47BAB0044DAE2 /* iap.plist */; };
 		86D8AC9E21A47C2D0044DAE2 /* AmericaTVGoIAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D8AC9D21A47C2D0044DAE2 /* AmericaTVGoIAPManager.swift */; };
 		86D8ACA121A5D6760044DAE2 /* AmericaTVGoProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D8AC9F21A5D6760044DAE2 /* AmericaTVGoProductCollectionViewCell.swift */; };
@@ -83,6 +86,8 @@
 		07D08D4CF88570AF0EE68512 /* Pods-AmericaTVGoAuthProvider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmericaTVGoAuthProvider.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmericaTVGoAuthProvider/Pods-AmericaTVGoAuthProvider.release.xcconfig"; sourceTree = "<group>"; };
 		182166E5163A3125D8218677 /* Pods_AmericaTVGoAuthProviderDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmericaTVGoAuthProviderDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B0C50E219241510009A878 /* AmericaTVGoAuthProviderDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericaTVGoAuthProviderDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		862FCFEA2203642C00A7F324 /* AmericaTVWebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVWebViewViewController.swift; sourceTree = "<group>"; };
+		862FCFEC220375ED00A7F324 /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
 		86C2446151218C977AEB8376 /* Pods-AmericaTVGoAuthProvider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmericaTVGoAuthProvider.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmericaTVGoAuthProvider/Pods-AmericaTVGoAuthProvider.debug.xcconfig"; sourceTree = "<group>"; };
 		86D8AC9B21A47BAB0044DAE2 /* iap.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = iap.plist; sourceTree = "<group>"; };
 		86D8AC9D21A47C2D0044DAE2 /* AmericaTVGoIAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoIAPManager.swift; sourceTree = "<group>"; };
@@ -140,6 +145,8 @@
 		86F57B7921ADBBB80060BC31 /* AmericaTVGoRegistrationFinishedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmericaTVGoRegistrationFinishedViewController.xib; sourceTree = "<group>"; };
 		86F57B7C21ADBFF40060BC31 /* AmericaTVGoUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaTVGoUser.swift; sourceTree = "<group>"; };
 		9B3B41B1B827E438FEFAC664 /* Pods_AmericaTVGoAuthProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmericaTVGoAuthProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E03B50C55C7C25086B018C7 /* Pods-AmericaTVGoAuthProviderDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmericaTVGoAuthProviderDemoApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmericaTVGoAuthProviderDemoApp/Pods-AmericaTVGoAuthProviderDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
+		CA7EA67B750FAC085968ED5B /* Pods-AmericaTVGoAuthProviderDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmericaTVGoAuthProviderDemoApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmericaTVGoAuthProviderDemoApp/Pods-AmericaTVGoAuthProviderDemoApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86DCFD28219E170900D4E82A /* AmericaTVGoAuthProvider.framework in Frameworks */,
+				047C832EB560E79039786398 /* Pods_AmericaTVGoAuthProviderDemoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +244,7 @@
 				86DCFD3721A46A3D00D4E82A /* AmericaTVGoStrikethroughLabel.swift */,
 				86D8AC9D21A47C2D0044DAE2 /* AmericaTVGoIAPManager.swift */,
 				86D8AC9F21A5D6760044DAE2 /* AmericaTVGoProductCollectionViewCell.swift */,
+				862FCFEA2203642C00A7F324 /* AmericaTVWebViewViewController.swift */,
 				86D8ACA321A5D99E0044DAE2 /* AmericaTVGoProduct.swift */,
 				86F57B7C21ADBFF40060BC31 /* AmericaTVGoUser.swift */,
 				86DCFD0B2194EA7A00D4E82A /* manifest */,
@@ -257,6 +266,7 @@
 		86DCFCF62194EA6D00D4E82A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				862FCFEC220375ED00A7F324 /* script.js */,
 				86D8AC9B21A47BAB0044DAE2 /* iap.plist */,
 				86DCFCF72194EA6D00D4E82A /* AmericaTVGoForgotPasswordViewController.xib */,
 				86DCFCF82194EA6D00D4E82A /* navbar_logo@2x.png */,
@@ -296,6 +306,8 @@
 			children = (
 				86C2446151218C977AEB8376 /* Pods-AmericaTVGoAuthProvider.debug.xcconfig */,
 				07D08D4CF88570AF0EE68512 /* Pods-AmericaTVGoAuthProvider.release.xcconfig */,
+				9E03B50C55C7C25086B018C7 /* Pods-AmericaTVGoAuthProviderDemoApp.debug.xcconfig */,
+				CA7EA67B750FAC085968ED5B /* Pods-AmericaTVGoAuthProviderDemoApp.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -318,9 +330,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 23B0C52B219241570009A878 /* Build configuration list for PBXNativeTarget "AmericaTVGoAuthProviderDemoApp" */;
 			buildPhases = (
+				84D0C0DB3B1FDEE450724D5B /* [CP] Check Pods Manifest.lock */,
 				23B0C50A219241510009A878 /* Sources */,
 				23B0C50B219241510009A878 /* Frameworks */,
 				23B0C50C219241510009A878 /* Resources */,
+				A7D9109C2E5E40951FBEDAF6 /* [CP] Embed Pods Frameworks */,
+				083DA38E026471CBE03E3D1C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -429,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86DCFD16219B72F100D4E82A /* checkbox_on@2x.png in Resources */,
+				862FCFED220375ED00A7F324 /* script.js in Resources */,
 				86DCFD012194EA6D00D4E82A /* AmericaTVGoForgotPasswordViewController.xib in Resources */,
 				86DCFD15219B72F100D4E82A /* checkbox_on.png in Resources */,
 				86DCFD0D2194EA7A00D4E82A /* plugin-manifest.json in Resources */,
@@ -464,6 +480,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		083DA38E026471CBE03E3D1C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AmericaTVGoAuthProviderDemoApp/Pods-AmericaTVGoAuthProviderDemoApp-resources.sh",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterShareExtensionUIResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmericaTVGoAuthProviderDemoApp/Pods-AmericaTVGoAuthProviderDemoApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		556DCDAC37B52874282FA59B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -488,6 +528,28 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmericaTVGoAuthProvider/Pods-AmericaTVGoAuthProvider-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		84D0C0DB3B1FDEE450724D5B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AmericaTVGoAuthProviderDemoApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9C1A9B742064E684DC65F132 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -508,6 +570,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7D9109C2E5E40951FBEDAF6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AmericaTVGoAuthProviderDemoApp/Pods-AmericaTVGoAuthProviderDemoApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/AmericaTVGoAuthProvider/AmericaTVGoAuthProvider.framework",
+				"${PODS_ROOT}/ApplicasterSDK/ApplicasterSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/FBNotifications/FBNotifications.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${PODS_ROOT}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ZappAnalyticsPluginsSDK/ZappAnalyticsPluginsSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/ZappGeneralPluginsSDK/ZappGeneralPluginsSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/ZappLoginPluginsSDK/ZappLoginPluginsSDK.framework",
+				"${PODS_ROOT}/ZappPlugins/ZappPlugins.framework",
+				"${BUILT_PRODUCTS_DIR}/ZappPushPluginsSDK/ZappPushPluginsSDK.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AmericaTVGoAuthProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ApplicasterSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBNotifications.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleInteractiveMediaAds.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZappAnalyticsPluginsSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZappGeneralPluginsSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZappLoginPluginsSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZappPlugins.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZappPushPluginsSDK.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmericaTVGoAuthProviderDemoApp/Pods-AmericaTVGoAuthProviderDemoApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -541,6 +667,7 @@
 				86DCFCF52194EA6500D4E82A /* OldAmericaTVGoRegisterViewController.swift in Sources */,
 				86DCFD25219DEF4B00D4E82A /* UIColor+AmericaTVGo.swift in Sources */,
 				86DCFD32219F4EE600D4E82A /* AmericaTVGoTextField.swift in Sources */,
+				862FCFEB2203642C00A7F324 /* AmericaTVWebViewViewController.swift in Sources */,
 				86DCFCF32194EA6500D4E82A /* AmericaTVGoAuthProvider.swift in Sources */,
 				86D8AC9E21A47C2D0044DAE2 /* AmericaTVGoIAPManager.swift in Sources */,
 				86DCFD2B219F2D2000D4E82A /* AmericaTVGoRegisterViewController.swift in Sources */,
@@ -712,6 +839,7 @@
 		};
 		23B0C52C219241570009A878 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E03B50C55C7C25086B018C7 /* Pods-AmericaTVGoAuthProviderDemoApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -729,6 +857,7 @@
 		};
 		23B0C52D219241570009A878 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA7EA67B750FAC085968ED5B /* Pods-AmericaTVGoAuthProviderDemoApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -9,9 +9,9 @@
 import Foundation
 
 enum AmericaTVGoProductIdentifier: String {
-    case yearly = "suscripcion_anual"
-    case semester = "suscripcion_semestral"
-    case monthly = "suscripcion_mensual"
+    case yearly = "suscripcion_anual_1"
+    case semester = "suscripcion_semestral_1"
+    case monthly = "suscripcion_mensual_1"
 }
 
 struct AmericaTVGoProduct {
@@ -21,17 +21,19 @@ struct AmericaTVGoProduct {
     var oldPrice: String
     var newPrice: String
     var isPromotion: Bool
+    var promotionText: String
     
-    init(identifier: String, duration: String, unit: String, oldPrice: String, newPrice: String, promotion: Bool) {
+    init(identifier: String, duration: String, unit: String, oldPrice: String, newPrice: String, promotion: Bool, promotionText: String) {
         self.identifier = identifier
         self.timeDuration = duration
         self.timeUnit = unit
         self.oldPrice = oldPrice
         self.newPrice = newPrice
         self.isPromotion = promotion
+        self.promotionText = promotionText
     }
     
     init() {
-        self.init(identifier: "", duration: "", unit: "", oldPrice: "", newPrice: "", promotion: false)
+        self.init(identifier: "", duration: "", unit: "", oldPrice: "", newPrice: "", promotion: false, promotionText: "")
     }
 }

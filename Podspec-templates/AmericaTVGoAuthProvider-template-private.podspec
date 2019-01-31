@@ -16,7 +16,8 @@ Pod::Spec.new do |s|
 
   s.resources = [
     "__framework_name__/**/*.{png,xib}",
-    "__framework_name__/**/iap.plist"
+    "__framework_name__/**/iap.plist",
+    "__framework_name__/**/script.js"
   ]
 
   s.xcconfig =  { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
@@ -30,6 +31,6 @@ Pod::Spec.new do |s|
   s.dependency 'AFNetworking'
   s.dependency 'TPKeyboardAvoiding'
   s.dependency 'MBProgressHUD'
-  
+
 
 end
