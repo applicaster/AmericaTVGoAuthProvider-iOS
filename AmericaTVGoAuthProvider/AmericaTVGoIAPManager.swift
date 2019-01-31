@@ -91,6 +91,9 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
                             if let value = remoteProduct["is_promotion"] as? NSNumber {
                                 newProduct.isPromotion = value.boolValue
                             }
+                            if let value = remoteProduct["promotion_label"] as? String {
+                                newProduct.promotionText = value
+                            }
                             
                             self.products.append(newProduct)
                         }

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AmericaTVGoAuthProvider'
-  s.version          = '1.2.15'
+  s.version          = '1.2.16'
   s.summary          = 'AmericaTVGo Authorization Client'
   s.description      = <<-DESC
 AmericaTVGo Authorization Client
@@ -16,7 +16,8 @@ AmericaTVGo Authorization Client
   s.requires_arc = true
   s.resources = [
     "AmericaTVGoAuthProvider/Resources/*.{png,xib}",
-    "AmericaTVGoAuthProvider/Resources/iap.plist"
+    "AmericaTVGoAuthProvider/Resources/iap.plist",
+    "AmericaTVGoAuthProvider/Resources/script.js"
   ]
 
   s.xcconfig =  { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',

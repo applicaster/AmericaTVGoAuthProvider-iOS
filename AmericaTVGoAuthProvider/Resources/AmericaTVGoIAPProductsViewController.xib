@@ -37,7 +37,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czR-ph-icP">
-                    <rect key="frame" x="0.0" y="56" width="375" height="611"/>
+                    <rect key="frame" x="0.0" y="56" width="375" height="583"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Último paso" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiy-A5-yNc">
                             <rect key="frame" x="20" y="8" width="335" height="16"/>
@@ -63,8 +63,15 @@
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                         </collectionView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crh-Ti-WG8">
+                            <rect key="frame" x="20" y="210" width="335" height="47"/>
+                            <string key="text">La membresía se renueva automáticamente. Para cancelar, por favor ingrese a su cuenta de iTunes.
+</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gua-ny-gIZ" customClass="AmericaTVGoShadowBoxView" customModule="AmericaTVGoAuthProvider" customModuleProvider="target">
-                            <rect key="frame" x="58.5" y="222" width="258" height="46"/>
+                            <rect key="frame" x="58.5" y="265" width="258" height="46"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orz-bW-rdu">
                                     <rect key="frame" x="20" y="8" width="218" height="30"/>
@@ -87,7 +94,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t1q-TX-UxO" customClass="AmericaTVGoShadowBoxView" customModule="AmericaTVGoAuthProvider" customModuleProvider="target">
-                            <rect key="frame" x="58.5" y="288" width="258" height="46"/>
+                            <rect key="frame" x="58.5" y="331" width="258" height="46"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBX-0j-k6Z">
                                     <rect key="frame" x="20" y="8" width="218" height="30"/>
@@ -119,33 +126,65 @@
                         <constraint firstAttribute="trailing" secondItem="xiy-A5-yNc" secondAttribute="trailing" constant="20" id="KpW-Eg-G8a"/>
                         <constraint firstItem="xiy-A5-yNc" firstAttribute="top" secondItem="czR-ph-icP" secondAttribute="top" constant="8" id="L9W-8w-K4j"/>
                         <constraint firstItem="tB6-zn-YIZ" firstAttribute="leading" secondItem="czR-ph-icP" secondAttribute="leading" constant="20" id="M1u-1b-a6l"/>
-                        <constraint firstItem="gua-ny-gIZ" firstAttribute="top" secondItem="f3z-Ez-WKs" secondAttribute="bottom" constant="20" id="OTd-hX-VPS"/>
                         <constraint firstItem="f3z-Ez-WKs" firstAttribute="centerX" secondItem="czR-ph-icP" secondAttribute="centerX" id="Ot3-6T-P3X"/>
                         <constraint firstItem="t1q-TX-UxO" firstAttribute="top" secondItem="gua-ny-gIZ" secondAttribute="bottom" constant="20" id="QOp-tA-ELQ"/>
                         <constraint firstItem="gua-ny-gIZ" firstAttribute="centerX" secondItem="czR-ph-icP" secondAttribute="centerX" id="STX-X4-euX"/>
-                        <constraint firstAttribute="bottom" secondItem="t1q-TX-UxO" secondAttribute="bottom" constant="20" id="UW3-yg-7Nn"/>
+                        <constraint firstItem="crh-Ti-WG8" firstAttribute="leading" secondItem="czR-ph-icP" secondAttribute="leading" constant="20" id="SW2-ch-OEy"/>
+                        <constraint firstAttribute="bottom" secondItem="t1q-TX-UxO" secondAttribute="bottom" constant="20" id="Vwl-Uh-D2t"/>
                         <constraint firstItem="gua-ny-gIZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="czR-ph-icP" secondAttribute="leading" constant="20" id="XS6-xV-gTI"/>
                         <constraint firstAttribute="trailing" secondItem="tB6-zn-YIZ" secondAttribute="trailing" constant="20" id="YSH-Ld-12B"/>
+                        <constraint firstAttribute="trailing" secondItem="crh-Ti-WG8" secondAttribute="trailing" constant="20" id="b9L-tY-Coj"/>
                         <constraint firstItem="gua-ny-gIZ" firstAttribute="width" secondItem="t1q-TX-UxO" secondAttribute="width" id="bdW-MZ-j0V"/>
                         <constraint firstAttribute="trailing" secondItem="f3z-Ez-WKs" secondAttribute="trailing" constant="20" id="mAa-lK-i97"/>
+                        <constraint firstItem="crh-Ti-WG8" firstAttribute="top" secondItem="f3z-Ez-WKs" secondAttribute="bottom" constant="8" id="mgi-dq-X0v"/>
+                        <constraint firstItem="gua-ny-gIZ" firstAttribute="top" secondItem="crh-Ti-WG8" secondAttribute="bottom" constant="8" id="pDM-6E-5TF"/>
                         <constraint firstItem="tB6-zn-YIZ" firstAttribute="top" secondItem="xiy-A5-yNc" secondAttribute="bottom" id="tSD-do-FC7"/>
                     </constraints>
                 </scrollView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dUT-SF-QxR">
+                    <rect key="frame" x="20" y="639" width="335" height="28"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4e3-rI-ycO">
+                            <rect key="frame" x="0.0" y="0.0" width="145" height="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Términos y Condiciones">
+                                <color key="titleColor" red="0.79808610680000003" green="0.32679909470000001" blue="0.26271575689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </state>
+                            <connections>
+                                <action selector="showTerms:" destination="-1" eventType="touchUpInside" id="jwG-Ej-7Lc"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIk-FZ-IMk">
+                            <rect key="frame" x="205" y="0.0" width="130" height="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Politica de Privacidad">
+                                <color key="titleColor" red="0.79808610680000003" green="0.32679909470000001" blue="0.26271575689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </state>
+                            <connections>
+                                <action selector="showPrivacy:" destination="-1" eventType="touchUpInside" id="W3f-px-mA6"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="OSE-pF-wEl" firstAttribute="centerY" secondItem="mdV-3p-ZKM" secondAttribute="centerY" id="5SC-Jg-3aG"/>
+                <constraint firstItem="dUT-SF-QxR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="9Za-YL-Inp"/>
                 <constraint firstItem="OSE-pF-wEl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="HUy-gW-osR"/>
-                <constraint firstItem="czR-ph-icP" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="KjG-gW-CfR"/>
                 <constraint firstItem="mdV-3p-ZKM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OSE-pF-wEl" secondAttribute="trailing" constant="8" id="Nrl-4n-Rhq"/>
                 <constraint firstItem="czR-ph-icP" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Sr9-la-XcK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="czR-ph-icP" secondAttribute="trailing" id="UAq-c4-1kd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mdV-3p-ZKM" secondAttribute="trailing" constant="20" id="Vwj-kT-NdX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dUT-SF-QxR" secondAttribute="trailing" constant="20" id="Wh9-lg-288"/>
                 <constraint firstItem="czR-ph-icP" firstAttribute="top" secondItem="OSE-pF-wEl" secondAttribute="bottom" constant="8" id="Xjh-Fn-quw"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dUT-SF-QxR" secondAttribute="bottom" id="aTY-Rw-xKz"/>
                 <constraint firstItem="czR-ph-icP" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="cgd-GL-0Rq"/>
                 <constraint firstItem="OSE-pF-wEl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="gHy-oO-OhY"/>
                 <constraint firstItem="mdV-3p-ZKM" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="iWJ-VS-nH2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="leading" secondItem="czR-ph-icP" secondAttribute="leading" id="kRy-hk-o7f"/>
+                <constraint firstItem="czR-ph-icP" firstAttribute="bottom" secondItem="dUT-SF-QxR" secondAttribute="top" id="moq-sI-9zq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="OSE-pF-wEl" secondAttribute="top" priority="750" id="xIQ-3d-sd3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

@@ -14,7 +14,7 @@ class AmericaTVGoProductCollectionViewCell: UICollectionViewCell, AmericaTVGoSha
     
     @IBOutlet weak var timeUnitLabel: UILabel!
     
-    @IBOutlet weak var oldPriceLabel: AmericaTVGoStrikethroughLabel!
+    @IBOutlet weak var oldPriceLabel: UILabel!
     @IBOutlet weak var newPriceLabel: UILabel!
     
     var product: AmericaTVGoProduct? {
@@ -34,8 +34,20 @@ class AmericaTVGoProductCollectionViewCell: UICollectionViewCell, AmericaTVGoSha
     func update() {
         timeDurationLabel.text = product?.timeDuration ?? ""
         timeUnitLabel.text = product?.timeUnit ?? ""
-        oldPriceLabel.text = product?.oldPrice ?? ""
-        newPriceLabel.text = product?.newPrice ?? ""
+        
+        /*if let oldPrice = product?.oldPrice, !oldPrice.isEmpty {
+            oldPriceLabel.text = oldPrice
+        } else {
+            oldPriceLabel.text = ""
+        }*/
+        
+        if let newPrice = product?.newPrice {
+            newPriceLabel.text = newPrice
+        } else {
+            newPriceLabel.text = ""
+        }
+        
+        oldPriceLabel.text = product?.promotionText ?? ""
     }
 
     func americaTVGoShadowBoxViewWillSelect(_ view: AmericaTVGoShadowBoxView) -> Bool {

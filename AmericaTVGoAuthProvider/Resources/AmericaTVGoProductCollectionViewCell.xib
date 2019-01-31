@@ -41,23 +41,21 @@
                                     <constraint firstAttribute="height" constant="1" id="b4U-j8-LQD"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="s/ 120" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDz-pi-knH" customClass="AmericaTVGoStrikethroughLabel" customModule="AmericaTVGoAuthProvider" customModuleProvider="target">
-                                <rect key="frame" x="8" y="70" width="182" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.29411764709999999" green="0.29411764709999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="s/ 90" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMK-VH-ttQ">
+                                <rect key="frame" x="8" y="70" width="182" height="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="s/ 90" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMK-VH-ttQ">
-                                <rect key="frame" x="8" y="94" width="182" height="18"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="s/ 120" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDz-pi-knH">
+                                <rect key="frame" x="8" y="96" width="182" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.29411764709999999" green="0.29411764709999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="GMK-VH-ttQ" firstAttribute="top" secondItem="CDz-pi-knH" secondAttribute="bottom" constant="8" id="2gE-zd-Nxg"/>
                             <constraint firstAttribute="trailing" secondItem="8A9-kA-jPG" secondAttribute="trailing" constant="8" id="BZe-R1-ILC"/>
-                            <constraint firstItem="CDz-pi-knH" firstAttribute="top" secondItem="8A9-kA-jPG" secondAttribute="bottom" constant="8" id="C1C-Q0-SiJ"/>
                             <constraint firstItem="Gd5-SA-aen" firstAttribute="leading" secondItem="lzy-h9-2mp" secondAttribute="leading" constant="8" id="GSC-lb-CMp"/>
                             <constraint firstItem="RBm-hp-g5w" firstAttribute="top" secondItem="lzy-h9-2mp" secondAttribute="top" constant="8" id="Iys-D5-yd8"/>
                             <constraint firstAttribute="trailing" secondItem="Gd5-SA-aen" secondAttribute="trailing" constant="8" id="J4g-fL-eIy"/>
@@ -67,10 +65,12 @@
                             <constraint firstItem="CDz-pi-knH" firstAttribute="leading" secondItem="lzy-h9-2mp" secondAttribute="leading" constant="8" id="XXV-yq-fny"/>
                             <constraint firstItem="8A9-kA-jPG" firstAttribute="top" secondItem="Gd5-SA-aen" secondAttribute="bottom" constant="8" id="YEd-cB-gn5"/>
                             <constraint firstItem="Gd5-SA-aen" firstAttribute="top" secondItem="RBm-hp-g5w" secondAttribute="bottom" constant="8" id="YOQ-RD-nXt"/>
+                            <constraint firstAttribute="bottom" secondItem="CDz-pi-knH" secondAttribute="bottom" priority="750" constant="8" id="aiB-2f-h9A"/>
+                            <constraint firstItem="CDz-pi-knH" firstAttribute="top" secondItem="GMK-VH-ttQ" secondAttribute="bottom" constant="8" id="dws-Yv-XY7"/>
                             <constraint firstAttribute="trailing" secondItem="GMK-VH-ttQ" secondAttribute="trailing" constant="8" id="eFW-dn-6HD"/>
-                            <constraint firstAttribute="bottom" secondItem="GMK-VH-ttQ" secondAttribute="bottom" constant="8" id="hRD-P5-uxV"/>
                             <constraint firstItem="GMK-VH-ttQ" firstAttribute="leading" secondItem="lzy-h9-2mp" secondAttribute="leading" constant="8" id="oSK-Vt-QEg"/>
                             <constraint firstAttribute="trailing" secondItem="CDz-pi-knH" secondAttribute="trailing" constant="8" id="uWf-q1-4sK"/>
+                            <constraint firstItem="GMK-VH-ttQ" firstAttribute="top" secondItem="8A9-kA-jPG" secondAttribute="bottom" constant="8" id="xFN-Ve-3m6"/>
                         </constraints>
                     </view>
                 </subviews>
