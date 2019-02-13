@@ -28,13 +28,19 @@ The following fields can be configured:
 
 ## Screenshots
 
-![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.14.01.png)
-![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.14.06.png)
-![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.14.09.png)
-![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.14.14.png)
-![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.14.17.png)
-![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.14.33.png)
-![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.15.45.png)
+![](readme_images/1.png)
+
+![](readme_images/2.png)
+
+![](readme_images/3.png)
+
+![](readme_images/4.png)
+
+![](readme_images/5.png)
+
+![](readme_images/6.png)
+
+![](readme_images/7.png)
 
 ## Submit an Issue
 
