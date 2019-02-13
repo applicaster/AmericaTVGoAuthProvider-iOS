@@ -26,7 +26,7 @@ class AmericaTVGoAPIManager: NSObject {
     public func loginUser(email: String, password: String, completion:@escaping ((_ succes: Bool, _ token:String?, _ message: String?) -> Void)) {
         let parameters: [String: String] = ["correo":email,
                                         "password":password,
-                                        "uuid":APIdentityClient.deviceID()]
+                                        "uuid":ZAAppConnector.sharedInstance().identityDelegate.getDeviceId() ?? ""]
         
         self.query(type: .login, parameters: parameters) { (_ success: Bool, _ jsonInfo: [String : Any]?) in
             if success {
@@ -65,7 +65,7 @@ class AmericaTVGoAPIManager: NSObject {
     
     public func forgotPassword(email: String, completion:@escaping ((_ success: Bool, _ message: String?) -> Void)) {
         let parameters: [String: String] = ["correo": email,
-                                            "uuid": APIdentityClient.deviceID()]
+                                            "uuid": ZAAppConnector.sharedInstance().identityDelegate.getDeviceId() ?? ""]
         
         self.query(type: .passwordRecovery, parameters: parameters) { (_ success: Bool, _ jsonInfo: [String : Any]?) in
             if success {
@@ -94,7 +94,7 @@ class AmericaTVGoAPIManager: NSObject {
                              completion:@escaping ((_ success: Bool, _ token:String?, _ message: String?) -> Void)) {
         let parameters: [String: String] = ["correo": email,
                                             "password": password,
-                                            "uuid": APIdentityClient.deviceID(),
+                                            "uuid": ZAAppConnector.sharedInstance().identityDelegate.getDeviceId() ?? "",
                                             "tipo": isPremium ? "1" : "0"]
         
         self.query(type: .registration, parameters: parameters) { (_ success: Bool, _ jsonInfo: [String : Any]?) in
@@ -129,7 +129,7 @@ class AmericaTVGoAPIManager: NSObject {
     
     public func getUser(id: String, completion:@escaping ((_ success: Bool, _ token:String?, _ message: String?) -> Void)) {
         let parameters: [String: String] = ["idusuario": id,
-                                            "uuid": APIdentityClient.deviceID()]
+                                            "uuid": ZAAppConnector.sharedInstance().identityDelegate.getDeviceId() ?? ""]
         
         self.query(type: .userDetails, parameters: parameters) { (_ success: Bool, _ jsonInfo: [String : Any]?) in
             if success {
