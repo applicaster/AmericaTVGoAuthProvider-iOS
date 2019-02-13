@@ -26,6 +26,16 @@ The following fields can be configured:
 
 - provider_key: should be set to americaTV by default
 
+## Screenshots
+
+![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.14.01.png)
+![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.14.06.png)
+![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.14.09.png)
+![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.14.14.png)
+![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.14.17.png)
+![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.14.33.png)
+![](../readme_images/Simulator Screen Shot - iPhone XR - 2019-02-13 at 15.15.45.png)
+
 ## Submit an Issue
 
 For submitting issues and bug reports, please use the following link:
