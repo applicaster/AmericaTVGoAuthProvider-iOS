@@ -20,6 +20,7 @@ target 'AmericaTVGoAuthProvider' do
     pod 'AFNetworking'
     pod 'TPKeyboardAvoiding'
     pod 'MBProgressHUD'
+    pod 'TTTAttributedLabel'
 end
 
 

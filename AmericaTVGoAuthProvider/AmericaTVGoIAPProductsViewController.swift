@@ -9,10 +9,15 @@
 import UIKit
 import StoreKit
 import MBProgressHUD
+import TTTAttributedLabel
 
-class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SKRequestDelegate {
+fileprivate let kTermsSearchText = "Términos y condiciones"
+fileprivate let kPrivacySearchText = "Políticas de privacidad"
+
+class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SKRequestDelegate, TTTAttributedLabelDelegate {
     @IBOutlet weak var productsCollectionView: UICollectionView!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var iapDescriptionLabel: TTTAttributedLabel!
     @IBOutlet weak var productsCollectionViewHeightConstraint: NSLayoutConstraint!
     var products = [AmericaTVGoProduct]()
     
@@ -33,6 +38,8 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         
         continueButton.isEnabled = false
         
+        updateLabel()
+        
         AmericaTVGoUtils.shared.showHUD(self.view)
         
         AmericaTVGoIAPManager.shared.retrieveRemoteProducts { (newProducts) in
@@ -48,11 +55,37 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
             }
             
             AmericaTVGoUtils.shared.hideHUD()
+            
+            self.productsCollectionViewHeightConstraint.constant = self.productsCollectionView.contentSize.height
         }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    fileprivate func updateLabel() {
+        let color = UIColor(red: 204.0/255.0, green: 83.0/255.0, blue: 67.0/255.0, alpha: 1.0)
+        let linkAttributes = [kCTForegroundColorAttributeName: color.cgColor]
+        iapDescriptionLabel.linkAttributes = linkAttributes as [AnyHashable : Any]
+        iapDescriptionLabel.activeLinkAttributes = linkAttributes as [AnyHashable : Any]
+        iapDescriptionLabel.inactiveLinkAttributes = linkAttributes as [AnyHashable : Any]
+        
+        let tcURL = URL(string: "https://tvgo.americatv.com.pe/terminos-condiciones")!
+        let ppURL = URL(string: "https://tvgo.americatv.com.pe/politicas-de-privacidad")!
+        let string = iapDescriptionLabel.text as! NSString
+        
+        let tcRange = string.range(of: kTermsSearchText)
+        if tcRange.location != NSNotFound {
+            self.iapDescriptionLabel.addLink(to: tcURL, with: tcRange)
+        }
+        
+        let ppRange = string.range(of: kPrivacySearchText)
+        if ppRange.location != NSNotFound {
+            self.iapDescriptionLabel.addLink(to: ppURL, with: ppRange)
+        }
+        
+        self.iapDescriptionLabel.delegate = self
     }
     
     @IBAction func handleGoBack(_ sender: Any) {
@@ -232,12 +265,13 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let newWidth = (collectionView.width-8.0-8.0)/3.0
-        return CGSize(width: newWidth, height: collectionView.frame.height)
+        let newWidth = collectionView.width
+        let newHeight = (collectionView.height-8.0)/CGFloat(self.products.count)
+        return CGSize(width: newWidth, height: newHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8.0
+        return 0.0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -270,5 +304,14 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
             completion()
         })
         vc.present(alertController, animated: true, completion: nil)
+    }
+    
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+        let vc = AmericaTVWebViewViewController.init(nibName: nil, bundle: nil)
+        vc.url = url
+        
+        let navController = UINavigationController(rootViewController: vc)
+        
+        self.present(navController, animated: true, completion: nil)
     }
 }

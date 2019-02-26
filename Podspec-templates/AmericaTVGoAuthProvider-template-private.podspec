@@ -31,6 +31,7 @@ Pod::Spec.new do |s|
   s.dependency 'AFNetworking'
   s.dependency 'TPKeyboardAvoiding'
   s.dependency 'MBProgressHUD'
+  s.dependency 'TTTAttributedLabel'
 
 
 end
