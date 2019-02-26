@@ -155,9 +155,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6Z-5r-fjw">
-                            <rect key="frame" x="116" y="217" width="130" height="28"/>
+                            <rect key="frame" x="116" y="217" width="136" height="28"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="politica de privacidad">
+                            <state key="normal" title="políticas de privacidad">
                                 <color key="titleColor" red="0.79808610680000003" green="0.32679909470000001" blue="0.26271575689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <connections>

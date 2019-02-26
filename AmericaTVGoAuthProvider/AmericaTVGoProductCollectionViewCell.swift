@@ -10,12 +10,11 @@ import UIKit
 
 class AmericaTVGoProductCollectionViewCell: UICollectionViewCell, AmericaTVGoShadowBoxViewDelegate {
     @IBOutlet weak var containerView: AmericaTVGoShadowBoxView!
-    @IBOutlet weak var timeDurationLabel: UILabel!
-    
-    @IBOutlet weak var timeUnitLabel: UILabel!
-    
-    @IBOutlet weak var oldPriceLabel: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var newPriceLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var extraLabel: UILabel!
+    
     
     var product: AmericaTVGoProduct? {
         didSet {
@@ -32,22 +31,38 @@ class AmericaTVGoProductCollectionViewCell: UICollectionViewCell, AmericaTVGoSha
     }
     
     func update() {
-        timeDurationLabel.text = product?.timeDuration ?? ""
-        timeUnitLabel.text = product?.timeUnit ?? ""
+        var timeText = ""
         
-        /*if let oldPrice = product?.oldPrice, !oldPrice.isEmpty {
-            oldPriceLabel.text = oldPrice
+        if let value = product?.timeDuration {
+            timeText += value
+        }
+        
+        if let value = product?.timeUnit {
+            if !timeText.isEmpty {
+                timeText += " "
+            }
+            timeText += value
+        }
+        
+        if timeText.isEmpty {
+            timeLabel.text = ""
         } else {
-            oldPriceLabel.text = ""
-        }*/
+            timeLabel.text = timeText
+        }
         
         if let newPrice = product?.newPrice {
-            newPriceLabel.text = newPrice
+            newPriceLabel.text = newPrice.uppercased()
         } else {
             newPriceLabel.text = ""
         }
         
-        oldPriceLabel.text = product?.promotionText ?? ""
+        if let value = product?.promotionText, !value.isEmpty {
+            extraLabel.text = value
+            extraLabel.isHidden = false
+        } else {
+            extraLabel.isHidden = true
+        }
+        
     }
 
     func americaTVGoShadowBoxViewWillSelect(_ view: AmericaTVGoShadowBoxView) -> Bool {
