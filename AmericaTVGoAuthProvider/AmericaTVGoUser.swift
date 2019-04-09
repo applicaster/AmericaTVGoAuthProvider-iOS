@@ -26,6 +26,11 @@ class AmericaTVGoUser {
     var product: AmericaTVGoProduct?
     var token: String = ""
     
+    init() {
+        self.id = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) as? String ?? ""
+        self.email = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserEmailKey) as? String ?? ""
+        self.token = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserTokenKey) as? String ?? ""
+    }
     func isLoggedIn() -> Bool {
         return !self.id.isEmpty
     }

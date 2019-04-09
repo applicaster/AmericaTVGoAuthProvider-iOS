@@ -42,7 +42,7 @@ class AmericaTVGoAPIManager: NSObject {
                             
                             self.updateToken(user.token)
                             
-                            APKeychain.setString(password, forKey: user.id)
+                            APKeychain.setString(password, forKey: user.email)
                             
                             if !user.token.isEmpty {
                                 completion(true, user.token, message)
@@ -111,7 +111,7 @@ class AmericaTVGoAPIManager: NSObject {
                             
                             self.updateToken(user.token)
                             
-                            APKeychain.setString(password, forKey: user.id)
+                            APKeychain.setString(password, forKey: user.email)
                             
                             completion(true, user.token, message)
                         } else {

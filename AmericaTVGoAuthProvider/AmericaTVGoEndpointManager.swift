@@ -93,7 +93,7 @@ class AmericaTVGoEndpointManager: NSObject {
         messageList["100111"] = "Lo siento, no tiene un paquete asignado a este pago."
         messageList["100112"] = "El usuario para suscribirse no está registrado."
         messageList["100113"] = "Lo siento, se produjo un error interno, intente nuevamente."
-        messageList["100114"] = "Su código se ha guardado correctamente. Ahora puede disfrutar de nuestro contenido."
+        messageList["100114"] = "Su suscripción a América TVGO fue creada correctamente. Ahora puede disfrutar de nuestro contenido donde quieras y cuando quieras."
         messageList["100115"] = "¡Ya está registrado en TvGo, por favor inicie sesión!"
         messageList["100116"] = "¡El dominio de correo está en la lista negra!"
         messageList["100117"] = "Ingrese una dirección de correo electrónico válida."
