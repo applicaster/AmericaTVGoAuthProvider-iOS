@@ -257,6 +257,10 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     }
     
     fileprivate func selectCell(_ cell: AmericaTVGoProductCollectionViewCell) {
+        if cell == self.selectedContainerView {
+            return
+        }
+        
         if self.selectedContainerView != cell.containerView {
             self.selectedContainerView?.isSelected = false
         }

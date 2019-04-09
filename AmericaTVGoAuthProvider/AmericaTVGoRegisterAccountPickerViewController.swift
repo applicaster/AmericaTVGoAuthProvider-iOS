@@ -13,6 +13,8 @@ class AmericaTVGoRegisterAccountPickerViewController: UIViewController, AmericaT
     @IBOutlet weak var basicBoxView: AmericaTVGoShadowBoxView!
     @IBOutlet weak var premiumBoxView: AmericaTVGoShadowBoxView!
     
+    fileprivate var selectedView: AmericaTVGoShadowBoxView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +22,7 @@ class AmericaTVGoRegisterAccountPickerViewController: UIViewController, AmericaT
         self.premiumBoxView.delegate = self
         
         self.premiumBoxView.isSelected = true
+        self.selectedView = self.premiumBoxView
     }
 
     @IBAction func handleGoBack(_ sender: Any) {
@@ -49,6 +52,12 @@ class AmericaTVGoRegisterAccountPickerViewController: UIViewController, AmericaT
     // MARK: -
     
     func americaTVGoShadowBoxViewWillSelect(_ view: AmericaTVGoShadowBoxView) -> Bool {
+        if view == self.selectedView {
+            return false
+        }
+        
+        self.selectedView = view
+        
         return true
     }
     

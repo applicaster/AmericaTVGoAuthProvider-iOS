@@ -144,9 +144,9 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDg-rp-8lj">
-                            <rect key="frame" x="149.5" y="68" width="76" height="28"/>
+                            <rect key="frame" x="149.5" y="68" width="80" height="28"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                            <state key="normal" title="incia sesión">
+                            <state key="normal" title="inicia sesión">
                                 <color key="titleColor" red="0.79808610680000003" green="0.32679909470000001" blue="0.26271575689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <connections>

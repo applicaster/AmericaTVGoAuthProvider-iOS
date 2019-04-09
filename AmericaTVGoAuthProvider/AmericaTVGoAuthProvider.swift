@@ -52,13 +52,15 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
     
     // MARK: -
     
-    func login(userID: String, completion: @escaping ((ZPLoginOperationStatus) -> Void)) {
+    func login(email: String, completion: @escaping ((ZPLoginOperationStatus) -> Void)) {
         self.performingLogin = true
+        
+        let userID = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) as? String ?? ""
         
         AmericaTVGoAPIManager.shared.getUser(id: userID) { (_ success: Bool, _ token: String?, _ message: String?) in
             let user = AmericaTVGoIAPManager.shared.currentUser
             
-            if let userPassword = APKeychain.getStringForKey(userID) {
+            if let userPassword = APKeychain.getStringForKey(email) {
                 AmericaTVGoAPIManager.shared.loginUser(email: user.email, password: userPassword) { (success: Bool, token: String?, message: String?) in
                     AmericaTVGoAPIManager.updateUserDefaultsFromCurrentUser()
                     
@@ -117,22 +119,27 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
     
     func startAuthorizationProcess() {
         let topMostViewController = ZAAppConnector.sharedInstance().navigationDelegate.topmostModal()
-        let viewController: UIViewController
-        
         let user = AmericaTVGoIAPManager.shared.currentUser
         
-        if user.id.isEmpty {
-            viewController = AmericaTVGoLoginViewController.init(nibName: "AmericaTVGoLoginViewController", bundle: Bundle(for: type(of: self)), andDelegate: delegate)
+        if user.email.isEmpty {
+            let viewController = AmericaTVGoLoginViewController.init(nibName: "AmericaTVGoLoginViewController", bundle: Bundle(for: type(of: self)), andDelegate: delegate)
+            topMostViewController?.present(viewController, animated: true, completion: nil)
         } else {
-            if user.isLoggedIn() && user.token.isEmpty {
-                viewController = AmericaTVGoIAPProductsViewController.init(nibName: "AmericaTVGoIAPProductsViewController", bundle: Bundle(for: type(of: self)))
-            } else {
-                // should probably not happen
-                viewController = AmericaTVGoRegistrationFinishedViewController.init(nibName: nil, bundle: Bundle(for: self.classForCoder))
+            self.login(email: user.email) { (status) in
+                let viewController: UIViewController
+                
+                if user.isLoggedIn() && user.token.isEmpty {
+                    viewController = AmericaTVGoIAPProductsViewController.init(nibName: "AmericaTVGoIAPProductsViewController", bundle: Bundle(for: type(of: self)))
+                } else {
+                    // should probably not happen
+                    viewController = AmericaTVGoLoginViewController.init(nibName: "AmericaTVGoLoginViewController", bundle: Bundle(for: type(of: self)), andDelegate: self.delegate)
+                }
+                
+                topMostViewController?.present(viewController, animated: true, completion: nil)
             }
         }
         
-        topMostViewController?.present(viewController, animated: true, completion: nil)
+        
     }
     
     func handleUrlScheme(_ params: NSDictionary) {
@@ -147,8 +154,8 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
             let nameParam = params["name"] as? String
             
             if expectedUrlSchemeNameParam.isEmpty || nameParam == expectedUrlSchemeNameParam {
-                if let userID = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) as? String {
-                    self.login(userID: userID) { (status) in
+                if let userEmail = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserEmailKey) as? String {
+                    self.login(email: userEmail) { (status) in
                         // Nothing to do
                     }
                 }
@@ -159,8 +166,8 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
     //MARK: ZPAppLoadingHookProtocol
     
     func executeAfterAppRootPresentation(displayViewController: UIViewController?, completion: (() -> Void)?) {
-        if let userID = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserIDKey) as? String, !userID.isEmpty {
-            self.login(userID: userID) { (status) in
+        if let userEmail = UserDefaults.standard.object(forKey: AmericaTVGoAPIManagerUserEmailKey) as? String, !userEmail.isEmpty {
+            self.login(email: userEmail) { (status) in
                 completion?()
             }
         } else {
