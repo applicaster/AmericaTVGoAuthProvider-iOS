@@ -14,7 +14,7 @@ import TTTAttributedLabel
 fileprivate let kTermsSearchText = "Términos y condiciones"
 fileprivate let kPrivacySearchText = "Políticas de privacidad"
 
-class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SKRequestDelegate, TTTAttributedLabelDelegate {
+class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SKRequestDelegate, TTTAttributedLabelDelegate, AmericaTVGoShadowBoxViewDelegate {
     @IBOutlet weak var productsCollectionView: UICollectionView!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var iapDescriptionLabel: TTTAttributedLabel!
@@ -241,6 +241,7 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         let product = products[indexPath.row]
         
         cell.product = product
+        cell.containerView.delegate = self
         
         if indexPath.row == 0 && self.selectedCell == nil {
             self.selectCell(cell)
@@ -283,6 +284,21 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     }
     
     // MARK: -
+    
+    func americaTVGoShadowBoxViewWillSelect(_ view: AmericaTVGoShadowBoxView) -> Bool {
+        if view == self.selectedContainerView {
+            return false
+        }
+        
+        self.selectedContainerView = view
+        
+        return true
+    }
+    
+    func americaTVGoShadowBoxViewDidSelect(_ view: AmericaTVGoShadowBoxView) {
+        
+    }
+    // MARK -
     
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return UI_USER_INTERFACE_IDIOM() == .pad ? .landscape  : .portrait

@@ -15,6 +15,9 @@ class AmericaTVGoProductCollectionViewCell: UICollectionViewCell, AmericaTVGoSha
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var extraLabel: UILabel!
     
+    deinit {
+        containerView.delegate = nil
+    }
     
     var product: AmericaTVGoProduct? {
         didSet {
