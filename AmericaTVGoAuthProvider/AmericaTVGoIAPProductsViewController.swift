@@ -14,7 +14,7 @@ import TTTAttributedLabel
 fileprivate let kTermsSearchText = "Términos y condiciones"
 fileprivate let kPrivacySearchText = "Políticas de privacidad"
 
-class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SKRequestDelegate, TTTAttributedLabelDelegate, AmericaTVGoShadowBoxViewDelegate {
+class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SKRequestDelegate, TTTAttributedLabelDelegate {
     @IBOutlet weak var productsCollectionView: UICollectionView!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var iapDescriptionLabel: TTTAttributedLabel!
@@ -241,7 +241,6 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
         let product = products[indexPath.row]
         
         cell.product = product
-        cell.containerView.delegate = self
         
         if indexPath.row == 0 && self.selectedCell == nil {
             self.selectCell(cell)
@@ -258,15 +257,15 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     }
     
     fileprivate func selectCell(_ cell: AmericaTVGoProductCollectionViewCell) {
-        if cell.containerView == self.selectedContainerView {
+        if cell == self.selectedCell {
+            cell.containerView.isSelected = true
             return
-        }
-        
-        if self.selectedContainerView != cell.containerView {
+        } else {
             self.selectedContainerView?.isSelected = false
+            cell.containerView.isSelected = true
+            self.selectedContainerView = cell.containerView
+            self.selectedCell = cell
         }
-        self.selectedContainerView = cell.containerView
-        self.selectedCell = cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -282,22 +281,7 @@ class AmericaTVGoIAPProductsViewController: UIViewController, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8.0
     }
-    
-    // MARK: -
-    
-    func americaTVGoShadowBoxViewWillSelect(_ view: AmericaTVGoShadowBoxView) -> Bool {
-        if view == self.selectedContainerView {
-            return false
-        }
-        
-        self.selectedContainerView = view
-        
-        return true
-    }
-    
-    func americaTVGoShadowBoxViewDidSelect(_ view: AmericaTVGoShadowBoxView) {
-        
-    }
+
     // MARK -
     
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

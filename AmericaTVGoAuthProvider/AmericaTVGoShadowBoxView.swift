@@ -20,7 +20,9 @@ class AmericaTVGoShadowBoxView: UIView {
     
     var isSelected = false {
         didSet {
-            self.update()
+            if oldValue != isSelected {
+                self.update()
+            }
         }
     }
     
@@ -63,6 +65,7 @@ class AmericaTVGoShadowBoxView: UIView {
             }
         } else {
             self.layer.borderWidth = 0
+            self.checkboxImageView?.image = nil
             self.checkboxImageView?.removeFromSuperview()
             self.checkboxImageView = nil
         }

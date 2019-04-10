@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AmericaTVGoProductCollectionViewCell: UICollectionViewCell, AmericaTVGoShadowBoxViewDelegate {
+class AmericaTVGoProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: AmericaTVGoShadowBoxView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var newPriceLabel: UILabel!
@@ -27,8 +27,6 @@ class AmericaTVGoProductCollectionViewCell: UICollectionViewCell, AmericaTVGoSha
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        containerView.delegate = self
         
         update()
     }
@@ -65,14 +63,6 @@ class AmericaTVGoProductCollectionViewCell: UICollectionViewCell, AmericaTVGoSha
         } else {
             extraLabel.isHidden = true
         }
-        
-    }
-
-    func americaTVGoShadowBoxViewWillSelect(_ view: AmericaTVGoShadowBoxView) -> Bool {
-        return true
-    }
-    
-    func americaTVGoShadowBoxViewDidSelect(_ view: AmericaTVGoShadowBoxView) {
         
     }
 }

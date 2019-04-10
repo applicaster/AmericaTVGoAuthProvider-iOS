@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AmericaTVGoAuthProvider'
-  s.version          = '1.2.22'
+  s.version          = '1.2.23'
   s.summary          = 'AmericaTVGo Authorization Client'
   s.description      = <<-DESC
 AmericaTVGo Authorization Client
