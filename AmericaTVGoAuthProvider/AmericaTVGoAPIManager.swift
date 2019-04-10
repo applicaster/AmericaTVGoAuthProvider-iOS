@@ -37,6 +37,8 @@ class AmericaTVGoAPIManager: NSObject {
                         if status == true {
                             let user = AmericaTVGoIAPManager.shared.currentUser
                             user.update(json: objectDictionary)
+                            user.email = email
+                            user.password = password
                             
                             AmericaTVGoAPIManager.updateUserDefaultsFromCurrentUser()
                             
@@ -106,6 +108,8 @@ class AmericaTVGoAPIManager: NSObject {
                         if status == true {
                             let user = AmericaTVGoIAPManager.shared.currentUser
                             user.update(json: objectDictionary)
+                            user.email = email
+                            user.password = password
                             
                             AmericaTVGoAPIManager.updateUserDefaultsFromCurrentUser()
                             
