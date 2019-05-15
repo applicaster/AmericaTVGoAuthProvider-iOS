@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AmericaTVGoAuthProvider'
-  s.version          = '1.2.23'
+  s.version          = '2.0.0'
   s.summary          = 'AmericaTVGo Authorization Client'
   s.description      = <<-DESC
 AmericaTVGo Authorization Client
@@ -10,7 +10,7 @@ AmericaTVGo Authorization Client
   s.license          = ''
   s.author           = { 'roi kedarya' => 'r.kedarya@applicaster.com' }
   s.source           = { :git => 'git@github.com:applicaster/AmericaTVGoAuthProvider-iOS.git', :tag => s.version.to_s }
-  s.platform     = :ios, '9.0'
+  s.platform     = :ios, '10.0'
   s.source_files = 'AmericaTVGoAuthProvider/*.{swift,h,m}'
   s.public_header_files  = 'AmericaTVGoAuthProvider/*.h'
   s.requires_arc = true
