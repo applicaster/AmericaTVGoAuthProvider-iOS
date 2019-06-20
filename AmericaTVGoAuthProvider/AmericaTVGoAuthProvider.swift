@@ -148,6 +148,8 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
                 self.logout { (status) in
                     // Nothing to do
                 }
+            } else if let nameParam = params["name"] as? String, nameParam == self.urlSchemeName() {
+                self.startAuthorizationProcess()
             }
         } else {
             let expectedUrlSchemeNameParam = self.urlSchemeName()
