@@ -10,13 +10,13 @@
 	"platform": "ios",
 	"author_name": "Marcos Reyes",
 	"author_email": "m.reyes@applicaster.com",
-	"manifest_version": "2.0.1",
+	"manifest_version": "2.0.2",
 	"name": "AmericaTV Login Plugin iOS",
 	"description": "AmericaTVGo auth provider.",
 	"type": "auth_provider",
 	"identifier": "AmericaTVGoAuthProvider-iOS",
 	"dependency_name": "AmericaTVGoAuthProvider",
-	"dependency_version": "2.0.1",
+	"dependency_version": "2.0.2",
 	"whitelisted_account_ids": [
 	  "51dbf21552a62eeefe000001",
 	  "5a2132dccfbf66000e9c2e63"

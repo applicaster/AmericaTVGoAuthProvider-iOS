@@ -201,7 +201,7 @@ class AmericaTVGoIAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTrans
             return false
         }
         
-        if let status = receiptJSON!["status"] as? NSNumber {
+        if let status = receiptJSON["status"] as? NSNumber {
             print("Status \(status)")
         }
         

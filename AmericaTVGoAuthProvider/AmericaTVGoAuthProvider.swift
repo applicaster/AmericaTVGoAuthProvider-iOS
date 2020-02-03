@@ -8,14 +8,13 @@
 
 import ApplicasterSDK
 import ZappPlugins
-import ZappLoginPluginsSDK
 
 public typealias AmericaTVGoAuthProviderCompletion = ((ZPLoginOperationStatus) -> Void)
 
 let AmericaTVGoRegisterLaterNotification = Notification.Name("AmericaTVGoRegisterLaterNotification")
 let AmericaTVGoCancelAuthenticationNotification = Notification.Name("AmericaTVGoCancelAuthenticationNotification")
 
-class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHookProtocol, ZPBaseLoginProviderFlowHandler {
+class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHookProtocol {
     var delegate: APAuthorizationClientDelegate!
     
     let uniqueID = "americaTV"
@@ -181,17 +180,7 @@ class AmericaTVGoAuthProvider: NSObject, APAuthorizationClient, ZPAppLoadingHook
     func urlSchemeName() -> String {
         return "americatvgo"
     }
-    
-    //MARK: -
-    
-    func presentLoginScreen(delegate: ZPBaseLoginProviderLoginScreenDelegate?) {
-       
-    }
-    
-    func hasAuthenticatedUser() -> Bool {
-        return self.isAuthenticated()
-    }
-    
+        
     // MARK: -
     
     @objc
