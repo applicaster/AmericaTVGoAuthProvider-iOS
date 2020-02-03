@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AmericaTVGoAuthProvider'
-  s.version          = '2.0.1'
+  s.version          = '2.0.2'
   s.summary          = 'AmericaTVGo Authorization Client'
   s.description      = <<-DESC
 AmericaTVGo Authorization Client
@@ -21,7 +21,7 @@ AmericaTVGo Authorization Client
   ]
 
   s.xcconfig =  { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
-                      'SWIFT_VERSION' => '4.2',
+                      'SWIFT_VERSION' => '5.1',
                       'ENABLE_BITCODE' => 'YES'
                   }
   s.dependency 'ApplicasterSDK'
